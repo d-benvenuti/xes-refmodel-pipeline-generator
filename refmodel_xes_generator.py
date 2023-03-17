@@ -1,7 +1,7 @@
-from PyQt6 import QtWidgets, uic, QtCore, QtGui
+from PyQt5 import QtWidgets, uic, QtCore, QtGui
 import sys
 import numpy as np
-from PyQt6.QtWidgets import QMessageBox, QDialog
+from PyQt5.QtWidgets import QMessageBox, QDialog
 import random
 from datetime import datetime
 import time
