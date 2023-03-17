@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>351</width>
+    <height>321</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Add Step</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <widget class="QLabel" name="label_name">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>50</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Name</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_id">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::RightToLeft</enum>
+    </property>
+    <property name="text">
+     <string>ID</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="add_button">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>270</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="add_button_2">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>480</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBoxContinuumLayer">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>331</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Continuum Layer</string>
+    </property>
+    <widget class="QRadioButton" name="radioButtonEdge">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Edge</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonFog">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>30</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fog </string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonCloud">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>30</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Cloud</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBoxType">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>160</y>
+      <width>331</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Type</string>
+    </property>
+    <widget class="QRadioButton" name="radioButtonProducer">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>40</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Producer</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonProcessing">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Processing</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonConsumer">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>40</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Consumer </string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_id">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_name">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>50</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <zorder>groupBoxType</zorder>
+   <zorder>groupBoxContinuumLayer</zorder>
+   <zorder>label_name</zorder>
+   <zorder>label_id</zorder>
+   <zorder>add_button</zorder>
+   <zorder>add_button_2</zorder>
+   <zorder>lineEdit_id</zorder>
+   <zorder>lineEdit_name</zorder>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>lineEdit_id</tabstop>
+  <tabstop>lineEdit_name</tabstop>
+  <tabstop>radioButtonEdge</tabstop>
+  <tabstop>radioButtonFog</tabstop>
+  <tabstop>radioButtonCloud</tabstop>
+  <tabstop>radioButtonProcessing</tabstop>
+  <tabstop>radioButtonConsumer</tabstop>
+  <tabstop>radioButtonProducer</tabstop>
+  <tabstop>add_button</tabstop>
+  <tabstop>add_button_2</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

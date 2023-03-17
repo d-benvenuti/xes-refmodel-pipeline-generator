@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>315</width>
+    <height>317</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Add RAM</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="add_button">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>280</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelineid">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ID</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelineid_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>100</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Speed</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelineid_4">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Volume</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelineid_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Producer (optional)</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBoxType">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>190</y>
+      <width>291</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Type</string>
+    </property>
+    <widget class="QRadioButton" name="radioButtonDDR3">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>30</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DDR3</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonDDR4">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>30</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DDR4</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButtonDDR5">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>30</y>
+       <width>95</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DDR5</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="autoExclusive">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_id">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>20</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_volume">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>60</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_speed">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>100</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_producer">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>140</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>lineEdit_id</tabstop>
+  <tabstop>lineEdit_volume</tabstop>
+  <tabstop>lineEdit_speed</tabstop>
+  <tabstop>lineEdit_producer</tabstop>
+  <tabstop>radioButtonDDR3</tabstop>
+  <tabstop>radioButtonDDR4</tabstop>
+  <tabstop>radioButtonDDR5</tabstop>
+  <tabstop>add_button</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

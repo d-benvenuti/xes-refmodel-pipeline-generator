@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>266</width>
+    <height>181</height>
+   </rect>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::StrongFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Add Network</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="add_button">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>140</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Add</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelineid_3">
+    <property name="geometry">
+     <rect>
+      <x>-20</x>
+      <y>60</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Bandwidth</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelineid_5">
+    <property name="geometry">
+     <rect>
+      <x>-20</x>
+      <y>100</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Latency</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelineid">
+    <property name="geometry">
+     <rect>
+      <x>-30</x>
+      <y>20</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>ID</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_id">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_bandwidth">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_latency">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>100</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>lineEdit_id</tabstop>
+  <tabstop>lineEdit_bandwidth</tabstop>
+  <tabstop>lineEdit_latency</tabstop>
+  <tabstop>add_button</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

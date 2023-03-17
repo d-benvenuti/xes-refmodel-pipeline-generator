@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>422</width>
+    <height>268</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>RefModel-XES-Generator</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label_pipelineid">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>10</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Big Data Pipeline ID</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelinemedium">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>261</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Big Data Pipeline Communication Medium</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_pipelinename">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>100</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Big Data Pipeline Name</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="generateButton">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>200</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Generate XES</string>
+    </property>
+    <property name="autoDefault">
+     <bool>true</bool>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_numberoftraces">
+    <property name="geometry">
+     <rect>
+      <x>100</x>
+      <y>150</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Number of Traces</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_id">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>10</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_medium">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>50</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>cloud</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_name">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>100</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>new</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_traces">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>150</y>
+      <width>113</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>10</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>422</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="menuNew">
+    <property name="title">
+     <string>New...</string>
+    </property>
+    <addaction name="actionAddStep"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddStepPhase"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddDataSource"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddEnvironmentVariable"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddTechnology"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddCPU"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddGPU"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddRAM"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddStorage"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddNetwork"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View...</string>
+    </property>
+    <addaction name="actionViewSteps"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewDataSources"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewStepPhases"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewEnvironmentVariables"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewTechnologies"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewCPUs"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewGPUs"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewRAMs"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewStorages"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewNetworks"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewAll"/>
+   </widget>
+   <widget class="QMenu" name="menuRemove">
+    <property name="title">
+     <string>Delete...</string>
+    </property>
+    <addaction name="actionDeleteStep"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteStepPhase"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteDataSource"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteEnvironmentVariable"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteTechnology"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteCPU"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteGPU"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteRAM"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteStorage"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteNetwork"/>
+   </widget>
+   <addaction name="menuNew"/>
+   <addaction name="menuView"/>
+   <addaction name="menuRemove"/>
+  </widget>
+  <action name="actionBig_Data_Pipeline">
+   <property name="text">
+    <string>Big Data Pipeline</string>
+   </property>
+  </action>
+  <action name="actionAddStep">
+   <property name="text">
+    <string>Step</string>
+   </property>
+  </action>
+  <action name="actionData_Stream">
+   <property name="text">
+    <string>Data Stream</string>
+   </property>
+  </action>
+  <action name="actionAddStepPhase">
+   <property name="text">
+    <string>Step Phase</string>
+   </property>
+  </action>
+  <action name="actionAddEnvironmentVariable">
+   <property name="text">
+    <string>Environment Variable</string>
+   </property>
+  </action>
+  <action name="actionData_Stream_2">
+   <property name="text">
+    <string>Data Stream</string>
+   </property>
+  </action>
+  <action name="actionData_Source_2">
+   <property name="text">
+    <string>Data Source</string>
+   </property>
+  </action>
+  <action name="actionGPU">
+   <property name="text">
+    <string>GPU</string>
+   </property>
+  </action>
+  <action name="actionRAM">
+   <property name="text">
+    <string>RAM</string>
+   </property>
+  </action>
+  <action name="actionCPU">
+   <property name="text">
+    <string>CPU</string>
+   </property>
+  </action>
+  <action name="actionNetwork">
+   <property name="text">
+    <string>Network</string>
+   </property>
+  </action>
+  <action name="actionStorage">
+   <property name="text">
+    <string>Storage</string>
+   </property>
+  </action>
+  <action name="actionAddTechonogy">
+   <property name="text">
+    <string>Techonogy</string>
+   </property>
+  </action>
+  <action name="actionViewSteps">
+   <property name="text">
+    <string>Steps</string>
+   </property>
+  </action>
+  <action name="actionViewDataSources">
+   <property name="text">
+    <string>Data Sources</string>
+   </property>
+  </action>
+  <action name="actionViewStepPhases">
+   <property name="text">
+    <string>Step Phases</string>
+   </property>
+  </action>
+  <action name="actionViewEnvironmentVariables">
+   <property name="text">
+    <string>Environment Variables</string>
+   </property>
+  </action>
+  <action name="actionTechnologies">
+   <property name="text">
+    <string>Technologies</string>
+   </property>
+  </action>
+  <action name="actionAddDataSource">
+   <property name="text">
+    <string>Data Source</string>
+   </property>
+  </action>
+  <action name="actionViewTechnologies">
+   <property name="text">
+    <string>Technologies</string>
+   </property>
+  </action>
+  <action name="actionAddTechnology">
+   <property name="text">
+    <string>Technology</string>
+   </property>
+  </action>
+  <action name="actionAddCPU">
+   <property name="text">
+    <string>CPU</string>
+   </property>
+  </action>
+  <action name="actionAddGPU">
+   <property name="text">
+    <string>GPU</string>
+   </property>
+  </action>
+  <action name="actionAddRAM">
+   <property name="text">
+    <string>RAM</string>
+   </property>
+  </action>
+  <action name="actionAddStorage">
+   <property name="text">
+    <string>Storage</string>
+   </property>
+  </action>
+  <action name="actionAddNetwork">
+   <property name="text">
+    <string>Network</string>
+   </property>
+  </action>
+  <action name="actionViewCPUs">
+   <property name="text">
+    <string>CPUs</string>
+   </property>
+  </action>
+  <action name="actionViewGPUs">
+   <property name="text">
+    <string>GPUs</string>
+   </property>
+  </action>
+  <action name="actionViewRAMs">
+   <property name="text">
+    <string>RAMs</string>
+   </property>
+  </action>
+  <action name="actionViewStorages">
+   <property name="text">
+    <string>Storages</string>
+   </property>
+  </action>
+  <action name="actionViewNetworks">
+   <property name="text">
+    <string>Networks</string>
+   </property>
+  </action>
+  <action name="actionViewAll">
+   <property name="text">
+    <string>All</string>
+   </property>
+  </action>
+  <action name="actionDeleteStep">
+   <property name="text">
+    <string>Step</string>
+   </property>
+  </action>
+  <action name="actionDeleteStepPhase">
+   <property name="text">
+    <string>Step Phase</string>
+   </property>
+  </action>
+  <action name="actionDeleteDataSource">
+   <property name="text">
+    <string>Data Source</string>
+   </property>
+  </action>
+  <action name="actionDeleteEnvironmentVariable">
+   <property name="text">
+    <string>Environment Variable</string>
+   </property>
+  </action>
+  <action name="actionDeleteTechnology">
+   <property name="text">
+    <string>Technology</string>
+   </property>
+  </action>
+  <action name="actionDeleteCPU">
+   <property name="text">
+    <string>CPU</string>
+   </property>
+  </action>
+  <action name="actionDeleteGPU">
+   <property name="text">
+    <string>GPU</string>
+   </property>
+  </action>
+  <action name="actionDeleteRAM">
+   <property name="text">
+    <string>RAM</string>
+   </property>
+  </action>
+  <action name="actionDeleteStorage">
+   <property name="text">
+    <string>Storage</string>
+   </property>
+  </action>
+  <action name="actionDeleteNetwork">
+   <property name="text">
+    <string>Network</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>lineEdit_id</tabstop>
+  <tabstop>lineEdit_medium</tabstop>
+  <tabstop>lineEdit_name</tabstop>
+  <tabstop>lineEdit_traces</tabstop>
+  <tabstop>generateButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
