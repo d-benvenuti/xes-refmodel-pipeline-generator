@@ -237,10 +237,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                 msg.setText('Number of Traces must be a number.')
                 msg.exec()
                 return -2
-            firstStep = 1
-            firstStepPhase = 1
-            currentStepPhase = 1
-            currentStep = 1
             if n <= 0:
                 print('Number of Traces must be positive.')
                 msg.setText('Number of Traces must be positive.')
