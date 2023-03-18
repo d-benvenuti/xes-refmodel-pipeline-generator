@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>RefModel-XES-Generator</string>
+   <string>BDPLRefModel Log Generator</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label_pipelineid">
@@ -66,7 +66,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Generate XES</string>
+     <string>Generate log</string>
     </property>
     <property name="autoDefault">
      <bool>true</bool>
