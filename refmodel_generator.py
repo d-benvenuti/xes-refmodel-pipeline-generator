@@ -255,7 +255,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
                         j = 0
                         while j < len(step_phases):
                             #print the step phase
-                            print('\t\t\t"StepPhase' + str(j+1) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t' + step_phases[j].__str__().replace('\n', '\n\t\t\t\t'))
+                            print('\t\t\t"StepPhase' + str(j+1) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t"ID": "' + step_phases[j].id + '",\n\t\t\t\t"Name": "' + step_phases[j].name + '"')
                             #see how many objects we have
                             num_datasources = len(data_sources)
                             num_technologies = len(technologies)
