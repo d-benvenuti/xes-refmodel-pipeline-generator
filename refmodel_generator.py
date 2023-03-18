@@ -147,7 +147,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.w = None  # No external window yet.
         self.show() # Show the GUI
         #CONNECT BUTTONS AND ACTIONS
-        self.generateButton.clicked.connect(self.generateXES)
+        self.generateButton.clicked.connect(self.generateJSON)
         #------------------------ ADD ------------------------
         self.actionAddStep.triggered.connect(self.addStep) # Remember to pass the definition/method, not the return value!
         self.actionAddStepPhase.triggered.connect(self.addStepPhase)
@@ -189,8 +189,8 @@ class UiMainWindow(QtWidgets.QMainWindow):
     #------------------------------------------------------------------
     #FUNCTIONS
     #------------------------------------------------------------------
-    #FUNCTION TO GENERATE THE XES
-    def generateXES(self):
+    #FUNCTION TO GENERATE THE JSON
+    def generateJSON(self):
         print('XES button clicked.')
         #READ VALUES FROM lineEdit
         pipeline_id = self.lineEdit_id.text()
@@ -239,7 +239,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                 return -2
             firstStep = 1
             firstStepPhase = 1
-            firstTrace = 1
             currentStepPhase = 1
             currentStep = 1
             if n <= 0:
@@ -250,38 +249,17 @@ class UiMainWindow(QtWidgets.QMainWindow):
             original_stdout = sys.stdout # Save a reference to the original standard output
             with open(pipeline_name + '.json', 'w') as f:
                 sys.stdout = f # Change the standard output to the file we created.
-                print('{')
+                print('{\n\t"PipelineID": "' + pipeline_id + '",\n\t"PipelineName": "' + pipeline_name + '",\n\t"PipelineCommunicationMedium": "' + pipeline_medium + '",')
                 while n > 0:
-                    if firstTrace == 1:  
-                        print('\t"Trace' + str(n) + '": {\n\t\t"Pipeline ID": "' + pipeline_id + '",\n\t\t"Pipeline Name": "' + pipeline_name + '",\n\t\t"Pipeline Communication Medium": "' + pipeline_medium + '",')
-                        #print('\t"Trace' + '": {\n\t\t"PipelineID": "' + pipeline_id + '",\n\t\t"PipelineName": "' + pipeline_name + '",\n\t\t"PipelineCommunicationMedium": "' + pipeline_medium + '",')
-                        firstTrace = 0
-                    else:
-                        print('\t,"Trace' + str(n) + '": {\n\t\t"PipelineID": "' + pipeline_id + '",\n\t\t"PipelineName": "' + pipeline_name + '",\n\t\t"PipelineCommunicationMedium": "' + pipeline_medium + '",')
-                        #print('\t,"Trace' + '": {\n\t\t"PipelineID": "' + pipeline_id + '",\n\t\t"PipelineName": "' + pipeline_name + '",\n\t\t"PipelineCommunicationMedium": "' + pipeline_medium + '",')
-                    for i in steps:
-                        #print the step
-                        if firstStep == 1:    
-                            print('\t\t' + i.__str__().replace('\n','\n\t\t').replace('"\n\t\t}','"').replace('Step','Step'+str(currentStep)) + ',')
-                            #print('\t\t' + i.__str__().replace('\n','\n\t\t').replace('"\n\t\t}','"') + ',')                       
-                            firstStep = 0
-                            currentStep += 1
-                        else:  
-                            print('\t\t,' + i.__str__().replace('\n','\n\t\t').replace('"\n\t\t}','"').replace('Step','Step'+str(currentStep)) + ',')
-                            #print('\t\t,' + i.__str__().replace('\n','\n\t\t').replace('"\n\t\t}','"') + ',')
-                            currentStep += 1
-                        for j in step_phases:
+                    print('\t"Trace' + str(n) + '": {')
+                    i = 0
+                    while i < len(steps):
+                        #print the step    
+                        print('\t\t' + steps[i].__str__().replace('\n','\n\t\t').replace('"\n\t\t}','"').replace('Step','Step'+str(i+1)) + ',')
+                        j = 0
+                        while j < len(step_phases):
                             #print the step phase
-                            #time.sleep(0.5)
-                            if firstStepPhase == 1:
-                                print('\t\t\t"StepPhase' + str(currentStepPhase) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t' + j.__str__().replace('\n', '\n\t\t\t\t'))
-                                #print('\t\t\t"StepPhase' + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t' + j.__str__().replace('\n', '\n\t\t\t\t'))            
-                                firstStepPhase = 0
-                                currentStepPhase += 1
-                            else:
-                                print('\t\t\t,"StepPhase' + str(currentStepPhase) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t' + j.__str__().replace('\n', '\n\t\t\t\t'))
-                                #print('\t\t\t,"StepPhase' + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t' + j.__str__().replace('\n', '\n\t\t\t\t'))
-                                currentStepPhase += 1
+                            print('\t\t\t"StepPhase' + str(j+1) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t' + step_phases[j].__str__().replace('\n', '\n\t\t\t\t'))
                             #see how many objects we have
                             num_datasources = len(data_sources)
                             num_technologies = len(technologies)
@@ -310,16 +288,22 @@ class UiMainWindow(QtWidgets.QMainWindow):
                             if num_ram > 0:
                                 print('\t\t\t\t,' + rams[random.randint(0, num_ram-1)].__str__().replace('\n', '\n\t\t\t\t'))
                             #close stepphase
-                            print('\t\t\t}')
+                            j += 1
+                            if j == len(step_phases):
+                                print('\t\t\t}')
+                            else:    
+                                print('\t\t\t},')
                         #close step
-                        print('\t\t}')
-                        #reset stepphase
-                        firstStepPhase = 1
-                        currentStepPhase = 1
+                        i  += 1
+                        if i == len(steps):
+                            print('\t\t}')
+                        else:
+                            print('\t\t},')
                     #close trace and go to the next and reset firstStep
-                    print('\t}')
-                    firstStep = 1
-                    currentStep = 1
+                    if (n != 0):
+                        print('\t},')
+                    else:
+                        print('\t}')
                     n -= 1
                 #close root
                 print('}')
