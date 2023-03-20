@@ -147,7 +147,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.w = None  # No external window yet.
         self.show() # Show the GUI
         #CONNECT BUTTONS AND ACTIONS
-        self.generateButton.clicked.connect(self.generateJSON)
+        self.generateButton.clicked.connect(self.generateLog)
         #------------------------ ADD ------------------------
         self.actionAddStep.triggered.connect(self.addStep) # Remember to pass the definition/method, not the return value!
         self.actionAddStepPhase.triggered.connect(self.addStepPhase)
@@ -188,9 +188,75 @@ class UiMainWindow(QtWidgets.QMainWindow):
             self.w.close()
     #------------------------------------------------------------------
     #FUNCTIONS
+    def generateXES(self, pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n):
+        print("Generating XES file.")
+    def generateJSON(self, pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n):
+        print("Generating JSON file.")
+        original_stdout = sys.stdout # Save a reference to the original standard output
+        with open(pipeline_name + '.json', 'w') as f:
+            sys.stdout = f # Change the standard output to the file we created.
+            print('{\n\t"PipelineID": "' + pipeline_id + '",\n\t"PipelineName": "' + pipeline_name + '",\n\t"PipelineCommunicationMedium": "' + pipeline_medium + '",')
+            while n > 0:
+                print('\t"Trace' + str(n) + '": {')
+                i = 0
+                while i < len(steps):
+                    #print the step    
+                    print('\t\t' + steps[i].__str__().replace('\n','\n\t\t').replace('"\n\t\t}','"').replace('Step','Step'+str(i+1)) + ',')
+                    j = 0
+                    while j < len(step_phases):
+                        #print the step phase
+                        print('\t\t\t"StepPhase' + str(j+1) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t"ID": "' + step_phases[j].id + '",\n\t\t\t\t"Name": "' + step_phases[j].name + '"')
+                        #see how many objects we have
+                        num_datasources = len(data_sources)
+                        num_technologies = len(technologies)
+                        num_envvar = len(environment_variables)
+                        num_cpu = len(cpus)
+                        num_gpu = len(gpus)
+                        num_ram = len(rams)
+                        num_storage = len(storages)
+                        num_network = len(networks)
+                        #for each object, if the array is not null
+                        if num_datasources > 0:
+                            #get a random number between 0 and length of the array-1 and print
+                            print('\t\t\t\t,' + data_sources[random.randint(0, num_datasources-1)].__str__().replace('\n', '\n\t\t\t\t'))
+                        if num_technologies > 0:
+                            print('\t\t\t\t,' + technologies[random.randint(0, num_technologies-1)].__str__().replace('\n', '\n\t\t\t\t'))
+                        if num_envvar > 0:
+                            print('\t\t\t\t,' + environment_variables[random.randint(0, num_envvar-1)].__str__().replace('\n', '\n\t\t\t\t'))
+                        if num_cpu > 0:
+                            print('\t\t\t\t,' + cpus[random.randint(0, num_cpu-1)].__str__().replace('\n', '\n\t\t\t\t'))
+                        if num_gpu > 0:
+                            print('\t\t\t\t,' + gpus[random.randint(0, num_gpu-1)].__str__().replace('\n', '\n\t\t\t\t'))
+                        if num_storage > 0:
+                            print('\t\t\t\t,' + storages[random.randint(0, num_storage-1)].__str__().replace('\n', '\n\t\t\t\t'))
+                        if num_network > 0:
+                            print('\t\t\t\t,' + networks[random.randint(0, num_network-1)].__str__().replace('\n', '\n\t\t\t\t'))
+                        if num_ram > 0:
+                            print('\t\t\t\t,' + rams[random.randint(0, num_ram-1)].__str__().replace('\n', '\n\t\t\t\t'))
+                        #close stepphase
+                        j += 1
+                        if j == len(step_phases):
+                            print('\t\t\t}')
+                        else:    
+                            print('\t\t\t},')
+                    #close step
+                    i  += 1
+                    if i == len(steps):
+                        print('\t\t}')
+                    else:
+                        print('\t\t},')
+                #close trace and go to the next and reset firstStep
+                if (n != 0):
+                    print('\t},')
+                else:
+                    print('\t}')
+                n -= 1
+            #close root
+            print('}')
+        sys.stdout = original_stdout # Reset the standard output to its original value
     #------------------------------------------------------------------
-    #FUNCTION TO GENERATE THE JSON
-    def generateJSON(self):
+    #FUNCTION TO GENERATE BOTH XES AND JSON FILES
+    def generateLog(self):
         print('XES button clicked.')
         #READ VALUES FROM lineEdit
         pipeline_id = self.lineEdit_id.text()
@@ -229,7 +295,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
             msg.exec()
             return -1
         else:
-            #------------------------------------------- XES GENERATION
+            #---------- CHECK FOR ERRORS IN NUMBER OF TRACES
             try:
                 n = int(pipeline_traces)
             except ValueError as ve:
@@ -242,69 +308,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                 msg.setText('Number of Traces must be positive.')
                 msg.exec()
                 return -3
-            original_stdout = sys.stdout # Save a reference to the original standard output
-            with open(pipeline_name + '.json', 'w') as f:
-                sys.stdout = f # Change the standard output to the file we created.
-                print('{\n\t"PipelineID": "' + pipeline_id + '",\n\t"PipelineName": "' + pipeline_name + '",\n\t"PipelineCommunicationMedium": "' + pipeline_medium + '",')
-                while n > 0:
-                    print('\t"Trace' + str(n) + '": {')
-                    i = 0
-                    while i < len(steps):
-                        #print the step    
-                        print('\t\t' + steps[i].__str__().replace('\n','\n\t\t').replace('"\n\t\t}','"').replace('Step','Step'+str(i+1)) + ',')
-                        j = 0
-                        while j < len(step_phases):
-                            #print the step phase
-                            print('\t\t\t"StepPhase' + str(j+1) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t"ID": "' + step_phases[j].id + '",\n\t\t\t\t"Name": "' + step_phases[j].name + '"')
-                            #see how many objects we have
-                            num_datasources = len(data_sources)
-                            num_technologies = len(technologies)
-                            num_envvar = len(environment_variables)
-                            num_cpu = len(cpus)
-                            num_gpu = len(gpus)
-                            num_ram = len(rams)
-                            num_storage = len(storages)
-                            num_network = len(networks)
-                            #for each object, if the array is not null
-                            if num_datasources > 0:
-                                #get a random number between 0 and length of the array-1 and print
-                                print('\t\t\t\t,' + data_sources[random.randint(0, num_datasources-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                            if num_technologies > 0:
-                                print('\t\t\t\t,' + technologies[random.randint(0, num_technologies-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                            if num_envvar > 0:
-                                print('\t\t\t\t,' + environment_variables[random.randint(0, num_envvar-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                            if num_cpu > 0:
-                                print('\t\t\t\t,' + cpus[random.randint(0, num_cpu-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                            if num_gpu > 0:
-                                print('\t\t\t\t,' + gpus[random.randint(0, num_gpu-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                            if num_storage > 0:
-                                print('\t\t\t\t,' + storages[random.randint(0, num_storage-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                            if num_network > 0:
-                                print('\t\t\t\t,' + networks[random.randint(0, num_network-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                            if num_ram > 0:
-                                print('\t\t\t\t,' + rams[random.randint(0, num_ram-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                            #close stepphase
-                            j += 1
-                            if j == len(step_phases):
-                                print('\t\t\t}')
-                            else:    
-                                print('\t\t\t},')
-                        #close step
-                        i  += 1
-                        if i == len(steps):
-                            print('\t\t}')
-                        else:
-                            print('\t\t},')
-                    #close trace and go to the next and reset firstStep
-                    if (n != 0):
-                        print('\t},')
-                    else:
-                        print('\t}')
-                    n -= 1
-                #close root
-                print('}')
+            #GENERATE THE LOG IN XES AND JSON
+            self.generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n)
+            self.generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n)
             #-------------------------------------- CLOSE THE APP
-            sys.stdout = original_stdout # Reset the standard output to its original value
             self.close()
             return 1
     #FUNCTION TO ADD A NEW STEP
