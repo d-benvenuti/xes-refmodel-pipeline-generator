@@ -245,6 +245,8 @@ class UiMainWindow(QtWidgets.QMainWindow):
                         print('\t\t</event>')
                 #close trace
                 print('\t</trace>')
+                #little wait to avoid timestamps with the same value
+                time.sleep(0.2)
                 n -= 1
             #close the log 
             print('</log>')
@@ -311,6 +313,8 @@ class UiMainWindow(QtWidgets.QMainWindow):
                 else:
                     print('\t}')
                 n -= 1
+                #little wait to avoid timestamps with the same value
+                time.sleep(0.2)
             #close root
             print('}')
         sys.stdout = original_stdout # Reset the standard output to its original value
@@ -325,32 +329,26 @@ class UiMainWindow(QtWidgets.QMainWindow):
         pipeline_traces = self.lineEdit_traces.text()
         #CHECK FOR MISSING INPUTS
         if len(steps) == 0:
-            print('At least 1 Step is needed.')
             msg.setText('At least 1 Step is needed.')
             msg.exec()
             return -1
         elif len(step_phases) == 0:
-            print('At least 1 Step Phase is needed.')
             msg.setText('At least 1 Step Phase is needed.')
             msg.exec()
             return -1
         elif pipeline_id == "":
-            print("Big Data Pipeline ID can not be null.")
             msg.setText("Big Data Pipeline ID can not be null.")
             msg.exec()
             return -1
         elif pipeline_medium == "":
-            print("Big Data Pipeline Communication Medium can not be null.")
             msg.setText("Big Data Pipeline Communication Medium can not be null.")
             msg.exec()
             return -1
         elif pipeline_name == "":  
-            print("Big Data Pipeline Name can not be null.")
             msg.setText("Big Data Pipeline Name can not be null.")
             msg.exec()
             return -1
         elif pipeline_traces == "":
-            print("Big Data Pipeline Number of Traces can not be null.")
             msg.setText("Big Data Pipeline Number of Traces can not be null.")
             msg.exec()
             return -1
@@ -359,12 +357,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             try:
                 n = int(pipeline_traces)
             except ValueError as ve:
-                print('Number of Traces must be a number.')
                 msg.setText('Number of Traces must be a number.')
                 msg.exec()
                 return -2
             if n <= 0:
-                print('Number of Traces must be positive.')
                 msg.setText('Number of Traces must be positive.')
                 msg.exec()
                 return -3
@@ -583,7 +579,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                 print("Step removed.")
                 return 1
         #IF THERE IS NO MATCH
-        print("There is no Step with the given ID.")
         msg.setText("There is no Step with the given ID.")
         msg.exec()
         return -1
@@ -605,7 +600,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("Step Phase removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no Step Phase with the given ID.")
         msg.setText("There is no Step Phase with the given ID.")
         msg.exec()
         return -1  
@@ -627,7 +621,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("Data Source removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no Data Source with the given ID.")
         msg.setText("There is no Data Source with the given ID.")
         msg.exec()
         return -1   
@@ -649,7 +642,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("Environment Variable removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no Environment Variable with the given key.")
         msg.setText("There is no Environment Variable with the given key.")
         msg.exec()
         return -1
@@ -671,7 +663,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("Technology removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no Technology with the given ID.")
         msg.setText("There is no Technology with the given ID.")
         msg.exec()
         return -1
@@ -693,7 +684,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("CPU removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no CPU with the given ID.")
         msg.setText("There is no CPU with the given ID.")
         msg.exec()
         return -1
@@ -715,7 +705,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("GPU removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no GPU with the given ID.")
         msg.setText("There is no GPU with the given ID.")
         msg.exec()
         return -1
@@ -737,7 +726,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("RAM removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no RAM with the given ID.")
         msg.setText("There is no RAM with the given ID.")
         msg.exec()
         return -1
@@ -759,7 +747,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("Storage removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no Storage with the given ID.")
         msg.setText("There is no Storage with the given ID.")
         msg.exec()
         return -1
@@ -780,7 +767,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     print("Network removed.")
                     return 1
         #IF THERE IS NO MATCH
-        print("There is no Network with the given ID.")
         msg.setText("There is no Network with the given ID.")
         msg.exec()
         return -1
@@ -840,19 +826,25 @@ class UiStepWindow(QtWidgets.QMainWindow):
             step_type = "Consumer"
         #CHECK FOR MISSING INPUT
         if step_id == "":
-            print("Step ID can not be null.")
             msg.setText("Step ID can not be null.")
             msg.exec()
             return -1
         if step_name == "":
-            print("Step Name can not be null.")
             msg.setText("Step Name can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in step_id:
+            msg.setText("Step ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in step_name:
+            msg.setText("Step Name can not contain ' in the symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in steps:
             if step_id == i.id:
-                print("Step ID already used.")
                 msg.setText("Step ID already used.")
                 msg.exec()
                 return -2
@@ -881,19 +873,25 @@ class UiStepPhaseWindow(QtWidgets.QMainWindow):
         step_phase_name = self.lineEdit_name.text()
         #CHECK FOR MISSING INPUT
         if step_phase_id == "":
-            print("Step Phase ID can not be null.")
             msg.setText("Step Phase ID can not be null.")
             msg.exec()
             return -1
         if step_phase_name == "":
-            print("Step Phase name can not be null.")
             msg.setText("Step Phase Name can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in step_phase_id:
+            msg.setText("Step Phase ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in step_phase_name:
+            msg.setText("Step Phase Name can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in step_phases:
             if step_phase_id == i.id:
-                print("Step Phase ID already used.")
                 msg.setText("Step Phase ID already used.")
                 msg.exec()
                 return -2
@@ -922,19 +920,25 @@ class UiEnvironmentVariableWindow(QtWidgets.QMainWindow):
         environment_variable_value = self.lineEdit_value.text()
         #CHECK FOR MISSING INPUT
         if environment_variable_key == "":
-            print("Environment Variable Key can not be null.")
             msg.setText("Environment Variable Key can not be null.")
             msg.exec()
             return -1
         if environment_variable_value == "":
-            print("Environment Variable Value can not be null.")
             msg.setText("Environment Variable Value can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in environment_variable_key:
+            msg.setText("Environment Variable Key can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in environment_variable_value:
+            msg.setText("Environment Variable Value can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in environment_variables:
             if environment_variable_key == i.key:
-                print("Environment Variable key already used.")
                 msg.setText("Environment Variable key already used.")
                 msg.exec()
                 return -2
@@ -964,24 +968,33 @@ class UiDataSourceWindow(QtWidgets.QMainWindow):
         data_source_volume = self.lineEdit_volume.text()
         #CHECK FOR MISSING INPUT
         if data_source_id == "":
-            print("Data Source ID can not be null.")
             msg.setText("Data Source ID can not be null.")
             msg.exec()
             return -1
         if data_source_name == "":
-            print("Data Source Name can not be null.")
             msg.setText("Data Source Name can not be null.")
             msg.exec()
             return -1
         if data_source_volume == "":
-            print("Data Source Volume can not be null.")
             msg.setText("Data Source Volume can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in data_source_id:
+            msg.setText("Data Source ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in data_source_name:
+            msg.setText("Data Source Name can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in data_source_volume:
+            msg.setText("Data Source Volume can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in data_sources:
             if data_source_id == i.id:
-                print("Data Source ID already used.")
                 msg.setText("Data Source ID already used.")
                 msg.exec()
                 return -2
@@ -996,9 +1009,13 @@ class UiDataSourceWindow(QtWidgets.QMainWindow):
         data_source_velocity = self.lineEdit_velocity.text()
         if data_source_velocity != "":
             data_stream = 1
+            if "'" in data_source_velocity:
+                msg.setText("Data Source Velocity can not contain the ' symbol.")
+                msg.exec()
+                return -3
         else:
             data_stream = 0
-        #CREATE NEW ENVIRONMENT VARIABLE AND ADD IT TO THE LIST
+        #CREATE NEW DATA SOURCE AND ADD IT TO THE LIST
         if data_stream == 0:
             new_data_source = DataSource(data_source_id, data_source_name, data_source_volume, data_source_type)
         else:
@@ -1026,19 +1043,25 @@ class UiTechnologyWindow(QtWidgets.QMainWindow):
         technology_name = self.lineEdit_name.text()
         #CHECK FOR MISSING INPUT
         if technology_id == "":
-            print("Technology ID can not be null.")
             msg.setText("Technology ID can not be null.")
             msg.exec()
             return -1
         if technology_name == "":
-            print("Technology Name can not be null.")
             msg.setText("Technology Name can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in technology_id:
+            msg.setText("Technology ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in technology_name:
+            msg.setText("Technology Name can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in technologies:
             if technology_id == i.id:
-                print("Technology ID already used.")
                 msg.setText("Technology ID already used.")
                 msg.exec()
                 return -2
@@ -1078,24 +1101,37 @@ class UiCPUWindow(QtWidgets.QMainWindow):
         cpu_producer = self.lineEdit_producer.text()
         #CHECK FOR MISSING INPUT
         if cpu_id == "":
-            print("CPU ID can not be null.")
             msg.setText("CPU ID can not be null.")
             msg.exec()
             return -1
         if cpu_cores == "":
-            print("CPU Cores can not be null.")
-            msg.setText("CPU Cores can not be null.")
+            msg.setText("CPU #Cores can not be null.")
             msg.exec()
             return -1
         if cpu_speed == "":
-            print("CPU Speed can not be null.")
             msg.setText("CPU Speed can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in cpu_id:
+            msg.setText("CPU ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in cpu_cores:
+            msg.setText("CPU #Cores can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in cpu_speed:
+            msg.setText("CPU Speed can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in cpu_producer:
+            msg.setText("CPU Producer can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in cpus:
             if cpu_id == i.id:
-                print("CPU ID already used.")
                 msg.setText("CPU ID already used.")
                 msg.exec()
                 return -2
@@ -1126,20 +1162,34 @@ class UiRAMWindow(QtWidgets.QMainWindow):
         ram_producer = self.lineEdit_producer.text()
         #CHECK FOR MISSING INPUT
         if ram_id == "":
-            print("RAM ID can not be null.")
             msg.setText("RAM ID can not be null.")
             msg.exec()
             return -1
         if ram_volume == "":
-            print("RAM Volume can not be null.")
             msg.setText("RAM Volume can not be null.")
             msg.exec()
             return -1
         if ram_speed == "":
-            print("RAM Speed can not be null.")
             msg.setText("Ram Speed can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in ram_id:
+            msg.setText("RAM ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in ram_volume:
+            msg.setText("RAM Volume can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in ram_speed:
+            msg.setText("RAM Speed can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in ram_producer:
+            msg.setText("RAM Producer can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in rams:
             if ram_id == i.id:
@@ -1182,29 +1232,45 @@ class UiGPUWindow(QtWidgets.QMainWindow):
         gpu_producer = self.lineEdit_producer.text()
         #CHECK FOR MISSING INPUT
         if gpu_id == "":
-            print("GPU ID can not be null.")
             msg.setText("GPU ID can not be null.")
             msg.exec()
             return -1
         if gpu_cores == "":
-            print("GPU Cores can not be null.")
             msg.setText("GPU Cores can not be null.")
             msg.exec()
             return -1
         if gpu_speed == "":
-            print("GPU Speed can not be null.")
             msg.setText("GPU Speed can not be null.")
             msg.exec()
             return -1
         if gpu_memory == "":
-            print("GPU Memory can not be null.")
             msg.setText("GPU Memory can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in gpu_id:
+            msg.setText("GPU ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in gpu_cores:
+            msg.setText("GPU #Cores can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in gpu_speed:
+            msg.setText("GPU Speed can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in gpu_memory:
+            msg.setText("GPU Memory can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in gpu_producer:
+            msg.setText("GPU Producer can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in gpus:
             if gpu_id == i.id:
-                print("GPU ID already used.")
                 msg.setText("GPU ID already used.")
                 msg.exec()
                 return -2
@@ -1235,20 +1301,34 @@ class UiStorageWindow(QtWidgets.QMainWindow):
         storage_producer = self.lineEdit_producer.text()
         #CHECK FOR MISSING INPUT
         if storage_id == "":
-            print("Storage ID can not be null.")
             msg.setText("Storage ID can not be null.")
             msg.exec()
             return -1
         if storage_volume == "":
-            print("Storage Volume can not be null.")
             msg.setText("Storage Volume can not be null.")
             msg.exec()
             return -1
         if storage_speed == "":
-            print("Storage Speed can not be null.")
             msg.setText("Storage Speed can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in storage_id:
+            msg.setText("Storage ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in storage_volume:
+            msg.setText("Storage Volume can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in storage_speed:
+            msg.setText("Storage Speed can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in storage_producer:           
+            msg.setText("Storage Producer can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in storages:
             if storage_id == i.id:
@@ -1289,24 +1369,33 @@ class UiNetworkWindow(QtWidgets.QMainWindow):
         network_latency = self.lineEdit_latency.text()
         #CHECK FOR MISSING INPUT
         if network_id == "":
-            print("Network ID can not be null.")
             msg.setText("Network ID can not be null.")
             msg.exec()
             return -1
         if network_bandwidth == "":
-            print("Network Bandwidth can not be null.")
             msg.setText("Network Bandwidth can not be null.")
             msg.exec()
             return -1
         if network_latency == "":
-            print("Network Latency can not be null.")
             msg.setText("Network Latency can not be null.")
             msg.exec()
             return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in network_id:
+            msg.setText("Network ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in network_bandwidth:
+            msg.setText("Network Bandwidth can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in network_latency:
+            msg.setText("Network Latency can not contain the ' symbol.")
+            msg.exec()
+            return -3
         #CHECK FOR ALREADY USED ID
         for i in networks:
             if network_id == i.id:
-                print("Network ID already used.")
                 msg.setText("Network ID already used.")
                 msg.exec()
                 return -2
@@ -1316,13 +1405,8 @@ class UiNetworkWindow(QtWidgets.QMainWindow):
         self.close()
         window.setEnabled(1)
         return 1
-
-#test time format
-#print(datetime.now().strftime('%m-%d-%YT%H:%M:%S.%f+01:00'))
-#------------------------------------------------------------------
 #------------------------------------------------------------------
 #DATA STRUCTURES
-#------------------------------------------------------------------
 #------------------------------------------------------------------
 steps = []
 step_phases = []
@@ -1335,9 +1419,7 @@ rams = []
 storages = []
 networks = []
 #------------------------------------------------------------------
-#------------------------------------------------------------------
 #RUN THE MAIN WINDOW
-#------------------------------------------------------------------
 #------------------------------------------------------------------
 app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
 window = UiMainWindow() # Create an instance of our class
