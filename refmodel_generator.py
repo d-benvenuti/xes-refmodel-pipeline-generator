@@ -440,7 +440,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-Step action clicked.")
         to_print = ""
         for i in steps:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -451,7 +450,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-StepPhases action clicked.")
         to_print = ""
         for i in step_phases:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -462,7 +460,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-EnvironmentVariables action clicked.")
         to_print = ""
         for i in environment_variables:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -473,7 +470,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-DataSources action clicked.")
         to_print = ""
         for i in data_sources:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -484,7 +480,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-Technologies action clicked.")
         to_print = ""
         for i in technologies:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -495,7 +490,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-CPUs action clicked.")
         to_print = ""
         for i in cpus:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -506,7 +500,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-GPUs action clicked.")
         to_print = ""
         for i in gpus:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -517,7 +510,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-RAMs action clicked.")
         to_print = ""
         for i in rams:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -528,7 +520,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-Storages action clicked.")
         to_print = ""
         for i in storages:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -539,7 +530,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         print("View-Networks action clicked.")
         to_print = ""
         for i in networks:
-            print(i)
             to_print = to_print + i.__str__() + '\n'
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -551,7 +541,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         to_print = np.concatenate((steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks))
         to_print_str = ""
         for i in to_print:
-            print(i)
             to_print_str = to_print_str + '\n' + i.__str__()
         self.setEnabled(0)
         self.w = UiViewerWindow()
@@ -559,7 +548,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.w.show()
     
     #------------------------------------------------------------------
-    #FUNCTIONS TO PRINT OBJECTS
+    #FUNCTIONS TO DELETE OBJECTS
     #------------------------------------------------------------------ 
     
     #FUNCTION TO DELETE STEP
