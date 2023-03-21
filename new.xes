@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<log>
+	<string key="creator" value="RefModel_Generator"/>
+	<extension name="Concept" prefix="concept" uri="http://code.deckfour.org/xes/concept.xesext"/>
+	<extension name="Time" prefix="time" uri="http://code.deckfour.org/xes/time.xesext"/>
+	<extension name="Organizational" prefix="org" uri="http://code.deckfour.org/xes/org.xesext"/>
+	<global scope="log">
+		<string key="concept:name" value="name"/>
+		<string key="PipelineID" value="string"/>
+		<string key="PipelineCommunicationMedium" value="string"/>
+	</global>
+	<global scope="trace">
+		<string key="concept:name" value="name"/>
+	</global>
+	<global scope="event">
+		<string key="concept:name" value="name"/>
+		<string key="StepPhaseID" value="string"/>
+		<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+		<string key="StepID" value="string"/>
+		<string key="StepContinuumLayer" value="string"/>
+		<string key="StepType" value="string"/>
+	</global>
+	<classifier name="Activity" keys="name"/>
+	<classifier name="activity classifier" keys="Activity"/>
+	<string key="concept:name" value="new"/>
+	<string key="PipelineID" value="1"/>
+	<string key="PipelineCommunicationMedium" value="cloud"/>
+	<trace>
+		<string key="concept:name" value="10"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="9"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="8"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="7"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="6"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="5"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="4"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="3"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="2"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="1"/>
+		<event>
+			<string key="concept:name" value="1-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-03-21T11:57:53.036312+01:00"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+</log>

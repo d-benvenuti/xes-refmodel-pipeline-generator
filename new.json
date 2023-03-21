@@ -4,33 +4,12 @@
 	"PipelineCommunicationMedium": "cloud",
 	"Trace10": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -38,33 +17,12 @@
 	},
 	"Trace9": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -72,33 +30,12 @@
 	},
 	"Trace8": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -106,33 +43,12 @@
 	},
 	"Trace7": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -140,33 +56,12 @@
 	},
 	"Trace6": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:798173",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -174,33 +69,12 @@
 	},
 	"Trace5": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -208,33 +82,12 @@
 	},
 	"Trace4": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -242,33 +95,12 @@
 	},
 	"Trace3": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -276,33 +108,12 @@
 	},
 	"Trace2": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}
@@ -310,33 +121,12 @@
 	},
 	"Trace1": {
 		"Step1": {
-			"ID": "1111",
+			"ID": "1",
 			"Name": "1",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
 			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "2",
-				"Name": "2"
-			}
-		},
-		"Step2": {
-			"ID": "2222",
-			"Name": "2",
-			"Continuum Layer": "Edge",
-			"Type": "Processing",
-			"StepPhase1": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
-				"ID": "1",
-				"Name": "1"
-			},
-			"StepPhase2": {
-				"Timestamp": "03/20/2023, 17:33:41:799178",
+				"Timestamp": "2023-03-21T11:57:53.035312+01:00",
 				"ID": "2",
 				"Name": "2"
 			}

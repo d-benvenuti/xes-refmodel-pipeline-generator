@@ -10,8 +10,6 @@ import time
 #DEFINE ALL THE CLASSES IN THE UML
 #------------------------------------------------------------------
 #------------------------------------------------------------------
-
-#STEP
 class Step():
     #CONSTRUCTOR
     def __init__(self, id, name, continuumLayer, type):
@@ -188,8 +186,70 @@ class UiMainWindow(QtWidgets.QMainWindow):
             self.w.close()
     #------------------------------------------------------------------
     #FUNCTIONS
+    #------------------------ XES ------------------------------
     def generateXES(self, pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n):
         print("Generating XES file.")
+        original_stdout = sys.stdout # Save a reference to the original standard output
+        with open(pipeline_name + '.xes', 'w') as f:
+            sys.stdout = f # Change the standard output to the file we created.
+            #standard header
+            print("<?xml version='1.0' encoding='UTF-8'?>\n<log>")
+            print('\t<string key="creator" value="RefModel_Generator"/>')
+            #extenstions
+            print('\t<extension name="Concept" prefix="concept" uri="http://code.deckfour.org/xes/concept.xesext"/>')
+            print('\t<extension name="Time" prefix="time" uri="http://code.deckfour.org/xes/time.xesext"/>')
+            print('\t<extension name="Organizational" prefix="org" uri="http://code.deckfour.org/xes/org.xesext"/>')
+            #attributes definition at log level
+            print('\t<global scope="log">')
+            print('\t\t<string key="concept:name" value="name"/>')
+            print('\t\t<string key="PipelineID" value="string"/>')
+            print('\t\t<string key="PipelineCommunicationMedium" value="string"/>')
+            print('\t</global>')
+            #attributes definition at trace level
+            print('\t<global scope="trace">')
+            print('\t\t<string key="concept:name" value="name"/>')
+            print('\t</global>')
+            #attributes definition at event level
+            print('\t<global scope="event">')
+            print('\t\t<string key="concept:name" value="name"/>')
+            print('\t\t<string key="StepPhaseID" value="string"/>')
+            print('\t\t<date key="time:timestamp" value="' + datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f+01:00') + '"/>')
+            print('\t\t<string key="StepID" value="string"/>')
+            print('\t\t<string key="StepContinuumLayer" value="string"/>')
+            print('\t\t<string key="StepType" value="string"/>')
+            print('\t</global>')
+            #classifiers
+            print('\t<classifier name="Activity" keys="name"/>')
+            print('\t<classifier name="activity classifier" keys="Activity"/>')
+            #log
+            print('\t<string key="concept:name" value="' + pipeline_name + '"/>')
+            print('\t<string key="PipelineID" value="' + pipeline_id + '"/>')
+            print('\t<string key="PipelineCommunicationMedium" value="' + pipeline_medium + '"/>')
+            #traces
+            while n > 0:
+                print('\t<trace>')
+                print('\t\t<string key="concept:name" value="' + n.__str__() + '"/>')
+                #events
+                for step in steps:
+                    for step_phase in step_phases:
+                        print('\t\t<event>')
+                        print('\t\t\t<string key="concept:name" value="' + step.name + '-' + step_phase.name + '"/>')
+                        print('\t\t\t<string key="StepPhaseID" value="' + step_phase.id + '"/>')
+                        #timestamp in YYYY-mm-ddTHH:MM:SS.fff+TZD"
+                        print('\t\t\t<date key="time:timestamp" value="' + datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f+01:00') + '"/>')
+                        print('\t\t\t<string key="StepID" value="' + step.id + '"/>')
+                        print('\t\t\t<string key="StepName" value="' + step.name + '"/>')
+                        print('\t\t\t<string key="StepContinuumLayer" value="' + step.continuumLayer + '"/>')
+                        print('\t\t\t<string key="StepType" value="' + step.type + '"/>')
+                        #close event
+                        print('\t\t</event>')
+                #close trace
+                print('\t</trace>')
+                n -= 1
+            #close the log 
+            print('</log>')
+        sys.stdout = original_stdout # Reset the standard output to its original value
+    #-------------------------- JSON -------------------------------------
     def generateJSON(self, pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n):
         print("Generating JSON file.")
         original_stdout = sys.stdout # Save a reference to the original standard output
@@ -205,7 +265,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     j = 0
                     while j < len(step_phases):
                         #print the step phase
-                        print('\t\t\t"StepPhase' + str(j+1) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%m/%d/%Y, %H:%M:%S:%f') + '",\n\t\t\t\t"ID": "' + step_phases[j].id + '",\n\t\t\t\t"Name": "' + step_phases[j].name + '"')
+                        print('\t\t\t"StepPhase' + str(j+1) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f+01:00') + '",\n\t\t\t\t"ID": "' + step_phases[j].id + '",\n\t\t\t\t"Name": "' + step_phases[j].name + '"')
                         #see how many objects we have
                         num_datasources = len(data_sources)
                         num_technologies = len(technologies)
@@ -1257,6 +1317,8 @@ class UiNetworkWindow(QtWidgets.QMainWindow):
         window.setEnabled(1)
         return 1
 
+#test time format
+#print(datetime.now().strftime('%m-%d-%YT%H:%M:%S.%f+01:00'))
 #------------------------------------------------------------------
 #------------------------------------------------------------------
 #DATA STRUCTURES
