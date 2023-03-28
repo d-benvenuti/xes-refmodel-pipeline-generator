@@ -17,19 +17,39 @@ class Step():
         self.name = name
         self.continuumLayer = continuumLayer
         self.type = type
+        self.dataSources = []
     #TO STRING
     def __str__(self):
-        return '"Step": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Continuum Layer": "' + self.continuumLayer + '",\n\t"Type": "' + self.type + '"\n}'
-     
+        s = '"Step": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Continuum Layer": "' + self.continuumLayer + '",\n\t"Type": "' + self.type + '",'
+        n = 0
+        while n < len(self.dataSources):
+            s = s + '\n\t' + self.dataSources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+            n += 1
+            if n < len(self.dataSources):
+                s = s + ','
+        s = s + '\n}'
+        return s
 #STEP PHASE
 class StepPhase():
     #CONSTRUCTOR
     def __init__(self, id, name):
         self.id = id
         self.name = name
+        self.technologies = []
+        self.environmentVariables = []
     #TO STRING
     def __str__(self):
-        return '"StepPhase": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '"\n}'
+        s = '"StepPhase": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",'
+        for i in self.technologies:
+            s = s + '\n\t' + i.__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{') + ','
+        n = 0
+        while n < len(self.environmentVariables):
+            s = s + '\n\t' + self.environmentVariables[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+            n += 1
+            if n < len(self.environmentVariables):
+                s = s + ','
+        s = s + '\n}'
+        return s
         
 #ENVIRONMENT VARIABLE
 class EnvironmentVariable():
@@ -70,9 +90,30 @@ class Technology():
         self.id = id
         self.name = name
         self.os = os
+        self.cpus = []
+        self.gpus = []
+        self.rams = []
+        self.storages = []
+        self.networks = []
     #TO STRING
     def __str__(self):
-        return '"Technology": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"OS": "' + self.os + '"\n}'
+        s = '"Technology": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"OS": "' + self.os + '",'
+        for i in self.cpus:
+            s = s + '\n\t' + i.__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{') + ','
+        for i in self.gpus:
+            s = s + '\n\t' + i.__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{') + ','
+        for i in self.rams:
+            s = s + '\n\t' + i.__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{') + ','
+        for i in self.storages:
+            s = s + '\n\t' + i.__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{') + ','
+        n = 0
+        while n < len(self.networks):
+            s = s + '\n\t' + self.networks[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+            n += 1
+            if n < len(self.networks):
+                s = s + ','
+        s = s + '\n}'
+        return s
 
 #RAM
 class RAM():
@@ -180,7 +221,43 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.actionDeleteRAM.triggered.connect(self.deleteRAM)
         self.actionDeleteStorage.triggered.connect(self.deleteStorage)
         self.actionDeleteNetwork.triggered.connect(self.deleteNetwork)
-    #CLOSE EVENT
+        #------------------------ LINK -----------------------
+        self.actionLinkStepDataSource.triggered.connect(self.linkStepDataSource)
+        self.actionLinkStepPhaseTechnology.triggered.connect(self.linkStepPhaseTechnology)
+        self.actionLinkStepPhaseEnvironmentVariable.triggered.connect(self.linkStepPhaseEnvironmentVariable)
+        self.actionLinkTechnologyCPU.triggered.connect(self.linkTechnologyCPU)
+        self.actionLinkTechnologyGPU.triggered.connect(self.linkTechnologyGPU)
+        self.actionLinkTechnologyRAM.triggered.connect(self.linkTechnologyRAM)
+        self.actionLinkTechnologyStorage.triggered.connect(self.linkTechnologyStorage)
+        self.actionLinkTechnologyNetwork.triggered.connect(self.linkTechnologyNetwork)
+        #----------------------- DEBUG -----------------------
+        self.debugButton.clicked.connect(self.debug)       
+    def debug(self):
+        print("Debug Button clicked.")
+        steps.append(Step('1','1','edge','processing'))
+        steps.append(Step('2','2','edge','processing'))
+        step_phases.append(StepPhase('1','1'))
+        step_phases.append(StepPhase('2','2'))
+        technologies.append(Technology('1','1','Windows'))
+        technologies.append(Technology('2','2','Linux'))
+        steps[0].dataSources.append(DataSource('1','1','1','1'))
+        steps[1].dataSources.append(DataStream('2','2','2','2','IO'))
+        step_phases[0].environmentVariables.append(EnvironmentVariable('1','1'))
+        step_phases[1].environmentVariables.append(EnvironmentVariable('2','2'))
+        technologies[0].cpus.append(CPU('1','1','1',""))
+        technologies[0].gpus.append(GPU('1','1','1','1',""))
+        technologies[0].rams.append(RAM('1','1','1',"",'DDR4'))
+        technologies[0].storages.append(Storage('1','1','1',"",'HD'))
+        technologies[0].networks.append(Network('1','1','1'))
+        technologies[1].cpus.append(CPU('2','2','2','2'))
+        technologies[1].gpus.append(GPU('1','1','1','1',""))
+        technologies[1].rams.append(RAM('2','2','2','2','DDR5'))
+        technologies[1].storages.append(Storage('2','2','2','2','SSD'))
+        technologies[1].networks.append(Network('2','2','2'))
+        step_phases[0].technologies.append(technologies[0])
+        step_phases[1].technologies.append(technologies[1])
+        #self.generateLog()
+    #----------------------- CLOSE EVENT -----------------------
     def closeEvent(self, event):
         if self.w is not None:
             self.w.close()
@@ -190,7 +267,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
     def generateXES(self, pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n):
         print("Generating XES file.")
         original_stdout = sys.stdout # Save a reference to the original standard output
-        with open(pipeline_name + '.xes', 'w') as f:
+        with open('logs/' + pipeline_name + '.xes', 'w') as f:
             sys.stdout = f # Change the standard output to the file we created.
             #standard header
             print("<?xml version='1.0' encoding='UTF-8'?>\n<log>")
@@ -200,11 +277,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
             print('\t<extension name="Time" prefix="time" uri="http://code.deckfour.org/xes/time.xesext"/>')
             print('\t<extension name="Organizational" prefix="org" uri="http://code.deckfour.org/xes/org.xesext"/>')
             #attributes definition at log level
-            print('\t<global scope="log">')
-            print('\t\t<string key="concept:name" value="name"/>')
-            print('\t\t<string key="PipelineID" value="string"/>')
-            print('\t\t<string key="PipelineCommunicationMedium" value="string"/>')
-            print('\t</global>')
             #attributes definition at trace level
             print('\t<global scope="trace">')
             print('\t\t<string key="concept:name" value="name"/>')
@@ -214,17 +286,56 @@ class UiMainWindow(QtWidgets.QMainWindow):
             print('\t\t<string key="concept:name" value="name"/>')
             print('\t\t<string key="StepPhaseID" value="string"/>')
             print('\t\t<date key="time:timestamp" value="' + datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f+01:00') + '"/>')
+            #pipeline
+            print('\t\t<string key="PipelineName" value="name"/>')
+            print('\t\t<string key="PipelineID" value="string"/>')
+            print('\t\t<string key="PipelineCommunicationMedium" value="string"/>')
+            #step
             print('\t\t<string key="StepID" value="string"/>')
             print('\t\t<string key="StepContinuumLayer" value="string"/>')
             print('\t\t<string key="StepType" value="string"/>')
+            #datasource
+            print('\t\t<string key="DataSourceID" value="string"/>')
+            print('\t\t<string key="DataSourceName" value="string"/>')
+            print('\t\t<string key="DataSourceVolume" value="string"/>')
+            print('\t\t<string key="DataSourceVelocity" value="string"/>')
+            print('\t\t<string key="DataSourceType" value="string"/>')          
+            #technologies
+            print('\t\t<string key="TechnologyID" value="string"/>')
+            print('\t\t<string key="TechnologyName" value="string"/>')
+            print('\t\t<string key="TechnologyOS" value="string"/>')
+            #cpus
+            print('\t\t<string key="CPUID" value="string"/>')
+            print('\t\t<string key="CPUCores" value="string"/>')
+            print('\t\t<string key="CPUSpeed" value="string"/>')
+            print('\t\t<string key="CPUProducer" value="string"/>')
+            #gpus
+            print('\t\t<string key="GPUID" value="string"/>')
+            print('\t\t<string key="GPUCores" value="string"/>')
+            print('\t\t<string key="GPUSpeed" value="string"/>')
+            print('\t\t<string key="GPUMemory" value="string"/>')
+            print('\t\t<string key="GPUProducer" value="string"/>')
+            #rams
+            print('\t\t<string key="RAMID" value="string"/>')
+            print('\t\t<string key="RAMVolume" value="string"/>')
+            print('\t\t<string key="RAMSpeed" value="string"/>')
+            print('\t\t<string key="RAMProducer" value="string"/>')
+            print('\t\t<string key="RAMType" value="string"/>')
+            #storages
+            print('\t\t<string key="StorageID" value="string"/>')
+            print('\t\t<string key="StorageVolume" value="string"/>')
+            print('\t\t<string key="StorageSpeed" value="string"/>')
+            print('\t\t<string key="Storageroducer" value="string"/>')
+            print('\t\t<string key="StorageType" value="string"/>')
+            #networks
+            print('\t\t<string key="NetworkID" value="string"/>')
+            print('\t\t<string key="NetworkBandwidth" value="string"/>')
+            print('\t\t<string key="NetworkLatency" value="string"/>')
             print('\t</global>')
             #classifiers
             print('\t<classifier name="Activity" keys="name"/>')
             print('\t<classifier name="activity classifier" keys="Activity"/>')
             #log
-            print('\t<string key="concept:name" value="' + pipeline_name + '"/>')
-            print('\t<string key="PipelineID" value="' + pipeline_id + '"/>')
-            print('\t<string key="PipelineCommunicationMedium" value="' + pipeline_medium + '"/>')
             #traces
             while n > 0:
                 print('\t<trace>')
@@ -237,10 +348,62 @@ class UiMainWindow(QtWidgets.QMainWindow):
                         print('\t\t\t<string key="StepPhaseID" value="' + step_phase.id + '"/>')
                         #timestamp in YYYY-mm-ddTHH:MM:SS.fff+TZD"
                         print('\t\t\t<date key="time:timestamp" value="' + datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f+01:00') + '"/>')
+                        #pipeline
+                        print('\t\t\t<string key="PipelineID" value="' + pipeline_id + '"/>')
+                        print('\t\t\t<string key="PipelineCommunicationMedium" value="' + pipeline_medium + '"/>')
+                        print('\t\t\t<string key="PipelineName" value="' + pipeline_name + '"/>')
+                        #step
                         print('\t\t\t<string key="StepID" value="' + step.id + '"/>')
                         print('\t\t\t<string key="StepName" value="' + step.name + '"/>')
                         print('\t\t\t<string key="StepContinuumLayer" value="' + step.continuumLayer + '"/>')
                         print('\t\t\t<string key="StepType" value="' + step.type + '"/>')
+                        #data sources
+                        i = random.randint(0,len(step.dataSources)-1)
+                        print('\t\t\t<string key="DataSourceID" value="' + step.dataSources[i].id + '"/>')
+                        print('\t\t\t<string key="DataSourceName" value="' + step.dataSources[i].name + '"/>')
+                        print('\t\t\t<string key="DataSourceVolume" value="' + step.dataSources[i].volume + '"/>')
+                        if type(step.dataSources[i]) == type(DataStream):
+                            print('\t\t\t<string key="DataSourceVelocity" value="' + step.dataSources[i].velocity + '"/>')
+                        else:
+                            print('\t\t\t<string key="DataSourceVelocity" value="None"/>')
+                        print('\t\t\t<string key="DataSourceType" value="' + step.dataSources[i].type + '"/>')
+                        #technologies
+                        i = random.randint(0,len(step_phase.technologies)-1)
+                        print('\t\t\t<string key="TechnologyID" value="' + step_phase.technologies[i].id + '"/>')
+                        print('\t\t\t<string key="TechnologyName" value="' + step_phase.technologies[i].name + '"/>')
+                        print('\t\t\t<string key="TechnologyOS" value="' + step_phase.technologies[i].os + '"/>')
+                        #cpus
+                        j = random.randint(0,len(step_phase.technologies[i].cpus)-1)
+                        print('\t\t\t<string key="CPUID" value="' + step_phase.technologies[i].cpus[j].id + '"/>')
+                        print('\t\t\t<string key="CPUCores" value="' + step_phase.technologies[i].cpus[j].cores + '"/>')
+                        print('\t\t\t<string key="CPUSpeed" value="' + step_phase.technologies[i].cpus[j].speed + '"/>')
+                        print('\t\t\t<string key="CPUProducer" value="' + step_phase.technologies[i].cpus[j].producer + '"/>')
+                        #gpus
+                        j = random.randint(0,len(step_phase.technologies[i].gpus)-1)
+                        print('\t\t\t<string key="GPUID" value="' + step_phase.technologies[i].gpus[j].id + '"/>')
+                        print('\t\t\t<string key="GPUCores" value="' + step_phase.technologies[i].gpus[j].cores + '"/>')
+                        print('\t\t\t<string key="GPUSpeed" value="' + step_phase.technologies[i].gpus[j].speed + '"/>')
+                        print('\t\t\t<string key="GPUMemory" value="' + step_phase.technologies[i].gpus[j].memory + '"/>')
+                        print('\t\t\t<string key="GPUProducer" value="' + step_phase.technologies[i].gpus[j].producer + '"/>')
+                        #rams
+                        j = random.randint(0,len(step_phase.technologies[i].rams)-1)
+                        print('\t\t\t<string key="RAMID" value="' + step_phase.technologies[i].rams[j].id + '"/>')
+                        print('\t\t\t<string key="RAMVolume" value="' + step_phase.technologies[i].rams[j].volume + '"/>')
+                        print('\t\t\t<string key="RAMSpeed" value="' + step_phase.technologies[i].rams[j].speed + '"/>')
+                        print('\t\t\t<string key="RAMProducer" value="' + step_phase.technologies[i].rams[j].producer + '"/>')
+                        print('\t\t\t<string key="RAMType" value="' + step_phase.technologies[i].rams[j].type + '"/>')
+                        #storages
+                        j = random.randint(0,len(step_phase.technologies[i].storages)-1)
+                        print('\t\t\t<string key="StorageID" value="' + step_phase.technologies[i].storages[j].id + '"/>')
+                        print('\t\t\t<string key="StorageVolume" value="' + step_phase.technologies[i].storages[j].volume + '"/>')
+                        print('\t\t\t<string key="StorageSpeed" value="' + step_phase.technologies[i].storages[j].speed + '"/>')
+                        print('\t\t\t<string key="Storageroducer" value="' + step_phase.technologies[i].storages[j].producer + '"/>')
+                        print('\t\t\t<string key="StorageType" value="' + step_phase.technologies[i].storages[j].type + '"/>')
+                        #networks
+                        j = random.randint(0,len(step_phase.technologies[i].networks)-1)
+                        print('\t\t\t<string key="NetworkID" value="' + step_phase.technologies[i].networks[j].id + '"/>')
+                        print('\t\t\t<string key="NetworkBandwidth" value="' + step_phase.technologies[i].networks[j].bandwidth + '"/>')
+                        print('\t\t\t<string key="NetworkLatency" value="' + step_phase.technologies[i].networks[j].latency + '"/>')
                         #close event
                         print('\t\t</event>')
                 #close trace
@@ -255,67 +418,29 @@ class UiMainWindow(QtWidgets.QMainWindow):
     def generateJSON(self, pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n):
         print("Generating JSON file.")
         original_stdout = sys.stdout # Save a reference to the original standard output
-        with open(pipeline_name + '.json', 'w') as f:
+        with open('data/' + pipeline_name + '.json', 'w') as f:
             sys.stdout = f # Change the standard output to the file we created.
-            print('{\n\t"PipelineID": "' + pipeline_id + '",\n\t"PipelineName": "' + pipeline_name + '",\n\t"PipelineCommunicationMedium": "' + pipeline_medium + '",')
-            while n > 0:
-                print('\t"Trace' + str(n) + '": {')
-                i = 0
-                while i < len(steps):
-                    #print the step    
-                    print('\t\t' + steps[i].__str__().replace('\n','\n\t\t').replace('"\n\t\t}','"').replace('Step','Step'+str(i+1)) + ',')
-                    j = 0
-                    while j < len(step_phases):
-                        #print the step phase
-                        print('\t\t\t"StepPhase' + str(j+1) + '": {\n\t\t\t\t"Timestamp": "' + datetime.now().strftime('%Y-%m-%dT%H:%M:%S.%f+01:00') + '",\n\t\t\t\t"ID": "' + step_phases[j].id + '",\n\t\t\t\t"Name": "' + step_phases[j].name + '"')
-                        #see how many objects we have
-                        num_datasources = len(data_sources)
-                        num_technologies = len(technologies)
-                        num_envvar = len(environment_variables)
-                        num_cpu = len(cpus)
-                        num_gpu = len(gpus)
-                        num_ram = len(rams)
-                        num_storage = len(storages)
-                        num_network = len(networks)
-                        #for each object, if the array is not null
-                        if num_datasources > 0:
-                            #get a random number between 0 and length of the array-1 and print
-                            print('\t\t\t\t,' + data_sources[random.randint(0, num_datasources-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                        if num_technologies > 0:
-                            print('\t\t\t\t,' + technologies[random.randint(0, num_technologies-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                        if num_envvar > 0:
-                            print('\t\t\t\t,' + environment_variables[random.randint(0, num_envvar-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                        if num_cpu > 0:
-                            print('\t\t\t\t,' + cpus[random.randint(0, num_cpu-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                        if num_gpu > 0:
-                            print('\t\t\t\t,' + gpus[random.randint(0, num_gpu-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                        if num_storage > 0:
-                            print('\t\t\t\t,' + storages[random.randint(0, num_storage-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                        if num_network > 0:
-                            print('\t\t\t\t,' + networks[random.randint(0, num_network-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                        if num_ram > 0:
-                            print('\t\t\t\t,' + rams[random.randint(0, num_ram-1)].__str__().replace('\n', '\n\t\t\t\t'))
-                        #close stepphase
-                        j += 1
-                        if j == len(step_phases):
-                            print('\t\t\t}')
-                        else:    
-                            print('\t\t\t},')
-                    #close step
-                    i  += 1
-                    if i == len(steps):
-                        print('\t\t}')
-                    else:
-                        print('\t\t},')
-                #close trace and go to the next and reset firstStep
-                if (n != 0):
-                    print('\t},')
-                else:
-                    print('\t}')
-                n -= 1
-                #little wait to avoid timestamps with the same value
-                time.sleep(0.2)
-            #close root
+            print('{\n\t"PipelineID": "' + pipeline_id + '",\n\t"PipelineName": "' + pipeline_name + '",\n\t"PipelineCommunicationMedium": "' + pipeline_medium + '",\n\t"NumberOfTraces": "' + pipeline_traces + '",')
+            for i in steps:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))    
+            for i in step_phases:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
+            for i in data_sources:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
+            for i in environment_variables:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
+            for i in technologies:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
+            for i in cpus:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
+            for i in gpus:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
+            for i in rams:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
+            for i in storages:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},')) 
+            for i in networks:
+                print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')) 
             print('}')
         sys.stdout = original_stdout # Reset the standard output to its original value
     #------------------------------------------------------------------
@@ -429,12 +554,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.setEnabled(0)
         print("Add-Network action clicked.")
         self.w = UiNetworkWindow()
-        self.w.show()
-    
+        self.w.show() 
     #------------------------------------------------------------------
     #FUNCTIONS TO PRINT OBJECTS
     #------------------------------------------------------------------ 
-    
     #FUNCTION TO PRINT THE LIST OF STEPS
     def printSteps(self):
         print("View-Step action clicked.")
@@ -546,11 +669,9 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.w = UiViewerWindow()
         self.w.textBox.setText(to_print_str)
         self.w.show()
-    
     #------------------------------------------------------------------
     #FUNCTIONS TO DELETE OBJECTS
-    #------------------------------------------------------------------ 
-    
+    #------------------------------------------------------------------  
     #FUNCTION TO DELETE STEP
     def deleteStep(self):
         print("Delete-Step action clicked")
@@ -759,7 +880,267 @@ class UiMainWindow(QtWidgets.QMainWindow):
         msg.setText("There is no Network with the given ID.")
         msg.exec()
         return -1
-        
+    #------------------------------------------------------------------
+    #FUNCTIONS TO LINK OBJECTS
+    #------------------------------------------------------------------       
+    def linkStepDataSource(self):
+        print("Link Step to DataSource action clicked")
+        #CHECK IF THERE IS AT LEAST ONE STEP
+        if len(steps) == 0:
+            msg.setText("There is no Step to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE DATASOURCE
+        if len(data_sources) == 0:
+            msg.setText("There is no Data Source to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        #CHECK FOR IDS IN THE DATA STRUCTURE
+        for i in steps:
+            if i.id == link_dialog.id1:
+                for j in data_sources:
+                    if j.id == link_dialog.id2:
+                        for z in i.dataSources:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This Step-DataSource pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.dataSources.append(j)
+                        print("Succesfully linked Data Source to Step")
+                        return 1
+                msg.setText("There is no Data Source with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Step with such ID.")
+        msg.exec()
+        return -2                
+    def linkStepPhaseTechnology(self):
+        print("Link StepPhase to Technology action clicked")
+        #CHECK IF THERE IS AT LEAST ONE STEP PHASE
+        if len(step_phases) == 0:
+            msg.setText("There is no Step Phase to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE TECHNOLOGY
+        if len(technologies) == 0:
+            msg.setText("There is no Technology to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        for i in step_phases:
+            if i.id == link_dialog.id1:
+                for j in technologies:
+                    if j.id == link_dialog.id2:
+                        for z in i.technologies:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This StepPhase-Technology pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.technologies.append(j)
+                        print("Succesfully linked Technology to  StepPhase ")
+                        return 1
+                msg.setText("There is no Technology with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Step Phase with such ID.")
+        msg.exec()
+        return -2  
+    def linkStepPhaseEnvironmentVariable(self):
+        print("Link StepPhase to Environment Variable action clicked")
+        #CHECK IF THERE IS AT LEAST ONE STEP PHASE
+        if len(step_phases) == 0:
+            msg.setText("There is no Step Phase to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE ENVIRONMENT VARIABLE
+        if len(environment_variables) == 0:
+            msg.setText("There is no Environment Variable to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        for i in step_phases:
+            if i.id == link_dialog.id1:
+                for j in environment_variables:
+                    if j.key == link_dialog.id2:
+                        for z in i.environmentVariables:
+                            if z.key == link_dialog.id2:
+                                msg.setText("This StepPhase-EnvironmentVariable pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.environmentVariables.append(j)
+                        print("Succesfully linked Environment Variable to Step Phase")
+                        return 1
+                msg.setText("There is no Environment Variable with such Key.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Step Phase with such ID.")
+        msg.exec()
+        return -2       
+    def linkTechnologyCPU(self):
+        print("Link Technology to CPU action clicked")
+        #CHECK IF THERE IS AT LEAST ONE TECHNOLOGY
+        if len(technologies) == 0:
+            msg.setText("There is no Technology to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE CPU
+        if len(cpus) == 0:
+            msg.setText("There is no CPU to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        for i in technologies:
+            if i.id == link_dialog.id1:
+                for j in cpus:
+                    if j.id == link_dialog.id2:
+                        for z in i.cpus:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This Technology-CPU pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.cpus.append(j)
+                        print("Succesfully linked CPU to Technology")
+                        return 1
+                msg.setText("There is no CPU with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Technology with such ID.")
+        msg.exec()
+        return -2
+    def linkTechnologyGPU(self):
+        print("Link Technology to GPU action clicked")
+        #CHECK IF THERE IS AT LEAST ONE TECHNOLOGY
+        if len(technologies) == 0:
+            msg.setText("There is no Technology to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE GPU
+        if len(gpus) == 0:
+            msg.setText("There is no GPU to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        for i in technologies:
+            if i.id == link_dialog.id1:
+                for j in gpus:
+                    if j.id == link_dialog.id2:
+                        for z in i.gpus:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This Technology-GPU pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.gpus.append(j)
+                        print("Succesfully linked GPU to Technology")
+                        return 1
+                msg.setText("There is no GPU with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Technology with such ID.")
+        msg.exec()
+        return -2
+    def linkTechnologyRAM(self):
+        print("Link Technology to RAM clicked")
+        #CHECK IF THERE IS AT LEAST ONE TECHNOLOGY
+        if len(technologies) == 0:
+            msg.setText("There is no Technology to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE RAM
+        if len(rams) == 0:
+            msg.setText("There is no RAM to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        for i in technologies:
+            if i.id == link_dialog.id1:
+                for j in rams:
+                    if j.id == link_dialog.id2:
+                        for z in i.rams:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This Technology-RAM pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.rams.append(j)
+                        print("Succesfully linked RAM to Technology")
+                        return 1
+                msg.setText("There is no RAM with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Technology with such ID.")
+        msg.exec()
+        return -2
+    def linkTechnologyStorage(self):
+        print("Link Technology to Storage clicked")
+        #CHECK IF THERE IS AT LEAST ONE TECHNOLOGY
+        if len(technologies) == 0:
+            msg.setText("There is no Technology to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE STORAGE
+        if len(storages) == 0:
+            msg.setText("There is no Storage to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        for i in technologies:
+            if i.id == link_dialog.id1:
+                for j in storages:
+                    if j.id == link_dialog.id2:
+                        for z in i.storages:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This Technology-Storage pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.storages.append(j)
+                        print("Succesfully linked Storage to Technology")
+                        return 1
+                msg.setText("There is no Storage with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Technology with such ID.")
+        msg.exec()
+        return -2
+    def linkTechnologyNetwork(self):
+        print("Link Technology to Network action clicked")
+        #CHECK IF THERE IS AT LEAST ONE TECHNOLOGY
+        if len(technologies) == 0:
+            msg.setText("There is no Technology to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE Network
+        if len(networks) == 0:
+            msg.setText("There is no Network to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        for i in technologies:
+            if i.id == link_dialog.id1:
+                for j in networks:
+                    if j.id == link_dialog.id2:
+                        for z in i.networks:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This Technology-Network pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.networks.append(j)
+                        print("Succesfully linked Network to Technology")
+                        return 1
+                msg.setText("There is no Network with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Technology with such ID.")
+        msg.exec()
+        return -2
+#----------------------------------------------------------------------------------------------    
 #DEFINITION OF THE VIEWER WINDOW
 class UiViewerWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -769,7 +1150,7 @@ class UiViewerWindow(QtWidgets.QMainWindow):
         self.close()
         window.setEnabled(1)
 
-#DEFINITION OF THE DIALOG WINDOW
+#DEFINITION OF THE DELETE DIALOG WINDOW
 class UiDialogWindow(QtWidgets.QDialog):
     def __init__(self):
         super(UiDialogWindow, self).__init__()
@@ -782,6 +1163,23 @@ class UiDialogWindow(QtWidgets.QDialog):
     def delete(self):
         print("Delete button pressed in dialog window.")
         self.id = self.lineEdit_id.text()
+        self.close()
+
+#DEFINITION OF THE LINK DIALOG WINDOW
+class UiLinkDialogWindow(QtWidgets.QDialog):
+    def __init__(self):
+        super(UiLinkDialogWindow, self).__init__()
+        uic.loadUi('ui/link_dialog.ui', self)
+        #VARIABLE TO STORE THE RESULT
+        self.id1 = ''
+        self.id2 = ''
+        #CONNECT BUTTONS AND ACTIONS
+        self.link_button.clicked.connect(self.link)
+    
+    def link(self):
+        print("Link button pressed in link_dialog window.")
+        self.id1 = self.lineEdit_id_1.text()
+        self.id2 = self.lineEdit_id_2.text()
         self.close()
 
 #DEFINITION OF THE STEP WINDOW
@@ -1417,7 +1815,9 @@ window = UiMainWindow() # Create an instance of our class
 #------------------------------------------------------------------
 msg = QMessageBox()
 dialog = UiDialogWindow()
+link_dialog = UiLinkDialogWindow()
 dialog.setWindowTitle("Deletion")
+link_dialog.setWindowTitle("Linking")
 #msg.setIcon(QMessageBox.Warning)
 msg.setText("Error")
 msg.setWindowTitle("Error")

@@ -143,6 +143,19 @@
      <string>10</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="debugButton">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>200</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Debug</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -230,9 +243,48 @@
     <addaction name="separator"/>
     <addaction name="actionDeleteNetwork"/>
    </widget>
+   <widget class="QMenu" name="menuLink">
+    <property name="title">
+     <string>Link...</string>
+    </property>
+    <widget class="QMenu" name="menuStep">
+     <property name="title">
+      <string>Step</string>
+     </property>
+     <addaction name="actionLinkStepDataSource"/>
+    </widget>
+    <widget class="QMenu" name="menuStep_Phase">
+     <property name="title">
+      <string>Step Phase</string>
+     </property>
+     <addaction name="actionLinkStepPhaseTechnology"/>
+     <addaction name="separator"/>
+     <addaction name="actionLinkStepPhaseEnvironmentVariable"/>
+    </widget>
+    <widget class="QMenu" name="menuTechnology">
+     <property name="title">
+      <string>Technology</string>
+     </property>
+     <addaction name="actionLinkTechnologyCPU"/>
+     <addaction name="separator"/>
+     <addaction name="actionLinkTechnologyGPU"/>
+     <addaction name="separator"/>
+     <addaction name="actionLinkTechnologyRAM"/>
+     <addaction name="separator"/>
+     <addaction name="actionLinkTechnologyStorage"/>
+     <addaction name="separator"/>
+     <addaction name="actionLinkTechnologyNetwork"/>
+    </widget>
+    <addaction name="menuStep"/>
+    <addaction name="separator"/>
+    <addaction name="menuStep_Phase"/>
+    <addaction name="separator"/>
+    <addaction name="menuTechnology"/>
+   </widget>
    <addaction name="menuNew"/>
    <addaction name="menuView"/>
    <addaction name="menuRemove"/>
+   <addaction name="menuLink"/>
   </widget>
   <action name="actionBig_Data_Pipeline">
    <property name="text">
@@ -442,6 +494,46 @@
   <action name="actionDeleteNetwork">
    <property name="text">
     <string>Network</string>
+   </property>
+  </action>
+  <action name="actionLinkStepDataSource">
+   <property name="text">
+    <string>Data Source</string>
+   </property>
+  </action>
+  <action name="actionLinkStepPhaseTechnology">
+   <property name="text">
+    <string>Technology</string>
+   </property>
+  </action>
+  <action name="actionLinkTechnologyCPU">
+   <property name="text">
+    <string>CPU</string>
+   </property>
+  </action>
+  <action name="actionLinkTechnologyGPU">
+   <property name="text">
+    <string>GPU</string>
+   </property>
+  </action>
+  <action name="actionLinkTechnologyRAM">
+   <property name="text">
+    <string>RAM</string>
+   </property>
+  </action>
+  <action name="actionLinkTechnologyStorage">
+   <property name="text">
+    <string>Storage</string>
+   </property>
+  </action>
+  <action name="actionLinkTechnologyNetwork">
+   <property name="text">
+    <string>Network</string>
+   </property>
+  </action>
+  <action name="actionLinkStepPhaseEnvironmentVariable">
+   <property name="text">
+    <string>Environment Variable</string>
    </property>
   </action>
  </widget>
