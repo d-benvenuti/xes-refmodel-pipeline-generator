@@ -36,6 +36,34 @@ def debug(steps, step_phases, technologies):
 def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases):
         print("Generating XES file.")
         original_stdout = sys.stdout # Save a reference to the original standard output
+        #check for presence of links
+        presence_of_continuum_layer = 0
+        presence_of_data_sources = 0
+        presence_of_technologies = 0
+        presence_of_cpus = 0
+        presence_of_gpus = 0
+        presence_of_rams = 0
+        presence_of_storages = 0
+        presence_of_networks = 0
+        for i in steps:
+            if i.continuumLayer != "":
+                presence_of_continuum_layer = 1
+            if len(i.dataSources) > 0:
+                presence_of_data_sources = 1
+        for i in step_phases:
+                if len(i.technologies) > 0:
+                    presence_of_technologies = 1
+                    for j in i.technologies:
+                        if len(j.cpus) > 0:
+                            presence_of_cpus = 1
+                        if len(j.gpus) > 0:
+                            presence_of_gpus = 1
+                        if len(j.rams) > 0:
+                            presence_of_rams = 1
+                        if len(j.storages) > 0:
+                            presence_of_storages = 1
+                        if len(j.networks) > 0:
+                            presence_of_networks = 1
         with open('logs/' + pipeline_name + '.xes', 'w') as f:
             sys.stdout = f # Change the standard output to the file we created.
             #standard header
@@ -59,47 +87,57 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
             print('\t\t<string key="PipelineName" value="name"/>')
             print('\t\t<string key="PipelineID" value="string"/>')
             print('\t\t<string key="PipelineCommunicationMedium" value="string"/>')
-            #classes.Step
+            #Step
             print('\t\t<string key="StepID" value="string"/>')
-            print('\t\t<string key="StepContinuumLayer" value="string"/>')
+            if presence_of_continuum_layer == 1:
+                print('\t\t<string key="StepContinuumLayer" value="string"/>')
             print('\t\t<string key="StepType" value="string"/>')
-            #classes.DataSource
-            print('\t\t<string key="DataSourceID" value="string"/>')
-            print('\t\t<string key="DataSourceName" value="string"/>')
-            print('\t\t<string key="DataSourceVolume" value="string"/>')
-            print('\t\t<string key="DataSourceVelocity" value="string"/>')
-            print('\t\t<string key="DataSourceType" value="string"/>')          
+            #DataSource
+            #only if there are DataSources
+            if presence_of_data_sources == 1:
+                print('\t\t<string key="DataSourceID" value="string"/>')
+                print('\t\t<string key="DataSourceName" value="string"/>')
+                print('\t\t<string key="DataSourceVolume" value="string"/>')
+                print('\t\t<string key="DataSourceVelocity" value="string"/>')
+                print('\t\t<string key="DataSourceType" value="string"/>')          
             #technologies
-            print('\t\t<string key="TechnologyID" value="string"/>')
-            print('\t\t<string key="TechnologyName" value="string"/>')
-            print('\t\t<string key="TechnologyOS" value="string"/>')
+            #only if there are Technologies
+            if presence_of_technologies == 1:
+                print('\t\t<string key="TechnologyID" value="string"/>')
+                print('\t\t<string key="TechnologyName" value="string"/>')
+                print('\t\t<string key="TechnologyOS" value="string"/>')
             #cpus
-            print('\t\t<string key="CPUID" value="string"/>')
-            print('\t\t<string key="CPUCores" value="string"/>')
-            print('\t\t<string key="CPUSpeed" value="string"/>')
-            print('\t\t<string key="CPUProducer" value="string"/>')
+            if presence_of_cpus == 1:
+                print('\t\t<string key="CPUID" value="string"/>')
+                print('\t\t<string key="CPUCores" value="string"/>')
+                print('\t\t<string key="CPUSpeed" value="string"/>')
+                print('\t\t<string key="CPUProducer" value="string"/>')
             #gpus
-            print('\t\t<string key="GPUID" value="string"/>')
-            print('\t\t<string key="GPUCores" value="string"/>')
-            print('\t\t<string key="GPUSpeed" value="string"/>')
-            print('\t\t<string key="GPUMemory" value="string"/>')
-            print('\t\t<string key="GPUProducer" value="string"/>')
+            if presence_of_gpus == 1:
+                print('\t\t<string key="GPUID" value="string"/>')
+                print('\t\t<string key="GPUCores" value="string"/>')
+                print('\t\t<string key="GPUSpeed" value="string"/>')
+                print('\t\t<string key="GPUMemory" value="string"/>')
+                print('\t\t<string key="GPUProducer" value="string"/>')
             #rams
-            print('\t\t<string key="RAMID" value="string"/>')
-            print('\t\t<string key="RAMVolume" value="string"/>')
-            print('\t\t<string key="RAMSpeed" value="string"/>')
-            print('\t\t<string key="RAMProducer" value="string"/>')
-            print('\t\t<string key="RAMType" value="string"/>')
+            if presence_of_rams == 1:
+                print('\t\t<string key="RAMID" value="string"/>')
+                print('\t\t<string key="RAMVolume" value="string"/>')
+                print('\t\t<string key="RAMSpeed" value="string"/>')
+                print('\t\t<string key="RAMProducer" value="string"/>')
+                print('\t\t<string key="RAMType" value="string"/>')
             #storages
-            print('\t\t<string key="StorageID" value="string"/>')
-            print('\t\t<string key="StorageVolume" value="string"/>')
-            print('\t\t<string key="StorageSpeed" value="string"/>')
-            print('\t\t<string key="Storageroducer" value="string"/>')
-            print('\t\t<string key="StorageType" value="string"/>')
+            if presence_of_storages == 1:
+                print('\t\t<string key="StorageID" value="string"/>')
+                print('\t\t<string key="StorageVolume" value="string"/>')
+                print('\t\t<string key="StorageSpeed" value="string"/>')
+                print('\t\t<string key="Storageroducer" value="string"/>')
+                print('\t\t<string key="StorageType" value="string"/>')
             #networks
-            print('\t\t<string key="NetworkID" value="string"/>')
-            print('\t\t<string key="NetworkBandwidth" value="string"/>')
-            print('\t\t<string key="NetworkLatency" value="string"/>')
+            if presence_of_networks == 1:
+                print('\t\t<string key="NetworkID" value="string"/>')
+                print('\t\t<string key="NetworkBandwidth" value="string"/>')
+                print('\t\t<string key="NetworkLatency" value="string"/>')
             print('\t</global>')
             #classifiers
             print('\t<classifier name="Activity" keys="name"/>')
@@ -121,58 +159,66 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
                         print('\t\t\t<string key="PipelineID" value="' + pipeline_id + '"/>')
                         print('\t\t\t<string key="PipelineCommunicationMedium" value="' + pipeline_medium + '"/>')
                         print('\t\t\t<string key="PipelineName" value="' + pipeline_name + '"/>')
-                        #classes.Step
+                        #Step
                         print('\t\t\t<string key="StepID" value="' + step.id + '"/>')
                         print('\t\t\t<string key="StepName" value="' + step.name + '"/>')
-                        print('\t\t\t<string key="StepContinuumLayer" value="' + step.continuumLayer + '"/>')
-                        print('\t\t\t<string key="StepType" value="' + step.type + '"/>')
+                        if presence_of_continuum_layer == 1:
+                            print('\t\t\t<string key="StepContinuumLayer" value="' + step.continuumLayer + '"/>')
+                            print('\t\t\t<string key="StepType" value="' + step.type + '"/>')
                         #data sources
-                        i = random.randint(0,len(step.dataSources)-1)
-                        print('\t\t\t<string key="DataSourceID" value="' + step.dataSources[i].id + '"/>')
-                        print('\t\t\t<string key="DataSourceName" value="' + step.dataSources[i].name + '"/>')
-                        print('\t\t\t<string key="DataSourceVolume" value="' + step.dataSources[i].volume + '"/>')
-                        if type(step.dataSources[i]) == type(classes.DataStream):
-                            print('\t\t\t<string key="DataSourceVelocity" value="' + step.dataSources[i].velocity + '"/>')
-                        else:
-                            print('\t\t\t<string key="DataSourceVelocity" value="None"/>')
-                        print('\t\t\t<string key="DataSourceType" value="' + step.dataSources[i].type + '"/>')
+                        if presence_of_data_sources == 1:
+                            i = random.randint(0,len(step.dataSources)-1)
+                            print('\t\t\t<string key="DataSourceID" value="' + step.dataSources[i].id + '"/>')
+                            print('\t\t\t<string key="DataSourceName" value="' + step.dataSources[i].name + '"/>')
+                            print('\t\t\t<string key="DataSourceVolume" value="' + step.dataSources[i].volume + '"/>')
+                            if type(step.dataSources[i]) == type(classes.DataStream):
+                                print('\t\t\t<string key="DataSourceVelocity" value="' + step.dataSources[i].velocity + '"/>')
+                            else:
+                                print('\t\t\t<string key="DataSourceVelocity" value="None"/>')
+                            print('\t\t\t<string key="DataSourceType" value="' + step.dataSources[i].type + '"/>')
                         #technologies
-                        i = random.randint(0,len(step_phase.technologies)-1)
-                        print('\t\t\t<string key="TechnologyID" value="' + step_phase.technologies[i].id + '"/>')
-                        print('\t\t\t<string key="TechnologyName" value="' + step_phase.technologies[i].name + '"/>')
-                        print('\t\t\t<string key="TechnologyOS" value="' + step_phase.technologies[i].os + '"/>')
+                        if presence_of_technologies == 1:
+                            i = random.randint(0,len(step_phase.technologies)-1)
+                            print('\t\t\t<string key="TechnologyID" value="' + step_phase.technologies[i].id + '"/>')
+                            print('\t\t\t<string key="TechnologyName" value="' + step_phase.technologies[i].name + '"/>')
+                            print('\t\t\t<string key="TechnologyOS" value="' + step_phase.technologies[i].os + '"/>')
                         #cpus
-                        j = random.randint(0,len(step_phase.technologies[i].cpus)-1)
-                        print('\t\t\t<string key="CPUID" value="' + step_phase.technologies[i].cpus[j].id + '"/>')
-                        print('\t\t\t<string key="CPUCores" value="' + step_phase.technologies[i].cpus[j].cores + '"/>')
-                        print('\t\t\t<string key="CPUSpeed" value="' + step_phase.technologies[i].cpus[j].speed + '"/>')
-                        print('\t\t\t<string key="CPUProducer" value="' + step_phase.technologies[i].cpus[j].producer + '"/>')
+                        if presence_of_cpus == 1:
+                            j = random.randint(0,len(step_phase.technologies[i].cpus)-1)
+                            print('\t\t\t<string key="CPUID" value="' + step_phase.technologies[i].cpus[j].id + '"/>')
+                            print('\t\t\t<string key="CPUCores" value="' + step_phase.technologies[i].cpus[j].cores + '"/>')
+                            print('\t\t\t<string key="CPUSpeed" value="' + step_phase.technologies[i].cpus[j].speed + '"/>')
+                            print('\t\t\t<string key="CPUProducer" value="' + step_phase.technologies[i].cpus[j].producer + '"/>')
                         #gpus
-                        j = random.randint(0,len(step_phase.technologies[i].gpus)-1)
-                        print('\t\t\t<string key="GPUID" value="' + step_phase.technologies[i].gpus[j].id + '"/>')
-                        print('\t\t\t<string key="GPUCores" value="' + step_phase.technologies[i].gpus[j].cores + '"/>')
-                        print('\t\t\t<string key="GPUSpeed" value="' + step_phase.technologies[i].gpus[j].speed + '"/>')
-                        print('\t\t\t<string key="GPUMemory" value="' + step_phase.technologies[i].gpus[j].memory + '"/>')
-                        print('\t\t\t<string key="GPUProducer" value="' + step_phase.technologies[i].gpus[j].producer + '"/>')
+                        if presence_of_gpus == 1:
+                            j = random.randint(0,len(step_phase.technologies[i].gpus)-1)
+                            print('\t\t\t<string key="GPUID" value="' + step_phase.technologies[i].gpus[j].id + '"/>')
+                            print('\t\t\t<string key="GPUCores" value="' + step_phase.technologies[i].gpus[j].cores + '"/>')
+                            print('\t\t\t<string key="GPUSpeed" value="' + step_phase.technologies[i].gpus[j].speed + '"/>')
+                            print('\t\t\t<string key="GPUMemory" value="' + step_phase.technologies[i].gpus[j].memory + '"/>')
+                            print('\t\t\t<string key="GPUProducer" value="' + step_phase.technologies[i].gpus[j].producer + '"/>')
                         #rams
-                        j = random.randint(0,len(step_phase.technologies[i].rams)-1)
-                        print('\t\t\t<string key="RAMID" value="' + step_phase.technologies[i].rams[j].id + '"/>')
-                        print('\t\t\t<string key="RAMVolume" value="' + step_phase.technologies[i].rams[j].volume + '"/>')
-                        print('\t\t\t<string key="RAMSpeed" value="' + step_phase.technologies[i].rams[j].speed + '"/>')
-                        print('\t\t\t<string key="RAMProducer" value="' + step_phase.technologies[i].rams[j].producer + '"/>')
-                        print('\t\t\t<string key="RAMType" value="' + step_phase.technologies[i].rams[j].type + '"/>')
+                        if presence_of_rams == 1:
+                            j = random.randint(0,len(step_phase.technologies[i].rams)-1)
+                            print('\t\t\t<string key="RAMID" value="' + step_phase.technologies[i].rams[j].id + '"/>')
+                            print('\t\t\t<string key="RAMVolume" value="' + step_phase.technologies[i].rams[j].volume + '"/>')
+                            print('\t\t\t<string key="RAMSpeed" value="' + step_phase.technologies[i].rams[j].speed + '"/>')
+                            print('\t\t\t<string key="RAMProducer" value="' + step_phase.technologies[i].rams[j].producer + '"/>')
+                            print('\t\t\t<string key="RAMType" value="' + step_phase.technologies[i].rams[j].type + '"/>')
                         #storages
-                        j = random.randint(0,len(step_phase.technologies[i].storages)-1)
-                        print('\t\t\t<string key="StorageID" value="' + step_phase.technologies[i].storages[j].id + '"/>')
-                        print('\t\t\t<string key="StorageVolume" value="' + step_phase.technologies[i].storages[j].volume + '"/>')
-                        print('\t\t\t<string key="StorageSpeed" value="' + step_phase.technologies[i].storages[j].speed + '"/>')
-                        print('\t\t\t<string key="Storageroducer" value="' + step_phase.technologies[i].storages[j].producer + '"/>')
-                        print('\t\t\t<string key="StorageType" value="' + step_phase.technologies[i].storages[j].type + '"/>')
+                        if presence_of_storages == 1:
+                            j = random.randint(0,len(step_phase.technologies[i].storages)-1)
+                            print('\t\t\t<string key="StorageID" value="' + step_phase.technologies[i].storages[j].id + '"/>')
+                            print('\t\t\t<string key="StorageVolume" value="' + step_phase.technologies[i].storages[j].volume + '"/>')
+                            print('\t\t\t<string key="StorageSpeed" value="' + step_phase.technologies[i].storages[j].speed + '"/>')
+                            print('\t\t\t<string key="Storageroducer" value="' + step_phase.technologies[i].storages[j].producer + '"/>')
+                            print('\t\t\t<string key="StorageType" value="' + step_phase.technologies[i].storages[j].type + '"/>')
                         #networks
-                        j = random.randint(0,len(step_phase.technologies[i].networks)-1)
-                        print('\t\t\t<string key="NetworkID" value="' + step_phase.technologies[i].networks[j].id + '"/>')
-                        print('\t\t\t<string key="NetworkBandwidth" value="' + step_phase.technologies[i].networks[j].bandwidth + '"/>')
-                        print('\t\t\t<string key="NetworkLatency" value="' + step_phase.technologies[i].networks[j].latency + '"/>')
+                        if presence_of_networks == 1:
+                            j = random.randint(0,len(step_phase.technologies[i].networks)-1)
+                            print('\t\t\t<string key="NetworkID" value="' + step_phase.technologies[i].networks[j].id + '"/>')
+                            print('\t\t\t<string key="NetworkBandwidth" value="' + step_phase.technologies[i].networks[j].bandwidth + '"/>')
+                            print('\t\t\t<string key="NetworkLatency" value="' + step_phase.technologies[i].networks[j].latency + '"/>')
                         #close event
                         print('\t\t</event>')
                 #close trace

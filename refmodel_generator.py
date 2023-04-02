@@ -1,5 +1,4 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
-import sys
 import numpy as np
 from PyQt5.QtWidgets import QMessageBox, QDialog
 import random
