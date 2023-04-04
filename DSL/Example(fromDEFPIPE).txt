@@ -1,0 +1,56 @@
+Pipeline Pilot Pipeline for Testing  {
+	communicationMedium: medium 
+	steps:
+		- data-processing step Data_Analysis
+			implementation: container-implementation image: 'data-analysis'
+			environmentParameters: {
+
+			}
+			resourceProvider: 
+			executionRequirement:
+				hardRequirements:					
+					networkRequirement:
+						min-bandwidth: 20
+						max-bandwidth: 100
+						min-latency: 10
+						max-latency: 20
+
+
+		- data-processing step Digital_Twins
+			implementation: container-implementation image: 'simulation'
+			environmentParameters: {
+
+			}
+			resourceProvider: 
+			executionRequirement:
+				hardRequirements:					
+					horizontalScale:
+						min-instance: 10
+						max-instance: 1000
+
+
+		- data-processing step What-If_Analysis
+			implementation: container-implementation image: 'what-if-analysis'
+			environmentParameters: {
+
+			}
+			resourceProvider: 
+			executionRequirement:
+				hardRequirements:					
+					networkRequirement:
+						min-bandwidth: 30
+						max-bandwidth: 100
+						min-latency: 20
+						max-latency: 30
+
+}
+
+CloudProvider Cloud Service {
+	providerLocation: 'x'
+	mappingLocation: 'x'
+}
+
+EdgeProvider 2nd {
+	providerLocation: 'aa'
+	mappingLocation: 'aa'
+}
