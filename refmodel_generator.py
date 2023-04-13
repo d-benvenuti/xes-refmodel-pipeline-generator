@@ -88,11 +88,11 @@ class UiMainWindow(QtWidgets.QMainWindow):
         pipeline_traces = self.lineEdit_traces.text()
         #CHECK FOR MISSING INPUTS
         if len(steps) == 0:
-            msg.setText('At least 1 classes.Step is needed.')
+            msg.setText('At least 1 Step is needed.')
             msg.exec()
             return -1
         elif len(step_phases) == 0:
-            msg.setText('At least 1 classes.Step Phase is needed.')
+            msg.setText('At least 1 Step Phase is needed.')
             msg.exec()
             return -1
         elif pipeline_id == "":
@@ -122,10 +122,16 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if n <= 0:
                 msg.setText('Number of Traces must be positive.')
                 msg.exec()
-                return -3
+                return -2
+            #CHECK FOR MISSING LINKS
+            for step in steps:
+                if len(step.stepPhases) == 0:
+                    msg.setText('Step ' + step.id + ' needs to be linked with at least one Step Phase.')
+                    msg.exec()
+                    return-3
             #GENERATE THE LOG IN XES AND JSON
             utils.generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks)
-            utils.generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases)
+            utils.generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps)
             #-------------------------------------- CLOSE THE APP
             self.close()
             return 1

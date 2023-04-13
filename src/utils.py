@@ -12,6 +12,9 @@ def debug(steps, step_phases, technologies):
     steps.append(classes.Step('2','2','edge','processing'))
     step_phases.append(classes.StepPhase('1','1'))
     step_phases.append(classes.StepPhase('2','2'))
+    steps[0].stepPhases.append(step_phases[0])
+    steps[1].stepPhases.append(step_phases[0])
+    steps[1].stepPhases.append(step_phases[1])
     technologies.append(classes.Technology('1','1','Windows'))
     technologies.append(classes.Technology('2','2','Linux'))
     steps[0].dataSources.append(classes.DataSource('1','1','1','1'))
@@ -33,37 +36,38 @@ def debug(steps, step_phases, technologies):
 #--------------------------------------------------------------------
 #function to generate the xes file
 #--------------------------------------------------------------------
-def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases):
+def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps):
         print("Generating XES file.")
         original_stdout = sys.stdout # Save a reference to the original standard output
-        #check for presence of links
+        #check for presence of links to avoid printing the attributes of classes that will not be present
         presence_of_continuum_layer = 0
         presence_of_data_sources = 0
+        presence_of_step_phases = 0
         presence_of_technologies = 0
         presence_of_cpus = 0
         presence_of_gpus = 0
         presence_of_rams = 0
         presence_of_storages = 0
         presence_of_networks = 0
-        for i in steps:
-            if i.continuumLayer != "":
+        for step in steps:
+            if step.continuumLayer != "":
                 presence_of_continuum_layer = 1
-            if len(i.dataSources) > 0:
+            if len(step.dataSources) > 0:
                 presence_of_data_sources = 1
-        for i in step_phases:
-                if len(i.technologies) > 0:
-                    presence_of_technologies = 1
-                    for j in i.technologies:
-                        if len(j.cpus) > 0:
-                            presence_of_cpus = 1
-                        if len(j.gpus) > 0:
-                            presence_of_gpus = 1
-                        if len(j.rams) > 0:
-                            presence_of_rams = 1
-                        if len(j.storages) > 0:
-                            presence_of_storages = 1
-                        if len(j.networks) > 0:
-                            presence_of_networks = 1
+            for step_phase in step.stepPhases:
+                    if len(step_phase.technologies) > 0:
+                        presence_of_technologies = 1
+                        for technology in step_phase.technologies:
+                            if len(technology.cpus) > 0:
+                                presence_of_cpus = 1
+                            if len(technology.gpus) > 0:
+                                presence_of_gpus = 1
+                            if len(technology.rams) > 0:
+                                presence_of_rams = 1
+                            if len(technology.storages) > 0:
+                                presence_of_storages = 1
+                            if len(technology.networks) > 0:
+                                presence_of_networks = 1
         with open('logs/' + pipeline_name + '.xes', 'w') as f:
             sys.stdout = f # Change the standard output to the file we created.
             #standard header
@@ -149,7 +153,7 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
                 print('\t\t<string key="concept:name" value="' + n.__str__() + '"/>')
                 #events
                 for step in steps:
-                    for step_phase in step_phases:
+                    for step_phase in step.stepPhases:
                         print('\t\t<event>')
                         print('\t\t\t<string key="concept:name" value="' + step.name + '-' + step_phase.name + '"/>')
                         print('\t\t\t<string key="StepPhaseID" value="' + step_phase.id + '"/>')
