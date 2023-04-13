@@ -252,6 +252,8 @@
       <string>Step</string>
      </property>
      <addaction name="actionLinkStepDataSource"/>
+     <addaction name="separator"/>
+     <addaction name="actionLinkStepStepPhase"/>
     </widget>
     <widget class="QMenu" name="menuStep_Phase">
      <property name="title">
@@ -534,6 +536,11 @@
   <action name="actionLinkStepPhaseEnvironmentVariable">
    <property name="text">
     <string>Environment Variable</string>
+   </property>
+  </action>
+  <action name="actionLinkStepStepPhase">
+   <property name="text">
+    <string>Step Phase</string>
    </property>
   </action>
  </widget>

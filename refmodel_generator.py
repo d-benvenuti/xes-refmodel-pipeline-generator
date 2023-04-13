@@ -58,6 +58,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.actionDeleteNetwork.triggered.connect(self.deleteNetwork)
         #------------------------ LINK -----------------------
         self.actionLinkStepDataSource.triggered.connect(self.linkStepDataSource)
+        self.actionLinkStepStepPhase.triggered.connect(self.linkStepStepPhase)
         self.actionLinkStepPhaseTechnology.triggered.connect(self.linkStepPhaseTechnology)
         self.actionLinkStepPhaseEnvironmentVariable.triggered.connect(self.linkStepPhaseEnvironmentVariable)
         self.actionLinkTechnologyCPU.triggered.connect(self.linkTechnologyCPU)
@@ -505,14 +506,14 @@ class UiMainWindow(QtWidgets.QMainWindow):
         msg.setText("There is no classes.Network with the given ID.")
         msg.exec()
         return -1
-    #------------------------------------------------------------------
-    #FUNCTIONS TO LINK OBJECTS
-    #------------------------------------------------------------------       
+#------------------------------------------------------------------
+#FUNCTIONS TO LINK OBJECTS
+#------------------------------------------------------------------       
     def linkStepDataSource(self):
-        print("Link classes.Step to classes.DataSource action clicked")
+        print("Link Step to Data Source action clicked")
         #CHECK IF THERE IS AT LEAST ONE Step
         if len(steps) == 0:
-            msg.setText("There is no classes.Step to link.")
+            msg.setText("There is no Step to link.")
             msg.exec()
             return -2
         #CHECK IF THERE IS AT LEAST ONE DataSource
@@ -529,28 +530,61 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     if j.id == link_dialog.id2:
                         for z in i.dataSources:
                             if z.id == link_dialog.id2:
-                                msg.setText("This classes.Step-classes.DataSource pair is already linked.")
+                                msg.setText("This Step-Data Source pair is already linked.")
                                 msg.exec()
                                 return -2 
                         i.dataSources.append(j)
-                        print("Succesfully linked Data Source to classes.Step")
+                        print("Succesfully linked Data Source to Step")
                         return 1
                 msg.setText("There is no Data Source with such ID.")
                 msg.exec()
                 return -2
-        msg.setText("There is no classes.Step with such ID.")
+        msg.setText("There is no Step with such ID.")
         msg.exec()
-        return -2                
+        return -2
+    def linkStepStepPhase(self):
+        print("Link Step to Step Phase action clicked")
+        #CHECK IF THERE IS AT LEAST ONE Step
+        if len(steps) == 0:
+            msg.setText("There is no Step to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE Step Phase
+        if len(step_phases) == 0:
+            msg.setText("There is no Step Phase to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        #CHECK FOR IDS IN THE DATA STRUCTURE
+        for i in steps:
+            if i.id == link_dialog.id1:
+                for j in step_phases:
+                    if j.id == link_dialog.id2:
+                        for z in i.stepPhases:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This Step-Step Phase pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.stepPhases.append(j)
+                        print("Succesfully linked Step Phases to Step")
+                        return 1
+                msg.setText("There is no Step Phase with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Step with such ID.")
+        msg.exec()
+        return -2            
     def linkStepPhaseTechnology(self):
-        print("Link classes.StepPhase to classes.Technology action clicked")
+        print("Link Step Phase to Technology action clicked")
         #CHECK IF THERE IS AT LEAST ONE Step PHASE
         if len(step_phases) == 0:
-            msg.setText("There is no classes.Step Phase to link.")
+            msg.setText("There is no Step Phase to link.")
             msg.exec()
             return -2
         #CHECK IF THERE IS AT LEAST ONE Technology
         if len(technologies) == 0:
-            msg.setText("There is no classes.Technology to link.")
+            msg.setText("There is no Technology to link.")
             msg.exec()
             return -2
         #ASK FOR IDs
@@ -561,23 +595,23 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     if j.id == link_dialog.id2:
                         for z in i.technologies:
                             if z.id == link_dialog.id2:
-                                msg.setText("This classes.StepPhase-classes.Technology pair is already linked.")
+                                msg.setText("This Step Phase-Technology pair is already linked.")
                                 msg.exec()
                                 return -2 
                         i.technologies.append(j)
-                        print("Succesfully linked classes.Technology to  classes.StepPhase ")
+                        print("Succesfully linked Technology to  Step Phase ")
                         return 1
-                msg.setText("There is no classes.Technology with such ID.")
+                msg.setText("There is no Technology with such ID.")
                 msg.exec()
                 return -2
-        msg.setText("There is no classes.Step Phase with such ID.")
+        msg.setText("There is no Step Phase with such ID.")
         msg.exec()
         return -2  
     def linkStepPhaseEnvironmentVariable(self):
-        print("Link classes.StepPhase to Environment Variable action clicked")
+        print("Link StepPhase to Environment Variable action clicked")
         #CHECK IF THERE IS AT LEAST ONE Step PHASE
         if len(step_phases) == 0:
-            msg.setText("There is no classes.Step Phase to link.")
+            msg.setText("There is no Step Phase to link.")
             msg.exec()
             return -2
         #CHECK IF THERE IS AT LEAST ONE ENVIRONMENT VARIABLE
@@ -593,28 +627,28 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     if j.key == link_dialog.id2:
                         for z in i.environmentVariables:
                             if z.key == link_dialog.id2:
-                                msg.setText("This classes.StepPhase-classes.EnvironmentVariable pair is already linked.")
+                                msg.setText("This Step Phase-Environment Variable pair is already linked.")
                                 msg.exec()
                                 return -2 
                         i.environmentVariables.append(j)
-                        print("Succesfully linked Environment Variable to classes.Step Phase")
+                        print("Succesfully linked Environment Variable to Step Phase")
                         return 1
                 msg.setText("There is no Environment Variable with such Key.")
                 msg.exec()
                 return -2
-        msg.setText("There is no classes.Step Phase with such ID.")
+        msg.setText("There is no Step Phase with such ID.")
         msg.exec()
         return -2       
     def linkTechnologyCPU(self):
-        print("Link classes.Technology to classes.CPU action clicked")
+        print("Link Technology to CPU action clicked")
         #CHECK IF THERE IS AT LEAST ONE Technology
         if len(technologies) == 0:
-            msg.setText("There is no classes.Technology to link.")
+            msg.setText("There is no Technology to link.")
             msg.exec()
             return -2
         #CHECK IF THERE IS AT LEAST ONE CPU
         if len(cpus) == 0:
-            msg.setText("There is no classes.CPU to link.")
+            msg.setText("There is no CPU to link.")
             msg.exec()
             return -2
         #ASK FOR IDs
@@ -625,28 +659,28 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     if j.id == link_dialog.id2:
                         for z in i.cpus:
                             if z.id == link_dialog.id2:
-                                msg.setText("This classes.Technology-classes.CPU pair is already linked.")
+                                msg.setText("This Technology-CPU pair is already linked.")
                                 msg.exec()
                                 return -2 
                         i.cpus.append(j)
-                        print("Succesfully linked classes.CPU to classes.Technology")
+                        print("Succesfully linked CPU to Technology")
                         return 1
-                msg.setText("There is no classes.CPU with such ID.")
+                msg.setText("There is no CPU with such ID.")
                 msg.exec()
                 return -2
-        msg.setText("There is no classes.Technology with such ID.")
+        msg.setText("There is no Technology with such ID.")
         msg.exec()
         return -2
     def linkTechnologyGPU(self):
-        print("Link classes.Technology to classes.GPU action clicked")
+        print("Link Technology to GPU action clicked")
         #CHECK IF THERE IS AT LEAST ONE Technology
         if len(technologies) == 0:
-            msg.setText("There is no classes.Technology to link.")
+            msg.setText("There is no Technology to link.")
             msg.exec()
             return -2
         #CHECK IF THERE IS AT LEAST ONE GPU
         if len(gpus) == 0:
-            msg.setText("There is no classes.GPU to link.")
+            msg.setText("There is no GPU to link.")
             msg.exec()
             return -2
         #ASK FOR IDs
@@ -657,28 +691,28 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     if j.id == link_dialog.id2:
                         for z in i.gpus:
                             if z.id == link_dialog.id2:
-                                msg.setText("This classes.Technology-classes.GPU pair is already linked.")
+                                msg.setText("This Technology-GPU pair is already linked.")
                                 msg.exec()
                                 return -2 
                         i.gpus.append(j)
-                        print("Succesfully linked classes.GPU to classes.Technology")
+                        print("Succesfully linked GPU to Technology")
                         return 1
-                msg.setText("There is no classes.GPU with such ID.")
+                msg.setText("There is no GPU with such ID.")
                 msg.exec()
                 return -2
-        msg.setText("There is no classes.Technology with such ID.")
+        msg.setText("There is no Technology with such ID.")
         msg.exec()
         return -2
     def linkTechnologyRAM(self):
-        print("Link classes.Technology to classes.RAM clicked")
+        print("Link Technology to RAM clicked")
         #CHECK IF THERE IS AT LEAST ONE Technology
         if len(technologies) == 0:
-            msg.setText("There is no classes.Technology to link.")
+            msg.setText("There is no Technology to link.")
             msg.exec()
             return -2
         #CHECK IF THERE IS AT LEAST ONE RAM
         if len(rams) == 0:
-            msg.setText("There is no classes.RAM to link.")
+            msg.setText("There is no RAM to link.")
             msg.exec()
             return -2
         #ASK FOR IDs
@@ -689,28 +723,28 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     if j.id == link_dialog.id2:
                         for z in i.rams:
                             if z.id == link_dialog.id2:
-                                msg.setText("This classes.Technology-classes.RAM pair is already linked.")
+                                msg.setText("This Technology-RAM pair is already linked.")
                                 msg.exec()
                                 return -2 
                         i.rams.append(j)
-                        print("Succesfully linked classes.RAM to classes.Technology")
+                        print("Succesfully linked RAM to Technology")
                         return 1
-                msg.setText("There is no classes.RAM with such ID.")
+                msg.setText("There is no RAM with such ID.")
                 msg.exec()
                 return -2
-        msg.setText("There is no classes.Technology with such ID.")
+        msg.setText("There is no Technology with such ID.")
         msg.exec()
         return -2
     def linkTechnologyStorage(self):
-        print("Link classes.Technology to classes.Storage clicked")
+        print("Link Technology to Storage clicked")
         #CHECK IF THERE IS AT LEAST ONE Technology
         if len(technologies) == 0:
-            msg.setText("There is no classes.Technology to link.")
+            msg.setText("There is no Technology to link.")
             msg.exec()
             return -2
         #CHECK IF THERE IS AT LEAST ONE Storage
         if len(storages) == 0:
-            msg.setText("There is no classes.Storage to link.")
+            msg.setText("There is no Storage to link.")
             msg.exec()
             return -2
         #ASK FOR IDs
@@ -721,28 +755,28 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     if j.id == link_dialog.id2:
                         for z in i.storages:
                             if z.id == link_dialog.id2:
-                                msg.setText("This classes.Technology-classes.Storage pair is already linked.")
+                                msg.setText("This Technology-Storage pair is already linked.")
                                 msg.exec()
                                 return -2 
                         i.storages.append(j)
-                        print("Succesfully linked classes.Storage to classes.Technology")
+                        print("Succesfully linked Storage to Technology")
                         return 1
-                msg.setText("There is no classes.Storage with such ID.")
+                msg.setText("There is no Storage with such ID.")
                 msg.exec()
                 return -2
-        msg.setText("There is no classes.Technology with such ID.")
+        msg.setText("There is no Technology with such ID.")
         msg.exec()
         return -2
     def linkTechnologyNetwork(self):
-        print("Link classes.Technology to classes.Network action clicked")
-        #CHECK IF THERE IS AT LEAST ONE classes.Technology
+        print("Link Technology to Network action clicked")
+        #CHECK IF THERE IS AT LEAST ONE Technology
         if len(technologies) == 0:
-            msg.setText("There is no classes.Technology to link.")
+            msg.setText("There is no Technology to link.")
             msg.exec()
             return -2
-        #CHECK IF THERE IS AT LEAST ONE classes.Network
+        #CHECK IF THERE IS AT LEAST ONE Network
         if len(networks) == 0:
-            msg.setText("There is no classes.Network to link.")
+            msg.setText("There is no Network to link.")
             msg.exec()
             return -2
         #ASK FOR IDs
@@ -753,16 +787,16 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     if j.id == link_dialog.id2:
                         for z in i.networks:
                             if z.id == link_dialog.id2:
-                                msg.setText("This classes.Technology-classes.Network pair is already linked.")
+                                msg.setText("This Technology-Network pair is already linked.")
                                 msg.exec()
                                 return -2 
                         i.networks.append(j)
-                        print("Succesfully linked classes.Network to classes.Technology")
+                        print("Succesfully linked Network to Technology")
                         return 1
-                msg.setText("There is no classes.Network with such ID.")
+                msg.setText("There is no Network with such ID.")
                 msg.exec()
                 return -2
-        msg.setText("There is no classes.Technology with such ID.")
+        msg.setText("There is no Technology with such ID.")
         msg.exec()
         return -2
 #----------------------------------------------------------------------------------------------    
