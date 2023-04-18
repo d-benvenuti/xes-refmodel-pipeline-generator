@@ -2,14 +2,14 @@
 Simple collection of Python scripts to generate a log following the Big Data Pipeline reference model. The output can be either in JSON or in XES.
 
 To run it, use first:
-...
+```
 pip install PyQt5
-...
+```
 
 Then, run the scrypt:
-...
+```
 python refmodel_generator.py
-...
+```
 
 # TO-DO
 
