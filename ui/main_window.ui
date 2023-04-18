@@ -192,6 +192,8 @@
     <addaction name="actionAddStorage"/>
     <addaction name="separator"/>
     <addaction name="actionAddNetwork"/>
+    <addaction name="separator"/>
+    <addaction name="actionAddResource"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -218,6 +220,8 @@
     <addaction name="actionViewNetworks"/>
     <addaction name="separator"/>
     <addaction name="actionViewAll"/>
+    <addaction name="separator"/>
+    <addaction name="actionViewResources"/>
    </widget>
    <widget class="QMenu" name="menuRemove">
     <property name="title">
@@ -242,6 +246,8 @@
     <addaction name="actionDeleteStorage"/>
     <addaction name="separator"/>
     <addaction name="actionDeleteNetwork"/>
+    <addaction name="separator"/>
+    <addaction name="actionDeleteResource"/>
    </widget>
    <widget class="QMenu" name="menuLink">
     <property name="title">
@@ -254,6 +260,8 @@
      <addaction name="actionLinkStepDataSource"/>
      <addaction name="separator"/>
      <addaction name="actionLinkStepStepPhase"/>
+     <addaction name="separator"/>
+     <addaction name="actionLinkStepResource"/>
     </widget>
     <widget class="QMenu" name="menuStep_Phase">
      <property name="title">
@@ -541,6 +549,26 @@
   <action name="actionLinkStepStepPhase">
    <property name="text">
     <string>Step Phase</string>
+   </property>
+  </action>
+  <action name="actionAddResource">
+   <property name="text">
+    <string>Resource</string>
+   </property>
+  </action>
+  <action name="actionViewResources">
+   <property name="text">
+    <string>Resources</string>
+   </property>
+  </action>
+  <action name="actionDeleteResource">
+   <property name="text">
+    <string>Resource</string>
+   </property>
+  </action>
+  <action name="actionLinkStepResource">
+   <property name="text">
+    <string>Resource</string>
    </property>
   </action>
  </widget>

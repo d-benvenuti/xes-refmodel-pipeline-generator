@@ -3,6 +3,23 @@
 #DEFINE ALL THE CLASSES IN THE UML
 #------------------------------------------------------------------
 #------------------------------------------------------------------
+class Resource():
+    #CONSTRUCTOR
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+        self.resources = []
+    #TO STRING
+    def __str__(self):
+        s = '"Resource": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name
+        n = 0
+        while n < len(self.resources):
+            s = s + '\n\t' + self.resources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+            n += 1
+            if n < len(self.resources):
+                s = s + ','
+        s = s + '\n}'
+        return s
 class Step():
     #CONSTRUCTOR
     def __init__(self, id, name, continuumLayer, type):
@@ -57,8 +74,7 @@ class StepPhase():
                 if n < len(self.environmentVariables):
                     s = s + ','
         s = s + '\n}'
-        return s
-        
+        return s        
 #ENVIRONMENT VARIABLE
 class EnvironmentVariable():
     #CONSTRUCTOR
@@ -67,8 +83,7 @@ class EnvironmentVariable():
         self.value = value
     #TO STRING
     def __str__(self):
-        return '"EnvironmentVariable": {\n\t"Key": "' + self.key + '",\n\t"Value": "' + self.value + '"\n}'
-        
+        return '"EnvironmentVariable": {\n\t"Key": "' + self.key + '",\n\t"Value": "' + self.value + '"\n}'       
 #DATA SOURCE
 class DataSource():
     #CONSTRUCTOR
@@ -80,7 +95,6 @@ class DataSource():
     #TO STRING
     def __str__(self):
         return '"DataSource": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Volume": "' + self.volume + '",\n\t"Type": "' + self.type + '"\n}'
-
 #DATA STREAM   
 class DataStream(DataSource):
    #CONSTRUCTOR
@@ -90,7 +104,6 @@ class DataStream(DataSource):
     #TO STRING
     def __str__(self):
         return '"DataStream": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Volume": "' + self.volume + '",\n\t"Type": "' + self.type + '",\n\t"Velocity": "' + self.velocity + '"\n}'
-
 #TECHNOLOGY
 class Technology():
 #CONSTRUCTOR
@@ -156,8 +169,7 @@ class RAM():
         self.producer = producer
     #TO STRING
     def __str__(self):
-        return '"RAM": {\n\t"ID": "' + self.id + '",\n\t"Volume": "' + self.volume + '",\n\t"Speed": "' + self.speed + '",\n\t"Type": "' + self.type + '",\n\t"Producer": "' + self.producer + '"\n}'
-    
+        return '"RAM": {\n\t"ID": "' + self.id + '",\n\t"Volume": "' + self.volume + '",\n\t"Speed": "' + self.speed + '",\n\t"Type": "' + self.type + '",\n\t"Producer": "' + self.producer + '"\n}'    
 #GPU
 class GPU():
     def __init__(self, id, cores, speed, memory, producer):
@@ -169,7 +181,6 @@ class GPU():
     #TO STRING
     def __str__(self):
         return '"GPU": {\n\t"ID": "' + self.id + '",\n\t"Cores": "' + self.cores + '",\n\t"Speed": "' + self.speed + '",\n\t"Memory": "' + self.memory + '",\n\t"Producer": "' + self.producer + '"\n}'
-
 #CPU
 class CPU():
     def __init__(self, id, cores, speed, producer):
@@ -179,8 +190,7 @@ class CPU():
         self.producer = producer
     #TO STRING
     def __str__(self):
-        return '"CPU": {\n\t"ID": "' + self.id + '",\n\t"Cores": "' + self.cores + '",\n\t"Speed": "' + self.speed + '",\n\t"Producer": "' + self.producer + '"\n}'
-        
+        return '"CPU": {\n\t"ID": "' + self.id + '",\n\t"Cores": "' + self.cores + '",\n\t"Speed": "' + self.speed + '",\n\t"Producer": "' + self.producer + '"\n}'       
 #STORAGE
 class Storage():
     def __init__(self, id, volume, speed, type, producer):
@@ -192,7 +202,6 @@ class Storage():
     #TO STRING
     def __str__(self):
         return '"Storage": {\n\t"ID": "' + self.id + '",\n\t"Volume": "' + self.volume + '",\n\t"Speed": "' + self.speed + '",\n\t"Type": "' + self.type + '",\n\t"Producer": "' +self.producer + '"\n}'
-
 #NETWORK
 class Network():
     def __init__(self, id, bandwidth, latency):
