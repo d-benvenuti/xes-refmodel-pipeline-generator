@@ -8,18 +8,9 @@ class Resource():
     def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.resources = []
     #TO STRING
     def __str__(self):
-        s = '"Resource": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name
-        n = 0
-        while n < len(self.resources):
-            s = s + '\n\t' + self.resources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
-            n += 1
-            if n < len(self.resources):
-                s = s + ','
-        s = s + '\n}'
-        return s
+        return '"Resource": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '\n}'
 class Step():
     #CONSTRUCTOR
     def __init__(self, id, name, continuumLayer, type):
@@ -29,6 +20,7 @@ class Step():
         self.type = type
         self.dataSources = []
         self.stepPhases = []
+        self.resources = []
     #TO STRING
     def __str__(self):
         s = '"Step": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Continuum Layer": "' + self.continuumLayer + '",\n\t"Type": "' + self.type + '",'
@@ -45,6 +37,14 @@ class Step():
                 s = s + '\n\t' + self.dataSources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
                 n += 1
                 if n < len(self.dataSources):
+                    s = s + ','
+        if len(self.resources) > 0:
+            s = s + ','
+            n = 0
+            while n < len(self.resources):
+                s = s + '\n\t' + self.resources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+                n += 1
+                if n < len(self.resources):
                     s = s + ','
         s = s + '\n}'
         return s

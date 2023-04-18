@@ -23,6 +23,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         #CONNECT BUTTONS AND ACTIONS
         self.generateButton.clicked.connect(self.generateLog)
         #------------------------ ADD ------------------------
+        self.actionAddResource.triggered.connect(self.addResource)
         self.actionAddStep.triggered.connect(self.addStep) # Remember to pass the definition/method, not the return value!
         self.actionAddStepPhase.triggered.connect(self.addStepPhase)
         self.actionAddEnvironmentVariable.triggered.connect(self.addEnvironmentVariable)
@@ -34,6 +35,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.actionAddStorage.triggered.connect(self.addStorage)
         self.actionAddNetwork.triggered.connect(self.addNetwork)
         #------------------------ VIEW ------------------------
+        self.actionViewResources.triggered.connect(self.printResources)
         self.actionViewSteps.triggered.connect(self.printSteps)
         self.actionViewStepPhases.triggered.connect(self.printStepPhases)
         self.actionViewEnvironmentVariables.triggered.connect(self.printEnvironmentVariables)
@@ -46,6 +48,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.actionViewNetworks.triggered.connect(self.printNetworks)
         self.actionViewAll.triggered.connect(self.printAll)
         #------------------------ DELETE -----------------------
+        self.actionDeleteResource.triggered.connect(self.deleteResource)
         self.actionDeleteStep.triggered.connect(self.deleteStep)
         self.actionDeleteStepPhase.triggered.connect(self.deleteStepPhase)
         self.actionDeleteDataSource.triggered.connect(self.deleteDataSource)
@@ -57,6 +60,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.actionDeleteStorage.triggered.connect(self.deleteStorage)
         self.actionDeleteNetwork.triggered.connect(self.deleteNetwork)
         #------------------------ LINK -----------------------
+        self.actionLinkStepResource.triggered.connect(self.linkStepResource)
         self.actionLinkStepDataSource.triggered.connect(self.linkStepDataSource)
         self.actionLinkStepStepPhase.triggered.connect(self.linkStepStepPhase)
         self.actionLinkStepPhaseTechnology.triggered.connect(self.linkStepPhaseTechnology)
@@ -135,72 +139,88 @@ class UiMainWindow(QtWidgets.QMainWindow):
             #-------------------------------------- CLOSE THE APP
             self.close()
             return 1
+    #FUNCTION TO ADD A NEW Resource
+    def addResource(self):
+        self.setEnabled(0)
+        print("Add-Resource action clicked.")
+        self.w = UiResourceWindow()
+        self.w.show()
     #FUNCTION TO ADD A NEW Step
     def addStep(self):
         self.setEnabled(0)
-        print("Add-classes.Step action clicked.")
+        print("Add-Step action clicked.")
         self.w = UiStepWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW Step PHASE
     def addStepPhase(self):
         self.setEnabled(0)
-        print("Add-classes.StepPhase action clicked.")
+        print("Add-StepPhase action clicked.")
         self.w = UiStepPhaseWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW ENVIRONMENT VARIABLE
     def addEnvironmentVariable(self):
         self.setEnabled(0)
-        print("Add-classes.EnvironmentVariable action clicked.")
+        print("Add-EnvironmentVariable action clicked.")
         self.w = UiEnvironmentVariableWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW DATA SOURCE
     def addDataSource(self):
         self.setEnabled(0)
-        print("Add-classes.DataSource action clicked.")
+        print("Add-DataSource action clicked.")
         self.w = UiDataSourceWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW Technology
     def addTechnology(self):
         self.setEnabled(0)
-        print("Add-classes.Technology action clicked.")
+        print("Add-Technology action clicked.")
         self.w = UiTechnologyWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW CPU
     def addCPU(self):
         self.setEnabled(0)
-        print("Add-classes.CPU action clicked.")
+        print("Add-CPU action clicked.")
         self.w = UiCPUWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW GPU
     def addGPU(self):
         self.setEnabled(0)
-        print("Add-classes.GPU action clicked.")
+        print("Add-GPU action clicked.")
         self.w =UiGPUWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW RAM
     def addRAM(self):
         self.setEnabled(0)
-        print("Add-classes.RAM action clicked.")
+        print("Add-RAM action clicked.")
         self.w = UiRAMWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW Storage
     def addStorage(self):
         self.setEnabled(0)
-        print("Add-classes.Storage action clicked.")
+        print("Add-Storage action clicked.")
         self.w = UiStorageWindow()
         self.w.show()
     #FUNCTION TO ADD A NEW Network 
     def addNetwork(self):
         self.setEnabled(0)
-        print("Add-classes.Network action clicked.")
+        print("Add-Network action clicked.")
         self.w = UiNetworkWindow()
         self.w.show() 
     #------------------------------------------------------------------
     #FUNCTIONS TO PRINT OBJECTS
     #------------------------------------------------------------------ 
+    #FUNCTION TO PRINT THE LIST OF RESOURCES
+    def printResources(self):
+        print("View-Resource action clicked.")
+        to_print = ""
+        for i in resources:
+            to_print = to_print + i.__str__() + '\n'
+        self.setEnabled(0)
+        self.w = UiViewerWindow()
+        self.w.textBox.setText(to_print)
+        self.w.show()
     #FUNCTION TO PRINT THE LIST OF STEPS
     def printSteps(self):
-        print("View-classes.Step action clicked.")
+        print("View-Step action clicked.")
         to_print = ""
         for i in steps:
             to_print = to_print + i.__str__() + '\n'
@@ -301,7 +321,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
     #FUNCTION TO PRINT ALL
     def printAll(self):
         print("View-All action clicked")
-        to_print = np.concatenate((steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks))
+        to_print = np.concatenate((steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks, resources))
         to_print_str = ""
         for i in to_print:
             to_print_str = to_print_str + '\n' + i.__str__()
@@ -311,13 +331,33 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.w.show()
     #------------------------------------------------------------------
     #FUNCTIONS TO DELETE OBJECTS
-    #------------------------------------------------------------------  
-    #FUNCTION TO DELETE classes.Step
+    #------------------------------------------------------------------ 
+    #FUNCTION TO DELETE RESOURCE
+    def deleteResource(self):
+        print("Delete-Resource action clicked")
+        #CHECK IF THERE IS AT LEAST ONE
+        if len(resources) == 0:
+            msg.setText("There is no Resource to delete.")
+            msg.exec()
+            return -2
+        #ASK FOR ID
+        dialog.exec()
+        for i in resources:
+            if dialog.id == i.id:
+                #IF IT IS IN THE DATA STRUCTURE DELETE IT
+                resources.remove(i)
+                print("Resource removed.")
+                return 1
+        #IF THERE IS NO MATCH
+        msg.setText("There is no Resource with the given ID.")
+        msg.exec()
+        return -1   
+    #FUNCTION TO DELETE Step
     def deleteStep(self):
-        print("Delete-classes.Step action clicked")
+        print("Delete-Step action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(steps) == 0:
-            msg.setText("There is no classes.Step to delete.")
+            msg.setText("There is no Step to delete.")
             msg.exec()
             return -2
         #ASK FOR ID
@@ -326,18 +366,18 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                 #IF IT IS IN THE DATA STRUCTURE DELETE IT
                 steps.remove(i)
-                print("classes.Step removed.")
+                print("Step removed.")
                 return 1
         #IF THERE IS NO MATCH
-        msg.setText("There is no classes.Step with the given ID.")
+        msg.setText("There is no Step with the given ID.")
         msg.exec()
         return -1          
     #FUNCTION TO DELETE Step PHASE
     def deleteStepPhase(self):
-        print("Delete-classes.StepPhase action clicked")
+        print("Delete-StepPhase action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(step_phases) == 0:
-            msg.setText("There is no classes.Step Phase to delete.")
+            msg.setText("There is no Step Phase to delete.")
             msg.exec()
             return -2
         #ASK FOR ID
@@ -346,15 +386,15 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     step_phases.remove(i)
-                    print("classes.Step Phase removed.")
+                    print("Step Phase removed.")
                     return 1
         #IF THERE IS NO MATCH
-        msg.setText("There is no classes.Step Phase with the given ID.")
+        msg.setText("There is no Step Phase with the given ID.")
         msg.exec()
         return -1        
     #FUNCTION TO DELETE DATA SOURCE
     def deleteDataSource(self):
-        print("Delete-classes.DataSource action clicked")
+        print("Delete-DataSource action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(data_sources) == 0:
             msg.setText("There is no Data Source to delete.")
@@ -374,7 +414,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
         return -1         
     #FUNCTION TO DELETE ENVIRONMENT VARIABLE
     def deleteEnvironmentVariable(self):
-        print("Delete-classes.EnvironmentVariable action clicked")
+        print("Delete-EnvironmentVariable action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(environment_variables) == 0:
             msg.setText("There is no Environment Variable to delete.")
@@ -392,12 +432,12 @@ class UiMainWindow(QtWidgets.QMainWindow):
         msg.setText("There is no Environment Variable with the given key.")
         msg.exec()
         return -1       
-    #FUNCTION TO DELETE classes.Technology
+    #FUNCTION TO DELETE Technology
     def deleteTechnology(self):
-        print("Delete-classes.Technology action clicked")
+        print("Delete-Technology action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(technologies) == 0:
-            msg.setText("There is no classes.Technology to delete.")
+            msg.setText("There is no Technology to delete.")
             msg.exec()
             return -2
         #ASK FOR ID
@@ -406,18 +446,18 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     technologies.remove(i)
-                    print("classes.Technology removed.")
+                    print("Technology removed.")
                     return 1
         #IF THERE IS NO MATCH
-        msg.setText("There is no classes.Technology with the given ID.")
+        msg.setText("There is no Technology with the given ID.")
         msg.exec()
         return -1       
-    #FUNCTION TO DELETE classes.CPU
+    #FUNCTION TO DELETE CPU
     def deleteCPU(self):
-        print("Delete-classes.CPU action clicked")
+        print("Delete-CPU action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(cpus) == 0:
-            msg.setText("There is no classes.CPU to delete.")
+            msg.setText("There is no CPU to delete.")
             msg.exec()
             return -2
         #ASK FOR ID
@@ -426,18 +466,18 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     cpus.remove(i)
-                    print("classes.CPU removed.")
+                    print("CPU removed.")
                     return 1
         #IF THERE IS NO MATCH
-        msg.setText("There is no classes.CPU with the given ID.")
+        msg.setText("There is no CPU with the given ID.")
         msg.exec()
         return -1       
-    #FUNCTION TO DELETE classes.GPU
+    #FUNCTION TO DELETE GPU
     def deleteGPU(self):
-        print("Delete-classes.GPU action clicked")
+        print("Delete-GPU action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(gpus) == 0:
-            msg.setText("There is no classes.GPU to delete.")
+            msg.setText("There is no GPU to delete.")
             msg.exec()
             return -2
         #ASK FOR ID
@@ -446,18 +486,18 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     gpus.remove(i)
-                    print("classes.GPU removed.")
+                    print("GPU removed.")
                     return 1
         #IF THERE IS NO MATCH
-        msg.setText("There is no classes.GPU with the given ID.")
+        msg.setText("There is no GPU with the given ID.")
         msg.exec()
         return -1       
-    #FUNCTION TO DELETE classes.RAM
+    #FUNCTION TO DELETE RAM
     def deleteRAM(self):
-        print("Delete-classes.RAM action clicked")
+        print("Delete-RAM action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(rams) == 0:
-            msg.setText("There is no classes.RAM to delete.")
+            msg.setText("There is no RAM to delete.")
             msg.exec()
             return -2
         #ASK FOR ID
@@ -466,18 +506,18 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     rams.remove(i)
-                    print("classes.RAM removed.")
+                    print("RAM removed.")
                     return 1
         #IF THERE IS NO MATCH
-        msg.setText("There is no classes.RAM with the given ID.")
+        msg.setText("There is no RAM with the given ID.")
         msg.exec()
         return -1      
     #FUNCTION TO DELETE Storage
     def deleteStorage(self):
-        print("Delete-classes.Storage action clicked")
+        print("Delete-Storage action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(storages) == 0:
-            msg.setText("There is no classes.Storage to delete.")
+            msg.setText("There is no Storage to delete.")
             msg.exec()
             return -2
         #ASK FOR ID
@@ -486,18 +526,18 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     storages.remove(i)
-                    print("classes.Storage removed.")
+                    print("Storage removed.")
                     return 1
         #IF THERE IS NO MATCH
-        msg.setText("There is no classes.Storage with the given ID.")
+        msg.setText("There is no Storage with the given ID.")
         msg.exec()
         return -1
     #FUNCTION TO DELETE Network
     def deleteNetwork(self):
-        print("Delete-classes.Network action clicked")
+        print("Delete-Network action clicked")
         #CHECK IF THERE IS AT LEAST ONE
         if len(networks) == 0:
-            msg.setText("There is no classes.Network to delete.")
+            msg.setText("There is no Network to delete.")
             msg.exec()
             return -2
         #ASK FOR ID
@@ -506,15 +546,48 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     networks.remove(i)
-                    print("classes.Network removed.")
+                    print("Network removed.")
                     return 1
         #IF THERE IS NO MATCH
-        msg.setText("There is no classes.Network with the given ID.")
+        msg.setText("There is no Network with the given ID.")
         msg.exec()
         return -1
 #------------------------------------------------------------------
 #FUNCTIONS TO LINK OBJECTS
-#------------------------------------------------------------------       
+#------------------------------------------------------------------    
+    def linkStepResource(self):
+        print("Link Step to Resource action clicked")
+        #CHECK IF THERE IS AT LEAST ONE Step
+        if len(steps) == 0:
+            msg.setText("There is no Step to link.")
+            msg.exec()
+            return -2
+        #CHECK IF THERE IS AT LEAST ONE RESOURCE
+        if len(resources) == 0:
+            msg.setText("There is no Resource to link.")
+            msg.exec()
+            return -2
+        #ASK FOR IDs
+        link_dialog.exec()
+        #CHECK FOR IDS IN THE DATA STRUCTURE
+        for i in steps:
+            if i.id == link_dialog.id1:
+                for j in resources:
+                    if j.id == link_dialog.id2:
+                        for z in i.resources:
+                            if z.id == link_dialog.id2:
+                                msg.setText("This Step-Resource pair is already linked.")
+                                msg.exec()
+                                return -2 
+                        i.resources.append(j)
+                        print("Succesfully linked Resource to Step")
+                        return 1
+                msg.setText("There is no Resource with such ID.")
+                msg.exec()
+                return -2
+        msg.setText("There is no Step with such ID.")
+        msg.exec()
+        return -2   
     def linkStepDataSource(self):
         print("Link Step to Data Source action clicked")
         #CHECK IF THERE IS AT LEAST ONE Step
@@ -842,6 +915,52 @@ class UiLinkDialogWindow(QtWidgets.QDialog):
         self.id1 = self.lineEdit_id_1.text()
         self.id2 = self.lineEdit_id_2.text()
         self.close()
+#DEFINITION OF THE Resource WINDOW
+class UiResourceWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(UiResourceWindow, self).__init__()
+        uic.loadUi('ui/add_resource.ui', self)
+        #CONNECT BUTTONS AND ACTIONS
+        self.add_button.clicked.connect(self.add)
+    def closeEvent(self, event):
+        self.close()
+        window.setEnabled(1) 
+    #FUNCTION TO APPEND THE NEW Step
+    def add(self):
+        print("Add button pressed in add_resource window.")
+        #READ VALUES FROM lineEdit
+        resource_id = self.lineEdit_id.text() 
+        resource_name = self.lineEdit_name.text()
+        #CHECK FOR MISSING INPUT
+        if resource_id == "":
+            msg.setText("Resource ID can not be null.")
+            msg.exec()
+            return -1
+        if resource_name == "":
+            msg.setText("Resource Name can not be null.")
+            msg.exec()
+            return -1
+        #CHECK FOR ' IN THE FIELDS
+        if "'" in resource_id:
+            msg.setText("Resource ID can not contain the ' symbol.")
+            msg.exec()
+            return -3
+        if "'" in resource_name:
+            msg.setText("Resource Name can not contain ' in the symbol.")
+            msg.exec()
+            return -3
+        #CHECK FOR ALREADY USED ID
+        for i in resources:
+            if resource_id == i.id:
+                msg.setText("Resource ID already used.")
+                msg.exec()
+                return -2
+        #CREATE NEW Step AND ADD IT TO THE LIST
+        new_resource = classes.Resource(resource_id, resource_name)
+        resources.append(new_resource)
+        self.close()
+        window.setEnabled(1)
+        return 1  
 #DEFINITION OF THE Step WINDOW
 class UiStepWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -873,26 +992,26 @@ class UiStepWindow(QtWidgets.QMainWindow):
             step_type = "Consumer"
         #CHECK FOR MISSING INPUT
         if step_id == "":
-            msg.setText("classes.Step ID can not be null.")
+            msg.setText("Step ID can not be null.")
             msg.exec()
             return -1
         if step_name == "":
-            msg.setText("classes.Step Name can not be null.")
+            msg.setText("Step Name can not be null.")
             msg.exec()
             return -1
         #CHECK FOR ' IN THE FIELDS
         if "'" in step_id:
-            msg.setText("classes.Step ID can not contain the ' symbol.")
+            msg.setText("Step ID can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in step_name:
-            msg.setText("classes.Step Name can not contain ' in the symbol.")
+            msg.setText("Step Name can not contain ' in the symbol.")
             msg.exec()
             return -3
         #CHECK FOR ALREADY USED ID
         for i in steps:
             if step_id == i.id:
-                msg.setText("classes.Step ID already used.")
+                msg.setText("Step ID already used.")
                 msg.exec()
                 return -2
         #CREATE NEW Step AND ADD IT TO THE LIST
@@ -919,29 +1038,29 @@ class UiStepPhaseWindow(QtWidgets.QMainWindow):
         step_phase_name = self.lineEdit_name.text()
         #CHECK FOR MISSING INPUT
         if step_phase_id == "":
-            msg.setText("classes.Step Phase ID can not be null.")
+            msg.setText("Step Phase ID can not be null.")
             msg.exec()
             return -1
         if step_phase_name == "":
-            msg.setText("classes.Step Phase Name can not be null.")
+            msg.setText("Step Phase Name can not be null.")
             msg.exec()
             return -1
         #CHECK FOR ' IN THE FIELDS
         if "'" in step_phase_id:
-            msg.setText("classes.Step Phase ID can not contain the ' symbol.")
+            msg.setText("Step Phase ID can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in step_phase_name:
-            msg.setText("classes.Step Phase Name can not contain the ' symbol.")
+            msg.setText("Step Phase Name can not contain the ' symbol.")
             msg.exec()
             return -3
         #CHECK FOR ALREADY USED ID
         for i in step_phases:
             if step_phase_id == i.id:
-                msg.setText("classes.Step Phase ID already used.")
+                msg.setText("Step Phase ID already used.")
                 msg.exec()
                 return -2
-        #CREATE NEW classes.Step PHASE AND ADD IT TO THE LIST
+        #CREATE NEW Step PHASE AND ADD IT TO THE LIST
         new_step_phase = classes.StepPhase(step_phase_id, step_phase_name)
         step_phases.append(new_step_phase)
         self.close()
@@ -1086,26 +1205,26 @@ class UiTechnologyWindow(QtWidgets.QMainWindow):
         technology_name = self.lineEdit_name.text()
         #CHECK FOR MISSING INPUT
         if technology_id == "":
-            msg.setText("classes.Technology ID can not be null.")
+            msg.setText("Technology ID can not be null.")
             msg.exec()
             return -1
         if technology_name == "":
-            msg.setText("classes.Technology Name can not be null.")
+            msg.setText("Technology Name can not be null.")
             msg.exec()
             return -1
         #CHECK FOR ' IN THE FIELDS
         if "'" in technology_id:
-            msg.setText("classes.Technology ID can not contain the ' symbol.")
+            msg.setText("Technology ID can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in technology_name:
-            msg.setText("classes.Technology Name can not contain the ' symbol.")
+            msg.setText("Technology Name can not contain the ' symbol.")
             msg.exec()
             return -3
         #CHECK FOR ALREADY USED ID
         for i in technologies:
             if technology_id == i.id:
-                msg.setText("classes.Technology ID already used.")
+                msg.setText("Technology ID already used.")
                 msg.exec()
                 return -2
         #READ VALUES FROM RADIOBUTTONS
@@ -1122,8 +1241,7 @@ class UiTechnologyWindow(QtWidgets.QMainWindow):
         technologies.append(new_technology)
         self.close()
         window.setEnabled(1)
-        return 1
-    
+        return 1   
 #DEFINITION OF THE CPU WINDOW
 class UiCPUWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -1144,38 +1262,38 @@ class UiCPUWindow(QtWidgets.QMainWindow):
         cpu_producer = self.lineEdit_producer.text()
         #CHECK FOR MISSING INPUT
         if cpu_id == "":
-            msg.setText("classes.CPU ID can not be null.")
+            msg.setText("CPU ID can not be null.")
             msg.exec()
             return -1
         if cpu_cores == "":
-            msg.setText("classes.CPU #Cores can not be null.")
+            msg.setText("CPU #Cores can not be null.")
             msg.exec()
             return -1
         if cpu_speed == "":
-            msg.setText("classes.CPU Speed can not be null.")
+            msg.setText("CPU Speed can not be null.")
             msg.exec()
             return -1
         #CHECK FOR ' IN THE FIELDS
         if "'" in cpu_id:
-            msg.setText("classes.CPU ID can not contain the ' symbol.")
+            msg.setText("CPU ID can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in cpu_cores:
-            msg.setText("classes.CPU #Cores can not contain the ' symbol.")
+            msg.setText("CPU #Cores can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in cpu_speed:
-            msg.setText("classes.CPU Speed can not contain the ' symbol.")
+            msg.setText("CPU Speed can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in cpu_producer:
-            msg.setText("classes.CPU Producer can not contain the ' symbol.")
+            msg.setText("CPU Producer can not contain the ' symbol.")
             msg.exec()
             return -3
         #CHECK FOR ALREADY USED ID
         for i in cpus:
             if cpu_id == i.id:
-                msg.setText("classes.CPU ID already used.")
+                msg.setText("CPU ID already used.")
                 msg.exec()
                 return -2
         #CREATE NEW CPU AND ADD IT TO THE LIST
@@ -1184,7 +1302,6 @@ class UiCPUWindow(QtWidgets.QMainWindow):
         self.close()
         window.setEnabled(1)
         return 1
-
 #DEFINITION OF THE RAM WINDOW
 class UiRAMWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -1205,39 +1322,39 @@ class UiRAMWindow(QtWidgets.QMainWindow):
         ram_producer = self.lineEdit_producer.text()
         #CHECK FOR MISSING INPUT
         if ram_id == "":
-            msg.setText("classes.RAM ID can not be null.")
+            msg.setText("RAM ID can not be null.")
             msg.exec()
             return -1
         if ram_volume == "":
-            msg.setText("classes.RAM Volume can not be null.")
+            msg.setText("RAM Volume can not be null.")
             msg.exec()
             return -1
         if ram_speed == "":
-            msg.setText("classes.RAM Speed can not be null.")
+            msg.setText("RAM Speed can not be null.")
             msg.exec()
             return -1
         #CHECK FOR ' IN THE FIELDS
         if "'" in ram_id:
-            msg.setText("classes.RAM ID can not contain the ' symbol.")
+            msg.setText("RAM ID can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in ram_volume:
-            msg.setText("classes.RAM Volume can not contain the ' symbol.")
+            msg.setText("RAM Volume can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in ram_speed:
-            msg.setText("classes.RAM Speed can not contain the ' symbol.")
+            msg.setText("RAM Speed can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in ram_producer:
-            msg.setText("classes.RAM Producer can not contain the ' symbol.")
+            msg.setText("RAM Producer can not contain the ' symbol.")
             msg.exec()
             return -3
         #CHECK FOR ALREADY USED ID
         for i in rams:
             if ram_id == i.id:
-                print("classes.RAM ID already used.")
-                msg.setText("classes.RAM ID already used.")
+                print("RAM ID already used.")
+                msg.setText("RAM ID already used.")
                 msg.exec()
                 return -2
         #READ VALUES FROM RADIOBUTTONS
@@ -1252,8 +1369,7 @@ class UiRAMWindow(QtWidgets.QMainWindow):
         rams.append(new_ram)
         self.close()
         window.setEnabled(1)
-        return 1
-       
+        return 1      
 #DEFINITION OF THE GPU WINDOW
 class UiGPUWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -1275,46 +1391,46 @@ class UiGPUWindow(QtWidgets.QMainWindow):
         gpu_producer = self.lineEdit_producer.text()
         #CHECK FOR MISSING INPUT
         if gpu_id == "":
-            msg.setText("classes.GPU ID can not be null.")
+            msg.setText("GPU ID can not be null.")
             msg.exec()
             return -1
         if gpu_cores == "":
-            msg.setText("classes.GPU Cores can not be null.")
+            msg.setText("GPU Cores can not be null.")
             msg.exec()
             return -1
         if gpu_speed == "":
-            msg.setText("classes.GPU Speed can not be null.")
+            msg.setText("GPU Speed can not be null.")
             msg.exec()
             return -1
         if gpu_memory == "":
-            msg.setText("classes.GPU Memory can not be null.")
+            msg.setText("GPU Memory can not be null.")
             msg.exec()
             return -1
         #CHECK FOR ' IN THE FIELDS
         if "'" in gpu_id:
-            msg.setText("classes.GPU ID can not contain the ' symbol.")
+            msg.setText("GPU ID can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in gpu_cores:
-            msg.setText("classes.GPU #Cores can not contain the ' symbol.")
+            msg.setText("GPU #Cores can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in gpu_speed:
-            msg.setText("classes.GPU Speed can not contain the ' symbol.")
+            msg.setText("GPU Speed can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in gpu_memory:
-            msg.setText("classes.GPU Memory can not contain the ' symbol.")
+            msg.setText("GPU Memory can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in gpu_producer:
-            msg.setText("classes.GPU Producer can not contain the ' symbol.")
+            msg.setText("GPU Producer can not contain the ' symbol.")
             msg.exec()
             return -3
         #CHECK FOR ALREADY USED ID
         for i in gpus:
             if gpu_id == i.id:
-                msg.setText("classes.GPU ID already used.")
+                msg.setText("GPU ID already used.")
                 msg.exec()
                 return -2
         #CREATE NEW GPU AND ADD IT TO THE LIST
@@ -1344,39 +1460,39 @@ class UiStorageWindow(QtWidgets.QMainWindow):
         storage_producer = self.lineEdit_producer.text()
         #CHECK FOR MISSING INPUT
         if storage_id == "":
-            msg.setText("classes.Storage ID can not be null.")
+            msg.setText("Storage ID can not be null.")
             msg.exec()
             return -1
         if storage_volume == "":
-            msg.setText("classes.Storage Volume can not be null.")
+            msg.setText("Storage Volume can not be null.")
             msg.exec()
             return -1
         if storage_speed == "":
-            msg.setText("classes.Storage Speed can not be null.")
+            msg.setText("Storage Speed can not be null.")
             msg.exec()
             return -1
         #CHECK FOR ' IN THE FIELDS
         if "'" in storage_id:
-            msg.setText("classes.Storage ID can not contain the ' symbol.")
+            msg.setText("Storage ID can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in storage_volume:
-            msg.setText("classes.Storage Volume can not contain the ' symbol.")
+            msg.setText("Storage Volume can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in storage_speed:
-            msg.setText("classes.Storage Speed can not contain the ' symbol.")
+            msg.setText("Storage Speed can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in storage_producer:           
-            msg.setText("classes.Storage Producer can not contain the ' symbol.")
+            msg.setText("Storage Producer can not contain the ' symbol.")
             msg.exec()
             return -3
         #CHECK FOR ALREADY USED ID
         for i in storages:
             if storage_id == i.id:
-                print("classes.Storage ID already used.")
-                msg.setText("classes.Storage ID already used.")
+                print("Storage ID already used.")
+                msg.setText("Storage ID already used.")
                 msg.exec()
                 return -2
         #READ VALUES FROM RADIOBUTTONS
@@ -1392,7 +1508,6 @@ class UiStorageWindow(QtWidgets.QMainWindow):
         self.close()
         window.setEnabled(1)
         return 1
-
 #DEFINITION OF THE Network WINDOW
 class UiNetworkWindow(QtWidgets.QMainWindow):
     def __init__(self):
@@ -1412,34 +1527,34 @@ class UiNetworkWindow(QtWidgets.QMainWindow):
         network_latency = self.lineEdit_latency.text()
         #CHECK FOR MISSING INPUT
         if network_id == "":
-            msg.setText("classes.Network ID can not be null.")
+            msg.setText("Network ID can not be null.")
             msg.exec()
             return -1
         if network_bandwidth == "":
-            msg.setText("classes.Network Bandwidth can not be null.")
+            msg.setText("Network Bandwidth can not be null.")
             msg.exec()
             return -1
         if network_latency == "":
-            msg.setText("classes.Network Latency can not be null.")
+            msg.setText("Network Latency can not be null.")
             msg.exec()
             return -1
         #CHECK FOR ' IN THE FIELDS
         if "'" in network_id:
-            msg.setText("classes.Network ID can not contain the ' symbol.")
+            msg.setText("Network ID can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in network_bandwidth:
-            msg.setText("classes.Network Bandwidth can not contain the ' symbol.")
+            msg.setText("Network Bandwidth can not contain the ' symbol.")
             msg.exec()
             return -3
         if "'" in network_latency:
-            msg.setText("classes.Network Latency can not contain the ' symbol.")
+            msg.setText("Network Latency can not contain the ' symbol.")
             msg.exec()
             return -3
         #CHECK FOR ALREADY USED ID
         for i in networks:
             if network_id == i.id:
-                msg.setText("classes.Network ID already used.")
+                msg.setText("Network ID already used.")
                 msg.exec()
                 return -2
         #CREATE NEW Network AND ADD IT TO THE LIST
@@ -1451,6 +1566,7 @@ class UiNetworkWindow(QtWidgets.QMainWindow):
 #------------------------------------------------------------------
 #DATA STRUCTURES
 #------------------------------------------------------------------
+resources = []
 steps = []
 step_phases = []
 environment_variables = []
