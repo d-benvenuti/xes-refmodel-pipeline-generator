@@ -11,6 +11,10 @@ Then, run the scrypt:
 python refmodel_generator.py
 ```
 
+# Debug button
+
+The "debug" button in the main window simply creates a pre-fixed set of objects that can be used to generate a simple XES really fast.
+
 # Info about xes generation
 
 1. If more than one resource is linked to the same step, each entry related to that step in the xes file will contain all the linked resources.
