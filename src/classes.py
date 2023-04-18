@@ -26,7 +26,7 @@ class Step():
         s = '"Step": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Continuum Layer": "' + self.continuumLayer + '",\n\t"Type": "' + self.type + '",'
         n = 0
         while n < len(self.stepPhases):
-            s = s + '\n\t' + self.stepPhases[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+            s = s + '\n\t' + self.stepPhases[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
             n += 1
             if n < len(self.stepPhases):
                 s = s + ','
@@ -34,7 +34,7 @@ class Step():
             s = s + ','
             n = 0
             while n < len(self.dataSources):
-                s = s + '\n\t' + self.dataSources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+                s = s + '\n\t' + self.dataSources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.dataSources):
                     s = s + ','
@@ -42,7 +42,7 @@ class Step():
             s = s + ','
             n = 0
             while n < len(self.resources):
-                s = s + '\n\t' + self.resources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+                s = s + '\n\t' + self.resources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.resources):
                     s = s + ','
@@ -61,7 +61,7 @@ class StepPhase():
         s = '"StepPhase": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",'
         n = 0
         while n < len(self.technologies):
-            s = s + '\n\t' + self.technologies[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+            s = s + '\n\t' + self.technologies[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
             n += 1
             if n < len(self.technologies):
                 s = s + ','
@@ -69,7 +69,7 @@ class StepPhase():
             s = s + ','
             n = 0
             while n < len(self.environmentVariables):
-                s = s + '\n\t' + self.environmentVariables[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+                s = s + '\n\t' + self.environmentVariables[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.environmentVariables):
                     s = s + ','
@@ -121,7 +121,7 @@ class Technology():
         s = '"Technology": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"OS": "' + self.os + '",'
         n = 0
         while n < len(self.cpus):
-            s = s + '\n\t' + self.cpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+            s = s + '\n\t' + self.cpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
             n += 1
             if n < len(self.cpus):
                 s = s + ','
@@ -129,7 +129,7 @@ class Technology():
             s = s + ','
             n = 0
             while n < len(self.gpus):
-                s = s + '\n\t' + self.gpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+                s = s + '\n\t' + self.gpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.gpus):
                     s = s + ','
@@ -137,7 +137,7 @@ class Technology():
             s = s + ','
             n = 0
             while n < len(self.rams):
-                s = s + '\n\t' + self.rams[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+                s = s + '\n\t' + self.rams[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.rams):
                     s = s + ','
@@ -145,7 +145,7 @@ class Technology():
             s = s + ','
             n = 0
             while n < len(self.storages):
-                s = s + '\n\t' + self.storages[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+                s = s + '\n\t' + self.storages[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.storages):
                     s = s + ','
@@ -153,7 +153,7 @@ class Technology():
             s = s + ','
             n = 0
             while n < len(self.networks):
-                s = s + '\n\t' + self.networks[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}"').replace('{','"{')
+                s = s + '\n\t' + self.networks[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.networks):
                     s = s + ','

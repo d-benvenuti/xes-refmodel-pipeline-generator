@@ -250,31 +250,94 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
 #--------------------------------------------------------------------
 #function to generate the json file
 #--------------------------------------------------------------------
-def generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks):
+def generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks, resources):
     print("Generating JSON file.")
     original_stdout = sys.stdout # Save a reference to the original standard output
     with open('data/' + pipeline_name + '.json', 'w') as f:
         sys.stdout = f # Change the standard output to the file we created.
         print('{\n\t"PipelineID": "' + pipeline_id + '",\n\t"PipelineName": "' + pipeline_name + '",\n\t"PipelineCommunicationMedium": "' + pipeline_medium + '",\n\t"NumberOfTraces": "' + pipeline_traces + '",')
+        s = ""
         for i in steps:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))    
-        for i in step_phases:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
-        for i in data_sources:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
-        for i in environment_variables:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
-        for i in technologies:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
-        for i in cpus:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
-        for i in gpus:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
-        for i in rams:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},'))  
-        for i in storages:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},')) 
-        for i in networks:
-            print('\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')) 
-        print('}')
+            s += '\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},')
+            s += '\n'
+        n = 0
+        while n < len(step_phases):
+            s += '\t' + step_phases[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+            n += 1
+            if n < len(step_phases):
+                s += ',\n'
+        if len(data_sources) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(data_sources):
+                s += '\t' + data_sources[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(data_sources):
+                    s += ',\n'
+        if len(environment_variables) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(environment_variables):
+                s += '\t' + environment_variables[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(environment_variables):
+                    s += ',\n'           
+        if len(technologies) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(technologies):
+                s += '\t' + technologies[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(technologies):
+                    s += ',\n'       
+        if len(cpus) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(cpus):
+                s += '\t' + cpus[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(cpus):
+                    s += ',\n'                 
+        if len(gpus) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(gpus):
+                s += '\t' + gpus[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(gpus):
+                    s += ',\n'                  
+        if len(rams) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(rams):
+                s += '\t' + rams[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(rams):
+                    s += ',\n'               
+        if len(storages) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(storages):
+                s += '\t' + storages[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(storages):
+                    s += ',\n'           
+        if len(networks) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(networks):
+                s += '\t' + networks[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(networks):
+                    s += ',\n'
+        if len(resources) > 0:
+            n = 0
+            s += ',\n'
+            while n < len(resources):
+                s += '\t' + resources[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                n += 1
+                if n < len(resources):
+                    s += ',\n'
+        s += '\n}'
+        print(s)
     sys.stdout = original_stdout # Reset the standard output to its original value

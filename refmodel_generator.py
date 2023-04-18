@@ -134,7 +134,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
                     msg.exec()
                     return-3
             #GENERATE THE LOG IN XES AND JSON
-            utils.generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks)
+            utils.generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks, resources)
             utils.generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps)
             #-------------------------------------- CLOSE THE APP
             self.close()
