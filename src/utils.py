@@ -8,6 +8,11 @@ import time
 #--------------------------------------------------------------------
 def debug(steps, step_phases, technologies):
     print("Debug Button clicked.")
+    #MAKE SURE THAT THE DATA STRUCTURES ARE EMPTY
+    steps.clear()
+    step_phases.clear()
+    technologies.clear()
+    #POPULATE THE DATA STRUCTURES
     steps.append(classes.Step('1','1','edge','processing'))
     steps.append(classes.Step('2','2','edge','processing'))
     step_phases.append(classes.StepPhase('1','1'))
