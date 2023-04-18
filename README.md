@@ -11,6 +11,13 @@ Then, run the scrypt:
 python refmodel_generator.py
 ```
 
+# Info about xes generation
+
+1. If more than one resource is linked to the same step, each entry related to that step in the xes file will contain all the linked resources.
+2. If more than one data sources is linked to the same step, only one will be chosen at random while writing in the xes an entry related to that step. The same goes for the link between step phases and technologies, and for the link between technologies and cpus, gpus, rams, storages and networks.
+3. The order in which steps and step phases are written in the xes is the order in which they are created.
+4. Each step will have in each trace one entry for each step phases linked to it.
+
 # TO-DO
 
 1. Fix generateJSON function to handle printing correctly the final "," when some classes are not present.
