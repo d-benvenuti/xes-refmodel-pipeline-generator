@@ -6,7 +6,7 @@ To run it, use first:
 pip install PyQt5
 ```
 
-Then, run the scrypt:
+Then, run the script:
 ```
 python refmodel_generator.py
 ```
