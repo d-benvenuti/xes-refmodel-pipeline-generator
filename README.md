@@ -26,5 +26,4 @@ The "debug" button in the main window simply creates a pre-fixed set of objects 
 
 - Increase feedback from the app when something has been done succesfully.
 - Implement the possibility to de-link objects.
-- Fix the link between StepPhase and Technology to add Step in it.
-- Implement loading functionality from JSON.
+- Implement data loading functionality from a JSON input.
