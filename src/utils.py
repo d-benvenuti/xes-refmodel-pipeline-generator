@@ -13,6 +13,8 @@ def debug(steps, step_phases, technologies):
     step_phases.append(classes.StepPhase('1','1'))
     step_phases.append(classes.StepPhase('2','2'))
     steps[0].stepPhases.append(step_phases[0])
+    steps[0].resources.append(classes.Resource('1', '1'))
+    steps[1].resources.append(classes.Resource('2', '2'))
     steps[1].stepPhases.append(step_phases[0])
     steps[1].stepPhases.append(step_phases[1])
     technologies.append(classes.Technology('1','1','Windows'))
@@ -40,6 +42,7 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
         print("Generating XES file.")
         original_stdout = sys.stdout # Save a reference to the original standard output
         #check for presence of links to avoid printing the attributes of classes that will not be present
+        presence_of_resources = 0
         presence_of_continuum_layer = 0
         presence_of_data_sources = 0
         presence_of_step_phases = 0
@@ -50,6 +53,8 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
         presence_of_storages = 0
         presence_of_networks = 0
         for step in steps:
+            if len(step.resources) > 0:
+                presence_of_resources = 1
             if step.continuumLayer != "":
                 presence_of_continuum_layer = 1
             if len(step.dataSources) > 0:
@@ -93,6 +98,9 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
             print('\t\t<string key="PipelineCommunicationMedium" value="string"/>')
             #Step
             print('\t\t<string key="StepID" value="string"/>')
+            if presence_of_resources == 1:
+                print('\t\t<string key="ResourceID" value="string"/>')
+                print('\t\t<string key="org:resource" value="string"/>')
             if presence_of_continuum_layer == 1:
                 print('\t\t<string key="StepContinuumLayer" value="string"/>')
             print('\t\t<string key="StepType" value="string"/>')
@@ -166,6 +174,12 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
                         #Step
                         print('\t\t\t<string key="StepID" value="' + step.id + '"/>')
                         print('\t\t\t<string key="StepName" value="' + step.name + '"/>')
+                        #resources
+                        if presence_of_resources == 1:
+                            i = random.randint(0,len(step.dataSources)-1)
+                            for resource in step.resources:
+                                print('\t\t\t<string key="ResourceID" value="' + resource.id + '"/>')
+                                print('\t\t\t<string key="org:resource" value="' + resource.name + '"/>')
                         if presence_of_continuum_layer == 1:
                             print('\t\t\t<string key="StepContinuumLayer" value="' + step.continuumLayer + '"/>')
                             print('\t\t\t<string key="StepType" value="' + step.type + '"/>')
