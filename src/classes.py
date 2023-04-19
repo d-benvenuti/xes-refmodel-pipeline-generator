@@ -26,27 +26,27 @@ class Step():
         s = '"Step": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Continuum Layer": "' + self.continuumLayer + '",\n\t"Type": "' + self.type + '",'
         n = 0
         while n < len(self.stepPhases):
-            s = s + '\n\t' + self.stepPhases[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+            s += '\n\t' + self.stepPhases[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
             n += 1
             if n < len(self.stepPhases):
-                s = s + ','
+                s += ','
         if len(self.dataSources) > 0 :
-            s = s + ','
+            s += ','
             n = 0
             while n < len(self.dataSources):
-                s = s + '\n\t' + self.dataSources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+                s += '\n\t' + self.dataSources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.dataSources):
-                    s = s + ','
+                    s += ','
         if len(self.resources) > 0:
-            s = s + ','
+            s += ','
             n = 0
             while n < len(self.resources):
-                s = s + '\n\t' + self.resources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+                s += '\n\t' + self.resources[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.resources):
-                    s = s + ','
-        s = s + '\n}'
+                    s += ','
+        s += '\n}'
         return s
 #STEP PHASE
 class StepPhase():
@@ -61,19 +61,19 @@ class StepPhase():
         s = '"StepPhase": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",'
         n = 0
         while n < len(self.technologies):
-            s = s + '\n\t' + self.technologies[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+            s += '\n\t' + self.technologies[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
             n += 1
             if n < len(self.technologies):
-                s = s + ','
+                s += ','
         if len(self.environmentVariables) > 0 :
-            s = s + ','
+            s += ','
             n = 0
             while n < len(self.environmentVariables):
-                s = s + '\n\t' + self.environmentVariables[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+                s += '\n\t' + self.environmentVariables[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.environmentVariables):
-                    s = s + ','
-        s = s + '\n}'
+                    s += ','
+        s += '\n}'
         return s        
 #ENVIRONMENT VARIABLE
 class EnvironmentVariable():
@@ -121,43 +121,43 @@ class Technology():
         s = '"Technology": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"OS": "' + self.os + '",'
         n = 0
         while n < len(self.cpus):
-            s = s + '\n\t' + self.cpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+            s += '\n\t' + self.cpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
             n += 1
             if n < len(self.cpus):
-                s = s + ','
+                s += ','
         if len(self.gpus) > 0 :
-            s = s + ','
+            s += ','
             n = 0
             while n < len(self.gpus):
-                s = s + '\n\t' + self.gpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+                s += '\n\t' + self.gpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.gpus):
-                    s = s + ','
+                    s += ','
         if len(self.rams) > 0 :
-            s = s + ','
+            s += ','
             n = 0
             while n < len(self.rams):
-                s = s + '\n\t' + self.rams[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+                s += '\n\t' + self.rams[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.rams):
-                    s = s + ','
+                    s += ','
         if len(self.storages) > 0 :
-            s = s + ','
+            s += ','
             n = 0
             while n < len(self.storages):
-                s = s + '\n\t' + self.storages[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+                s += '\n\t' + self.storages[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.storages):
-                    s = s + ','
+                    s += ','
         if len(self.networks) > 0 :
-            s = s + ','
+            s += ','
             n = 0
             while n < len(self.networks):
-                s = s + '\n\t' + self.networks[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+                s += '\n\t' + self.networks[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
                 n += 1
                 if n < len(self.networks):
-                    s = s + ','
-        s = s + '\n}'
+                    s += ','
+        s += '\n}'
         return s
 #RAM
 class RAM():

@@ -80,6 +80,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
     #FUNCTIONS
     #------------------------ DEBUG -----------------------
     def debug(self):
+        self.lineEdit_id.setText("1")
+        self.lineEdit_name.setText("new")
+        self.lineEdit_medium.setText("cloud")
+        self.lineEdit_traces.setText("10")
         utils.debug(steps, step_phases, technologies)
     #------------------------------------------------------------------
     #FUNCTION TO GENERATE BOTH XES AND JSON FILES
@@ -342,6 +346,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in resources:
             if dialog.id == i.id:
                 #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -362,6 +370,11 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        print(dialog.closed)
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in steps:
             if dialog.id == i.id:
                 #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -382,6 +395,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in step_phases:
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -402,6 +419,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == "1":
+            dialog.closed = 0
+            return -3
         for i in data_sources:
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -422,6 +443,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in environment_variables:
             if dialog.id == i.key:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -442,6 +467,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in technologies:
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -462,6 +491,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in cpus:
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -482,6 +515,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in gpus:
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -502,6 +539,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in rams:
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -522,6 +563,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in storages:
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -542,6 +587,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if dialog.closed == 1:
+            dialog.closed = 0
+            return -3
         for i in networks:
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
@@ -569,6 +618,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         #CHECK FOR IDS IN THE DATA STRUCTURE
         for i in steps:
             if i.id == link_dialog.id1:
@@ -602,6 +655,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         #CHECK FOR IDS IN THE DATA STRUCTURE
         for i in steps:
             if i.id == link_dialog.id1:
@@ -635,6 +692,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         #CHECK FOR IDS IN THE DATA STRUCTURE
         for i in steps:
             if i.id == link_dialog.id1:
@@ -668,6 +729,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         for i in step_phases:
             if i.id == link_dialog.id1:
                 for j in technologies:
@@ -700,6 +765,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         for i in step_phases:
             if i.id == link_dialog.id1:
                 for j in environment_variables:
@@ -732,6 +801,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         for i in technologies:
             if i.id == link_dialog.id1:
                 for j in cpus:
@@ -764,6 +837,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         for i in technologies:
             if i.id == link_dialog.id1:
                 for j in gpus:
@@ -796,6 +873,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         for i in technologies:
             if i.id == link_dialog.id1:
                 for j in rams:
@@ -828,6 +909,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         for i in technologies:
             if i.id == link_dialog.id1:
                 for j in storages:
@@ -860,6 +945,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR IDs
         link_dialog.exec()
+        #CHECK IF THE DIALOG WAS CLOSED
+        if link_dialog.closed == 1:
+            link_dialog.closed = 0
+            return -3
         for i in technologies:
             if i.id == link_dialog.id1:
                 for j in networks:
@@ -894,12 +983,18 @@ class UiDialogWindow(QtWidgets.QDialog):
         uic.loadUi('ui/dialog.ui', self)
         #VARIABLE TO STORE THE RESULT
         self.id = ''
+        self.closed = 0
         #CONNECT BUTTONS AND ACTIONS
         self.delete_button.clicked.connect(self.delete)   
     def delete(self):
         print("Delete button pressed in dialog window.")
         self.id = self.lineEdit_id.text()
         self.close()
+    def closeEvent(self, event):
+        print("UiDialogWindow closed.")
+        self.closed = 1
+        self.close()
+        window.setEnabled(1)
 #DEFINITION OF THE LINK DIALOG WINDOW
 class UiLinkDialogWindow(QtWidgets.QDialog):
     def __init__(self):
@@ -908,6 +1003,7 @@ class UiLinkDialogWindow(QtWidgets.QDialog):
         #VARIABLE TO STORE THE RESULT
         self.id1 = ''
         self.id2 = ''
+        self.closed = 0
         #CONNECT BUTTONS AND ACTIONS
         self.link_button.clicked.connect(self.link)   
     def link(self):
@@ -915,6 +1011,11 @@ class UiLinkDialogWindow(QtWidgets.QDialog):
         self.id1 = self.lineEdit_id_1.text()
         self.id2 = self.lineEdit_id_2.text()
         self.close()
+    def closeEvent(self, event):
+        print("UiLinkDialogWindow closed.")
+        self.closed = 1
+        self.close()
+        window.setEnabled(1)
 #DEFINITION OF THE Resource WINDOW
 class UiResourceWindow(QtWidgets.QMainWindow):
     def __init__(self):
