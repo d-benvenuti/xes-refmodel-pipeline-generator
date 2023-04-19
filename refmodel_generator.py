@@ -983,15 +983,19 @@ class UiDialogWindow(QtWidgets.QDialog):
         #VARIABLE TO STORE THE RESULT
         self.id = ''
         self.closed = 0
+        self.deletePressed = 0
         #CONNECT BUTTONS AND ACTIONS
         self.delete_button.clicked.connect(self.delete)   
     def delete(self):
         print("Delete button pressed in dialog window.")
         self.id = self.lineEdit_id.text()
+        self.deletePressed = 1
         self.close()
     def closeEvent(self, event):
-        print("UiDialogWindow closed.")
-        self.closed = 1
+        if self.deletePressed == 0:
+            self.closed = 1
+        else:
+            self.deletePressed = 0
         self.close()
         window.setEnabled(1)
 #DEFINITION OF THE LINK DIALOG WINDOW
@@ -1003,16 +1007,20 @@ class UiLinkDialogWindow(QtWidgets.QDialog):
         self.id1 = ''
         self.id2 = ''
         self.closed = 0
+        self.linkPressed = 0
         #CONNECT BUTTONS AND ACTIONS
         self.link_button.clicked.connect(self.link)   
     def link(self):
         print("Link button pressed in link_dialog window.")
         self.id1 = self.lineEdit_id_1.text()
         self.id2 = self.lineEdit_id_2.text()
+        self.linkPressed = 1
         self.close()
     def closeEvent(self, event):
-        print("UiLinkDialogWindow closed.")
-        self.closed = 1
+        if self.linkPressed == 0:
+            self.closed = 1
+        else:
+            self.linkPressed == 0
         self.close()
         window.setEnabled(1)
 #DEFINITION OF THE Resource WINDOW
@@ -1058,6 +1066,7 @@ class UiResourceWindow(QtWidgets.QMainWindow):
         #CREATE NEW Step AND ADD IT TO THE LIST
         new_resource = classes.Resource(resource_id, resource_name)
         resources.append(new_resource)
+        print("Resource created.")
         self.close()
         window.setEnabled(1)
         return 1  
@@ -1117,6 +1126,7 @@ class UiStepWindow(QtWidgets.QMainWindow):
         #CREATE NEW Step AND ADD IT TO THE LIST
         new_step = classes.Step(step_id, step_name, step_continuum, step_type)
         steps.append(new_step)
+        print("Step created.")
         self.close()
         window.setEnabled(1)
         return 1       
@@ -1163,6 +1173,7 @@ class UiStepPhaseWindow(QtWidgets.QMainWindow):
         #CREATE NEW Step PHASE AND ADD IT TO THE LIST
         new_step_phase = classes.StepPhase(step_phase_id, step_phase_name)
         step_phases.append(new_step_phase)
+        print("Step Phase created.")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1209,6 +1220,7 @@ class UiEnvironmentVariableWindow(QtWidgets.QMainWindow):
         #CREATE NEW ENVIRONMENT VARIABLE AND ADD IT TO THE LIST
         new_environment_variable = classes.EnvironmentVariable(environment_variable_key, environment_variable_value)
         environment_variables.append(new_environment_variable)
+        print("Environment Variable created.")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1284,6 +1296,7 @@ class UiDataSourceWindow(QtWidgets.QMainWindow):
         else:
             new_data_source = classes.DataStream(data_source_id, data_source_name, data_source_volume, data_source_type, data_source_velocity)
         data_sources.append(new_data_source)
+        print("Data Source created.")
         self.close()
         window.setEnabled(1)
         return 1     
@@ -1339,6 +1352,7 @@ class UiTechnologyWindow(QtWidgets.QMainWindow):
         #CREATE NEW Technology AND ADD IT TO THE LIST
         new_technology = classes.Technology(technology_id, technology_name, technology_os)
         technologies.append(new_technology)
+        print("Technology created.")
         self.close()
         window.setEnabled(1)
         return 1   
@@ -1399,6 +1413,7 @@ class UiCPUWindow(QtWidgets.QMainWindow):
         #CREATE NEW CPU AND ADD IT TO THE LIST
         new_cpu = classes.CPU(cpu_id, cpu_cores, cpu_speed, cpu_producer)
         cpus.append(new_cpu)
+        print("CPU created.")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1467,6 +1482,7 @@ class UiRAMWindow(QtWidgets.QMainWindow):
         #CREATE NEW RAM AND ADD IT TO THE LIST
         new_ram = classes.RAM(ram_id, ram_volume, ram_speed, ram_type, ram_producer)
         rams.append(new_ram)
+        print("RAM created.")
         self.close()
         window.setEnabled(1)
         return 1      
@@ -1536,6 +1552,7 @@ class UiGPUWindow(QtWidgets.QMainWindow):
         #CREATE NEW GPU AND ADD IT TO THE LIST
         new_gpu = classes.GPU(gpu_id, gpu_cores, gpu_speed, gpu_memory, gpu_producer)
         gpus.append(new_gpu)
+        print("GPU created.")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1605,6 +1622,7 @@ class UiStorageWindow(QtWidgets.QMainWindow):
         #CREATE NEW Storage AND ADD IT TO THE LIST
         new_storage = classes.Storage(storage_id, storage_volume, storage_speed, storage_type, storage_producer)
         storages.append(new_storage)
+        print("Storage created.")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1660,6 +1678,7 @@ class UiNetworkWindow(QtWidgets.QMainWindow):
         #CREATE NEW Network AND ADD IT TO THE LIST
         new_network = classes.Network(network_id, network_bandwidth, network_latency)
         networks.append(new_network)
+        print("Network created.")
         self.close()
         window.setEnabled(1)
         return 1
