@@ -370,7 +370,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
             return -2
         #ASK FOR ID
         dialog.exec()
-        print(dialog.closed)
         #CHECK IF THE DIALOG WAS CLOSED
         if dialog.closed == 1:
             dialog.closed = 0
