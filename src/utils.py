@@ -181,7 +181,7 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
                         print('\t\t\t<string key="StepName" value="' + step.name + '"/>')
                         #resources
                         if presence_of_resources == 1:
-                            i = random.randint(0,len(step.dataSources)-1)
+                            i = random.randint(0,len(step.resources)-1)
                             for resource in step.resources:
                                 print('\t\t\t<string key="ResourceID" value="' + resource.id + '"/>')
                                 print('\t\t\t<string key="org:resource" value="' + resource.name + '"/>')

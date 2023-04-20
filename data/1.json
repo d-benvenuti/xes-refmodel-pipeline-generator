@@ -1,0 +1,28 @@
+{
+	"PipelineID": "1",
+	"PipelineName": "1",
+	"PipelineCommunicationMedium": "1",
+	"NumberOfTraces": "1",
+	"Step": {
+		"ID": "1",
+		"Name": "1",
+		"Continuum Layer": "Edge",
+		"Type": "Processing",
+		"StepPhase": {
+			"ID": "1",
+			"Name": "1",
+		},
+		"Resource": {
+			"ID": "1",
+			"Name": "1
+		}
+	},
+	"StepPhase": {
+		"ID": "1",
+		"Name": "1",
+	},
+	"Resource": {
+		"ID": "1",
+		"Name": "1
+	}
+}
