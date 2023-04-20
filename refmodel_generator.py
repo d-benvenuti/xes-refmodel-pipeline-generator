@@ -992,6 +992,7 @@ class UiDialogWindow(QtWidgets.QDialog):
         self.deletePressed = 1
         self.close()
     def closeEvent(self, event):
+        self.lineEdit_id.setText("")
         if self.deletePressed == 0:
             self.closed = 1
         else:
@@ -1017,10 +1018,12 @@ class UiLinkDialogWindow(QtWidgets.QDialog):
         self.linkPressed = 1
         self.close()
     def closeEvent(self, event):
+        self.lineEdit_id_1.setText("")
+        self.lineEdit_id_2.setText("")
         if self.linkPressed == 0:
             self.closed = 1
         else:
-            self.linkPressed == 0
+            self.linkPressed = 0
         self.close()
         window.setEnabled(1)
 #DEFINITION OF THE Resource WINDOW
@@ -1555,8 +1558,7 @@ class UiGPUWindow(QtWidgets.QMainWindow):
         print("GPU created.")
         self.close()
         window.setEnabled(1)
-        return 1
-        
+        return 1      
 #DEFINITION OF THE Storage WINDOW 
 class UiStorageWindow(QtWidgets.QMainWindow):
     def __init__(self):

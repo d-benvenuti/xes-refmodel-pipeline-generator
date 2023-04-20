@@ -15,6 +15,10 @@
 		"Resource": {
 			"ID": "1",
 			"Name": "1
+		},
+		"Resource": {
+			"ID": "2",
+			"Name": "2
 		}
 	},
 	"StepPhase": {
@@ -24,5 +28,9 @@
 	"Resource": {
 		"ID": "1",
 		"Name": "1
+	},
+	"Resource": {
+		"ID": "2",
+		"Name": "2
 	}
 }

@@ -10,7 +10,7 @@
 	<global scope="event">
 		<string key="concept:name" value="name"/>
 		<string key="StepPhaseID" value="string"/>
-		<date key="time:timestamp" value="2023-04-20T17:06:55.455771+01:00"/>
+		<date key="time:timestamp" value="2023-04-20T17:22:04.657323+01:00"/>
 		<string key="PipelineName" value="name"/>
 		<string key="PipelineID" value="string"/>
 		<string key="PipelineCommunicationMedium" value="string"/>
@@ -27,7 +27,7 @@
 		<event>
 			<string key="concept:name" value="1-1"/>
 			<string key="StepPhaseID" value="1"/>
-			<date key="time:timestamp" value="2023-04-20T17:06:55.455771+01:00"/>
+			<date key="time:timestamp" value="2023-04-20T17:22:04.658326+01:00"/>
 			<string key="PipelineID" value="1"/>
 			<string key="PipelineCommunicationMedium" value="1"/>
 			<string key="PipelineName" value="1"/>
@@ -35,6 +35,8 @@
 			<string key="StepName" value="1"/>
 			<string key="ResourceID" value="1"/>
 			<string key="org:resource" value="1"/>
+			<string key="ResourceID" value="2"/>
+			<string key="org:resource" value="2"/>
 			<string key="StepContinuumLayer" value="Edge"/>
 			<string key="StepType" value="Processing"/>
 		</event>
