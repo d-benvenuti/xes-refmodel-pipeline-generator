@@ -10,7 +10,7 @@ class Resource():
         self.name = name
     #TO STRING
     def __str__(self):
-        return '"Resource": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '\n}'
+        return '"Resource_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '"\n}'
 class Step():
     #CONSTRUCTOR
     def __init__(self, id, name, continuumLayer, type):
@@ -23,7 +23,7 @@ class Step():
         self.resources = []
     #TO STRING
     def __str__(self):
-        s = '"Step": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Continuum Layer": "' + self.continuumLayer + '",\n\t"Type": "' + self.type + '",'
+        s = '"Step_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Continuum Layer": "' + self.continuumLayer + '",\n\t"Type": "' + self.type + '",'
         n = 0
         while n < len(self.stepPhases):
             s += '\n\t' + self.stepPhases[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
@@ -58,13 +58,15 @@ class StepPhase():
         self.environmentVariables = []
     #TO STRING
     def __str__(self):
-        s = '"StepPhase": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",'
-        n = 0
-        while n < len(self.technologies):
-            s += '\n\t' + self.technologies[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
-            n += 1
-            if n < len(self.technologies):
-                s += ','
+        s = '"StepPhase_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '"'
+        if len(self.technologies) > 0:
+            s += ','
+            n = 0
+            while n < len(self.technologies):
+                s += '\n\t' + self.technologies[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
+                n += 1
+                if n < len(self.technologies):
+                    s += ','
         if len(self.environmentVariables) > 0 :
             s += ','
             n = 0
@@ -83,7 +85,7 @@ class EnvironmentVariable():
         self.value = value
     #TO STRING
     def __str__(self):
-        return '"EnvironmentVariable": {\n\t"Key": "' + self.key + '",\n\t"Value": "' + self.value + '"\n}'       
+        return '"EnvironmentVariable_' + self.key + '": {\n\t"Key": "' + self.key + '",\n\t"Value": "' + self.value + '"\n}'       
 #DATA SOURCE
 class DataSource():
     #CONSTRUCTOR
@@ -94,7 +96,7 @@ class DataSource():
         self.type = type
     #TO STRING
     def __str__(self):
-        return '"DataSource": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Volume": "' + self.volume + '",\n\t"Type": "' + self.type + '"\n}'
+        return '"DataSource_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Volume": "' + self.volume + '",\n\t"Type": "' + self.type + '"\n}'
 #DATA STREAM   
 class DataStream(DataSource):
    #CONSTRUCTOR
@@ -103,7 +105,7 @@ class DataStream(DataSource):
         self.velocity = velocity
     #TO STRING
     def __str__(self):
-        return '"DataStream": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Volume": "' + self.volume + '",\n\t"Type": "' + self.type + '",\n\t"Velocity": "' + self.velocity + '"\n}'
+        return '"DataStream_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"Volume": "' + self.volume + '",\n\t"Type": "' + self.type + '",\n\t"Velocity": "' + self.velocity + '"\n}'
 #TECHNOLOGY
 class Technology():
 #CONSTRUCTOR
@@ -118,7 +120,7 @@ class Technology():
         self.networks = []
     #TO STRING
     def __str__(self):
-        s = '"Technology": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"OS": "' + self.os + '",'
+        s = '"Technology_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"OS": "' + self.os + '",'
         n = 0
         while n < len(self.cpus):
             s += '\n\t' + self.cpus[n].__str__().replace('\n\t', '\n\t\t').replace('}','\t}')
@@ -169,7 +171,7 @@ class RAM():
         self.producer = producer
     #TO STRING
     def __str__(self):
-        return '"RAM": {\n\t"ID": "' + self.id + '",\n\t"Volume": "' + self.volume + '",\n\t"Speed": "' + self.speed + '",\n\t"Type": "' + self.type + '",\n\t"Producer": "' + self.producer + '"\n}'    
+        return '"RAM_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Volume": "' + self.volume + '",\n\t"Speed": "' + self.speed + '",\n\t"Type": "' + self.type + '",\n\t"Producer": "' + self.producer + '"\n}'    
 #GPU
 class GPU():
     def __init__(self, id, cores, speed, memory, producer):
@@ -180,7 +182,7 @@ class GPU():
         self.producer = producer
     #TO STRING
     def __str__(self):
-        return '"GPU": {\n\t"ID": "' + self.id + '",\n\t"Cores": "' + self.cores + '",\n\t"Speed": "' + self.speed + '",\n\t"Memory": "' + self.memory + '",\n\t"Producer": "' + self.producer + '"\n}'
+        return '"GPU_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Cores": "' + self.cores + '",\n\t"Speed": "' + self.speed + '",\n\t"Memory": "' + self.memory + '",\n\t"Producer": "' + self.producer + '"\n}'
 #CPU
 class CPU():
     def __init__(self, id, cores, speed, producer):
@@ -190,7 +192,7 @@ class CPU():
         self.producer = producer
     #TO STRING
     def __str__(self):
-        return '"CPU": {\n\t"ID": "' + self.id + '",\n\t"Cores": "' + self.cores + '",\n\t"Speed": "' + self.speed + '",\n\t"Producer": "' + self.producer + '"\n}'       
+        return '"CPU_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Cores": "' + self.cores + '",\n\t"Speed": "' + self.speed + '",\n\t"Producer": "' + self.producer + '"\n}'       
 #STORAGE
 class Storage():
     def __init__(self, id, volume, speed, type, producer):
@@ -201,7 +203,7 @@ class Storage():
         self.producer = producer
     #TO STRING
     def __str__(self):
-        return '"Storage": {\n\t"ID": "' + self.id + '",\n\t"Volume": "' + self.volume + '",\n\t"Speed": "' + self.speed + '",\n\t"Type": "' + self.type + '",\n\t"Producer": "' +self.producer + '"\n}'
+        return '"Storage_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Volume": "' + self.volume + '",\n\t"Speed": "' + self.speed + '",\n\t"Type": "' + self.type + '",\n\t"Producer": "' +self.producer + '"\n}'
 #NETWORK
 class Network():
     def __init__(self, id, bandwidth, latency):
@@ -210,4 +212,4 @@ class Network():
         self.latency = latency
     #TO STRING
     def __str__(self):
-        return '"Network": {\n\t"ID": "' + self.id + '",\n\t"Bandwidth": "' + self.bandwidth + '",\n\t"Latency": "' + self.latency + '"\n}' 
+        return '"Network_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Bandwidth": "' + self.bandwidth + '",\n\t"Latency": "' + self.latency + '"\n}' 

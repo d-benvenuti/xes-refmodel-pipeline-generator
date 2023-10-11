@@ -3,373 +3,391 @@
 	"PipelineName": "new",
 	"PipelineCommunicationMedium": "cloud",
 	"NumberOfTraces": "10",
-	"Step": {
-		"ID": "1",
-		"Name": "1",
-		"Continuum Layer": "edge",
-		"Type": "processing",
-		"StepPhase": {
+	"Steps":{
+		"Step_1": {
 			"ID": "1",
 			"Name": "1",
-			"Technology": {
+			"Continuum Layer": "edge",
+			"Type": "processing",
+			"StepPhase_1": {
 				"ID": "1",
 				"Name": "1",
-				"OS": "Windows",
-				"CPU": {
+				"Technology_1": {
 					"ID": "1",
-					"Cores": "1",
-					"Speed": "1",
-					"Producer": ""
-						},
-				"GPU": {
-					"ID": "1",
-					"Cores": "1",
-					"Speed": "1",
-					"Memory": "1",
-					"Producer": ""
-						},
-				"RAM": {
-					"ID": "1",
-					"Volume": "1",
-					"Speed": "1",
-					"Type": "",
-					"Producer": "DDR4"
-						},
-				"Storage": {
-					"ID": "1",
-					"Volume": "1",
-					"Speed": "1",
-					"Type": "",
-					"Producer": "HD"
-						},
-				"Network": {
-					"ID": "1",
-					"Bandwidth": "1",
-					"Latency": "1"
-						}
-				},
-			"Technology": {
-				"ID": "2",
-				"Name": "2",
-				"OS": "Linux",
-				"CPU": {
+					"Name": "1",
+					"OS": "Windows",
+					"CPU_1": {
+						"ID": "1",
+						"Cores": "1",
+						"Speed": "1",
+						"Producer": ""
+							},
+					"GPU_1": {
+						"ID": "1",
+						"Cores": "1",
+						"Speed": "1",
+						"Memory": "1",
+						"Producer": ""
+							},
+					"RAM_1": {
+						"ID": "1",
+						"Volume": "1",
+						"Speed": "1",
+						"Type": "",
+						"Producer": "DDR4"
+							},
+					"Storage_1": {
+						"ID": "1",
+						"Volume": "1",
+						"Speed": "1",
+						"Type": "",
+						"Producer": "HD"
+							},
+					"Network_1": {
+						"ID": "1",
+						"Bandwidth": "1",
+						"Latency": "1"
+							}
+					},
+				"Technology_2": {
 					"ID": "2",
-					"Cores": "2",
-					"Speed": "2",
-					"Producer": "2"
-						},
-				"GPU": {
-					"ID": "1",
-					"Cores": "1",
-					"Speed": "1",
-					"Memory": "1",
-					"Producer": ""
-						},
-				"RAM": {
-					"ID": "2",
-					"Volume": "2",
-					"Speed": "2",
-					"Type": "2",
-					"Producer": "DDR5"
-						},
-				"Storage": {
-					"ID": "2",
-					"Volume": "2",
-					"Speed": "2",
-					"Type": "2",
-					"Producer": "SSD"
-						},
-				"Network": {
-					"ID": "2",
-					"Bandwidth": "2",
-					"Latency": "2"
-						}
-				},
-			"EnvironmentVariable": {
-				"Key": "1",
-				"Value": "1"
-				}
-		},
-		"DataSource": {
-			"ID": "1",
-			"Name": "1",
-			"Volume": "1",
-			"Type": "1"
-		},
-		"Resource": {
-			"ID": "1",
-			"Name": "1
-		}
+					"Name": "2",
+					"OS": "Linux",
+					"CPU_2": {
+						"ID": "2",
+						"Cores": "2",
+						"Speed": "2",
+						"Producer": "2"
+							},
+					"GPU_1": {
+						"ID": "1",
+						"Cores": "1",
+						"Speed": "1",
+						"Memory": "1",
+						"Producer": ""
+							},
+					"RAM_2": {
+						"ID": "2",
+						"Volume": "2",
+						"Speed": "2",
+						"Type": "2",
+						"Producer": "DDR5"
+							},
+					"Storage_2": {
+						"ID": "2",
+						"Volume": "2",
+						"Speed": "2",
+						"Type": "2",
+						"Producer": "SSD"
+							},
+					"Network_2": {
+						"ID": "2",
+						"Bandwidth": "2",
+						"Latency": "2"
+							}
+					},
+				"EnvironmentVariable_1": {
+					"Key": "1",
+					"Value": "1"
+					},
+				"EnvironmentVariable_3": {
+					"Key": "3",
+					"Value": "1"
+					}
+			},
+			"DataSource_1": {
+				"ID": "1",
+				"Name": "1",
+				"Volume": "1",
+				"Type": "1"
+			},
+			"Resource_1": {
+				"ID": "1",
+				"Name": "1"
+			}
 	},
-	"Step": {
-		"ID": "2",
-		"Name": "2",
-		"Continuum Layer": "edge",
-		"Type": "processing",
-		"StepPhase": {
-			"ID": "1",
-			"Name": "1",
-			"Technology": {
-				"ID": "1",
-				"Name": "1",
-				"OS": "Windows",
-				"CPU": {
-					"ID": "1",
-					"Cores": "1",
-					"Speed": "1",
-					"Producer": ""
-						},
-				"GPU": {
-					"ID": "1",
-					"Cores": "1",
-					"Speed": "1",
-					"Memory": "1",
-					"Producer": ""
-						},
-				"RAM": {
-					"ID": "1",
-					"Volume": "1",
-					"Speed": "1",
-					"Type": "",
-					"Producer": "DDR4"
-						},
-				"Storage": {
-					"ID": "1",
-					"Volume": "1",
-					"Speed": "1",
-					"Type": "",
-					"Producer": "HD"
-						},
-				"Network": {
-					"ID": "1",
-					"Bandwidth": "1",
-					"Latency": "1"
-						}
-				},
-			"Technology": {
-				"ID": "2",
-				"Name": "2",
-				"OS": "Linux",
-				"CPU": {
-					"ID": "2",
-					"Cores": "2",
-					"Speed": "2",
-					"Producer": "2"
-						},
-				"GPU": {
-					"ID": "1",
-					"Cores": "1",
-					"Speed": "1",
-					"Memory": "1",
-					"Producer": ""
-						},
-				"RAM": {
-					"ID": "2",
-					"Volume": "2",
-					"Speed": "2",
-					"Type": "2",
-					"Producer": "DDR5"
-						},
-				"Storage": {
-					"ID": "2",
-					"Volume": "2",
-					"Speed": "2",
-					"Type": "2",
-					"Producer": "SSD"
-						},
-				"Network": {
-					"ID": "2",
-					"Bandwidth": "2",
-					"Latency": "2"
-						}
-				},
-			"EnvironmentVariable": {
-				"Key": "1",
-				"Value": "1"
-				}
-		},
-		"StepPhase": {
-			"ID": "2",
-			"Name": "2",,
-			"EnvironmentVariable": {
-				"Key": "2",
-				"Value": "2"
-				}
-		},
-		"DataStream": {
+		"Step_2": {
 			"ID": "2",
 			"Name": "2",
-			"Volume": "2",
-			"Type": "2",
-			"Velocity": "IO"
-		},
-		"Resource": {
-			"ID": "2",
-			"Name": "2
-		}
+			"Continuum Layer": "edge",
+			"Type": "processing",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "1",
+				"Technology_1": {
+					"ID": "1",
+					"Name": "1",
+					"OS": "Windows",
+					"CPU_1": {
+						"ID": "1",
+						"Cores": "1",
+						"Speed": "1",
+						"Producer": ""
+							},
+					"GPU_1": {
+						"ID": "1",
+						"Cores": "1",
+						"Speed": "1",
+						"Memory": "1",
+						"Producer": ""
+							},
+					"RAM_1": {
+						"ID": "1",
+						"Volume": "1",
+						"Speed": "1",
+						"Type": "",
+						"Producer": "DDR4"
+							},
+					"Storage_1": {
+						"ID": "1",
+						"Volume": "1",
+						"Speed": "1",
+						"Type": "",
+						"Producer": "HD"
+							},
+					"Network_1": {
+						"ID": "1",
+						"Bandwidth": "1",
+						"Latency": "1"
+							}
+					},
+				"Technology_2": {
+					"ID": "2",
+					"Name": "2",
+					"OS": "Linux",
+					"CPU_2": {
+						"ID": "2",
+						"Cores": "2",
+						"Speed": "2",
+						"Producer": "2"
+							},
+					"GPU_1": {
+						"ID": "1",
+						"Cores": "1",
+						"Speed": "1",
+						"Memory": "1",
+						"Producer": ""
+							},
+					"RAM_2": {
+						"ID": "2",
+						"Volume": "2",
+						"Speed": "2",
+						"Type": "2",
+						"Producer": "DDR5"
+							},
+					"Storage_2": {
+						"ID": "2",
+						"Volume": "2",
+						"Speed": "2",
+						"Type": "2",
+						"Producer": "SSD"
+							},
+					"Network_2": {
+						"ID": "2",
+						"Bandwidth": "2",
+						"Latency": "2"
+							}
+					},
+				"EnvironmentVariable_1": {
+					"Key": "1",
+					"Value": "1"
+					},
+				"EnvironmentVariable_3": {
+					"Key": "3",
+					"Value": "1"
+					}
+			},
+			"StepPhase_2": {
+				"ID": "2",
+				"Name": "2",
+				"EnvironmentVariable_2": {
+					"Key": "2",
+					"Value": "2"
+					}
+			},
+			"DataStream_2": {
+				"ID": "2",
+				"Name": "2",
+				"Volume": "2",
+				"Type": "2",
+				"Velocity": "IO"
+			},
+			"Resource_2": {
+				"ID": "2",
+				"Name": "2"
+			}
+	}
 	},
-	"StepPhase": {
-		"ID": "1",
-		"Name": "1",
-		"Technology": {
+	"StepPhases":{
+		"StepPhase_1": {
+			"ID": "1",
+			"Name": "1",
+			"Technology_1": {
+				"ID": "1",
+				"Name": "1",
+				"OS": "Windows",
+				"CPU_1": {
+					"ID": "1",
+					"Cores": "1",
+					"Speed": "1",
+					"Producer": ""
+					},
+				"GPU_1": {
+					"ID": "1",
+					"Cores": "1",
+					"Speed": "1",
+					"Memory": "1",
+					"Producer": ""
+					},
+				"RAM_1": {
+					"ID": "1",
+					"Volume": "1",
+					"Speed": "1",
+					"Type": "",
+					"Producer": "DDR4"
+					},
+				"Storage_1": {
+					"ID": "1",
+					"Volume": "1",
+					"Speed": "1",
+					"Type": "",
+					"Producer": "HD"
+					},
+				"Network_1": {
+					"ID": "1",
+					"Bandwidth": "1",
+					"Latency": "1"
+					}
+			},
+			"Technology_2": {
+				"ID": "2",
+				"Name": "2",
+				"OS": "Linux",
+				"CPU_2": {
+					"ID": "2",
+					"Cores": "2",
+					"Speed": "2",
+					"Producer": "2"
+					},
+				"GPU_1": {
+					"ID": "1",
+					"Cores": "1",
+					"Speed": "1",
+					"Memory": "1",
+					"Producer": ""
+					},
+				"RAM_2": {
+					"ID": "2",
+					"Volume": "2",
+					"Speed": "2",
+					"Type": "2",
+					"Producer": "DDR5"
+					},
+				"Storage_2": {
+					"ID": "2",
+					"Volume": "2",
+					"Speed": "2",
+					"Type": "2",
+					"Producer": "SSD"
+					},
+				"Network_2": {
+					"ID": "2",
+					"Bandwidth": "2",
+					"Latency": "2"
+					}
+			},
+			"EnvironmentVariable_1": {
+				"Key": "1",
+				"Value": "1"
+			},
+			"EnvironmentVariable_3": {
+				"Key": "3",
+				"Value": "1"
+			}
+	},
+		"StepPhase_2": {
+			"ID": "2",
+			"Name": "2",
+			"EnvironmentVariable_2": {
+				"Key": "2",
+				"Value": "2"
+			}
+	}
+	},
+	"Technologies":{
+		"Technology_1": {
 			"ID": "1",
 			"Name": "1",
 			"OS": "Windows",
-			"CPU": {
+			"CPU_1": {
 				"ID": "1",
 				"Cores": "1",
 				"Speed": "1",
 				"Producer": ""
-				},
-			"GPU": {
+			},
+			"GPU_1": {
 				"ID": "1",
 				"Cores": "1",
 				"Speed": "1",
 				"Memory": "1",
 				"Producer": ""
-				},
-			"RAM": {
+			},
+			"RAM_1": {
 				"ID": "1",
 				"Volume": "1",
 				"Speed": "1",
 				"Type": "",
 				"Producer": "DDR4"
-				},
-			"Storage": {
+			},
+			"Storage_1": {
 				"ID": "1",
 				"Volume": "1",
 				"Speed": "1",
 				"Type": "",
 				"Producer": "HD"
-				},
-			"Network": {
+			},
+			"Network_1": {
 				"ID": "1",
 				"Bandwidth": "1",
 				"Latency": "1"
-				}
-		},
-		"Technology": {
+			}
+	},
+		"Technology_2": {
 			"ID": "2",
 			"Name": "2",
 			"OS": "Linux",
-			"CPU": {
+			"CPU_2": {
 				"ID": "2",
 				"Cores": "2",
 				"Speed": "2",
 				"Producer": "2"
-				},
-			"GPU": {
+			},
+			"GPU_1": {
 				"ID": "1",
 				"Cores": "1",
 				"Speed": "1",
 				"Memory": "1",
 				"Producer": ""
-				},
-			"RAM": {
+			},
+			"RAM_2": {
 				"ID": "2",
 				"Volume": "2",
 				"Speed": "2",
 				"Type": "2",
 				"Producer": "DDR5"
-				},
-			"Storage": {
+			},
+			"Storage_2": {
 				"ID": "2",
 				"Volume": "2",
 				"Speed": "2",
 				"Type": "2",
 				"Producer": "SSD"
-				},
-			"Network": {
+			},
+			"Network_2": {
 				"ID": "2",
 				"Bandwidth": "2",
 				"Latency": "2"
-				}
-		},
-		"EnvironmentVariable": {
-			"Key": "1",
-			"Value": "1"
-		}
-	},
-	"StepPhase": {
-		"ID": "2",
-		"Name": "2",,
-		"EnvironmentVariable": {
-			"Key": "2",
-			"Value": "2"
-		}
-	},
-	"Technology": {
-		"ID": "1",
-		"Name": "1",
-		"OS": "Windows",
-		"CPU": {
-			"ID": "1",
-			"Cores": "1",
-			"Speed": "1",
-			"Producer": ""
-		},
-		"GPU": {
-			"ID": "1",
-			"Cores": "1",
-			"Speed": "1",
-			"Memory": "1",
-			"Producer": ""
-		},
-		"RAM": {
-			"ID": "1",
-			"Volume": "1",
-			"Speed": "1",
-			"Type": "",
-			"Producer": "DDR4"
-		},
-		"Storage": {
-			"ID": "1",
-			"Volume": "1",
-			"Speed": "1",
-			"Type": "",
-			"Producer": "HD"
-		},
-		"Network": {
-			"ID": "1",
-			"Bandwidth": "1",
-			"Latency": "1"
-		}
-	},
-	"Technology": {
-		"ID": "2",
-		"Name": "2",
-		"OS": "Linux",
-		"CPU": {
-			"ID": "2",
-			"Cores": "2",
-			"Speed": "2",
-			"Producer": "2"
-		},
-		"GPU": {
-			"ID": "1",
-			"Cores": "1",
-			"Speed": "1",
-			"Memory": "1",
-			"Producer": ""
-		},
-		"RAM": {
-			"ID": "2",
-			"Volume": "2",
-			"Speed": "2",
-			"Type": "2",
-			"Producer": "DDR5"
-		},
-		"Storage": {
-			"ID": "2",
-			"Volume": "2",
-			"Speed": "2",
-			"Type": "2",
-			"Producer": "SSD"
-		},
-		"Network": {
-			"ID": "2",
-			"Bandwidth": "2",
-			"Latency": "2"
-		}
+			}
+	}
 	}
 }

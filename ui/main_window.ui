@@ -17,7 +17,7 @@
    <string>Ref Model XES Generator</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>30</x>
@@ -115,6 +115,13 @@
       <widget class="QLineEdit" name="lineEdit_medium">
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
+      <widget class="QPushButton" name="importButton">
+       <property name="text">
+        <string>Import JSON</string>
        </property>
       </widget>
      </item>

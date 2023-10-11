@@ -3,6 +3,7 @@ import sys
 import random
 from datetime import datetime
 import time
+import json
 #--------------------------------------------------------------------
 #function to debug by populating the data sources
 #--------------------------------------------------------------------
@@ -27,6 +28,7 @@ def debug(steps, step_phases, technologies):
     steps[0].dataSources.append(classes.DataSource('1','1','1','1'))
     steps[1].dataSources.append(classes.DataStream('2','2','2','2','IO'))
     step_phases[0].environmentVariables.append(classes.EnvironmentVariable('1','1'))
+    step_phases[0].environmentVariables.append(classes.EnvironmentVariable('3','1'))
     step_phases[1].environmentVariables.append(classes.EnvironmentVariable('2','2'))
     technologies[0].cpus.append(classes.CPU('1','1','1',""))
     technologies[0].gpus.append(classes.GPU('1','1','1','1',""))
@@ -261,88 +263,140 @@ def generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n
     with open('data/' + pipeline_name + '.json', 'w') as f:
         sys.stdout = f # Change the standard output to the file we created.
         print('{\n\t"PipelineID": "' + pipeline_id + '",\n\t"PipelineName": "' + pipeline_name + '",\n\t"PipelineCommunicationMedium": "' + pipeline_medium + '",\n\t"NumberOfTraces": "' + pipeline_traces + '",')
-        s = ""
-        for i in steps:
-            s += '\t' + i.__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t},')
+        s = '\t"Steps":{\n'
+        n = 0
+        while n < len(steps):
+            s += '\t\t' + steps[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
+            n += 1
+            if n < len(steps):
+                s += ','
             s += '\n'
+        s += '\t},\n\t"StepPhases":{\n'
         n = 0
         while n < len(step_phases):
-            s += '\t' + step_phases[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+            s += '\t\t' + step_phases[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
             n += 1
             if n < len(step_phases):
-                s += ',\n'
+                s += ','
+            s += '\n'
+        s += '\t}'
         if len(data_sources) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"DataSources":{\n'
             while n < len(data_sources):
-                s += '\t' + data_sources[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + data_sources[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(data_sources):
-                    s += ',\n'
+                    s += ','
+                s += '\n'
+            s += '\t}'
         if len(environment_variables) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"EnvironmentVariables":{\n'
             while n < len(environment_variables):
-                s += '\t' + environment_variables[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + environment_variables[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(environment_variables):
-                    s += ',\n'           
+                    s += ','
+                s += '\n'
+            s += '\t}'
         if len(technologies) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"Technologies":{\n'
             while n < len(technologies):
-                s += '\t' + technologies[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + technologies[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(technologies):
-                    s += ',\n'       
+                    s += ','
+                s += '\n'
+            s += '\t}'
         if len(cpus) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"CPUS":{\n'
             while n < len(cpus):
-                s += '\t' + cpus[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + cpus[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(cpus):
-                    s += ',\n'                 
+                    s += ','
+                s += '\n'
+            s += '\t}'
         if len(gpus) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"GPUS":{\n'
             while n < len(gpus):
-                s += '\t' + gpus[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + gpus[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(gpus):
-                    s += ',\n'                  
+                    s += ','
+                s += '\n'
+            s += '\t}'
         if len(rams) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"RAMS":{\n'
             while n < len(rams):
-                s += '\t' + rams[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + rams[n].__str__().replace('\n\t\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(rams):
-                    s += ',\n'               
+                    s += ','
+                s += '\n'
+            s += '\t}'
         if len(storages) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"Storages":{\n'
             while n < len(storages):
-                s += '\t' + storages[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + storages[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(storages):
-                    s += ',\n'           
+                    s += ','
+                s += '\n'
+            s += '\t}'
         if len(networks) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"Networks":{\n'
             while n < len(networks):
-                s += '\t' + networks[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + networks[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(networks):
-                    s += ',\n'
+                    s += ','
+                s += '\n'
+            s += '\t}'
         if len(resources) > 0:
             n = 0
-            s += ',\n'
+            s += ',\n\t"Resources":{\n'
             while n < len(resources):
-                s += '\t' + resources[n].__str__().replace('\n\t','\n\t\t').replace('\n}','\n\t}')
+                s += '\t\t' + resources[n].__str__().replace('\n\t','\n\t\t\t').replace('\n}','\n\t}')
                 n += 1
                 if n < len(resources):
-                    s += ',\n'
+                    s += ','
+                s += '\n'
+            s += '\t}'
         s += '\n}'
         print(s)
     sys.stdout = original_stdout # Reset the standard output to its original value
+#--------------------------------------------------------------------
+#function to import the data sources from JSON file
+#--------------------------------------------------------------------
+def importJSON(filename, steps, step_phases, technologies):
+    print("Importing from: " + filename)
+    # OPEN THE FILE
+    f = open(filename)
+    # LOAD THE JSON DICT
+    data = json.load(f)
+    # CLOSE THE FILE
+    f.close()
+    # PARSE PIPELINE DETAILS
+    pipeline_details = []
+    pipeline_details.append(data["PipelineID"])
+    pipeline_details.append(data["PipelineName"])
+    pipeline_details.append(data["PipelineCommunicationMedium"])
+    pipeline_details.append(data["NumberOfTraces"])
+    # PARSE STEPS
+    # ITERATING ON ALL THE KEYS OF "STEPS"
+    for i in data['Steps'].keys():
+        for j in data['Steps'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "STEP"
+            print(data['Steps'][i][j])
+    # PARSE STEP PHASES
+    # PARSE TECHNOLOGIES
+    # END and return details
+    return pipeline_details

@@ -1,0 +1,148 @@
+{
+	"PipelineID": "test",
+	"PipelineName": "test",
+	"PipelineCommunicationMedium": "t",
+	"NumberOfTraces": "1",
+	"Steps":{
+		"Step_1": {
+			"ID": "1",
+			"Name": "1",
+			"Continuum Layer": "Edge",
+			"Type": "Processing",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "1"
+			}
+		},
+		"Step_2": {
+			"ID": "2",
+			"Name": "2",
+			"Continuum Layer": "Edge",
+			"Type": "Processing",
+			"StepPhase_2": {
+				"ID": "2",
+				"Name": "2"
+			}
+		}
+	},
+	"StepPhases":{
+		"StepPhase_1": {
+			"ID": "1",
+			"Name": "1"
+		},
+		"StepPhase_2": {
+			"ID": "2",
+			"Name": "2"
+		}
+	},
+	"DataSources":{
+		"DataSource": {
+			"ID": "1",
+			"Name": "1",
+			"Volume": "1",
+			"Type": "IO"
+		},
+		"DataSource": {
+			"ID": "2",
+			"Name": "2",
+			"Volume": "2",
+			"Type": "IO"
+		},
+		"DataStream": {
+			"ID": "3",
+			"Name": "3",
+			"Volume": "3",
+			"Type": "IO",
+			"Velocity": "3"
+		}
+	},
+	"EnvironmentVariables":{		"EnvironmentVariable": {
+			"Key": "1",
+			"Value": "1"
+		},
+		"EnvironmentVariable": {
+			"Key": "2",
+			"Value": "2"
+		}
+	},
+	"Technologies":{
+		"Technology_1": {
+			"ID": "1",
+			"Name": "1",
+			"OS": "",
+		},
+		"Technology_2": {
+			"ID": "2",
+			"Name": "2",
+			"OS": "",
+		}
+	},
+	"CPUS":{
+		"CPU": {
+			"ID": "1",
+			"Cores": "1",
+			"Speed": "1",
+			"Producer": ""
+		},
+		"CPU": {
+			"ID": "2",
+			"Cores": "2",
+			"Speed": "2",
+			"Producer": ""
+		}
+	},
+	"GPUS":{
+		"GPU": {
+			"ID": "1",
+			"Cores": "1",
+			"Speed": "1",
+			"Memory": "1",
+			"Producer": ""
+		},
+		"GPU": {
+			"ID": "2",
+			"Cores": "2",
+			"Speed": "2",
+			"Memory": "2",
+			"Producer": ""
+		}
+	}	},
+	"Storages":{
+	"Storage": {
+		"ID": "1",
+		"Volume": "11",
+		"Speed": "1",
+		"Type": "HD",
+		"Producer": ""
+		},
+	"Storage": {
+		"ID": "2",
+		"Volume": "2",
+		"Speed": "2",
+		"Type": "HD",
+		"Producer": ""
+		}
+	},
+	"Networks":{
+		"Network": {
+			"ID": "1",
+			"Bandwidth": "1",
+			"Latency": "1"
+		},
+		"Network": {
+			"ID": "2",
+			"Bandwidth": "2",
+			"Latency": "2"
+		}
+	},
+	"Resources":{
+		"Resource": {
+			"ID": "1",
+			"Name": "1"
+		},
+		"Resource": {
+			"ID": "2",
+			"Name": "2"
+		}
+	}
+}

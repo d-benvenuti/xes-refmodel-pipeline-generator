@@ -72,6 +72,8 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.actionLinkTechnologyNetwork.triggered.connect(self.linkTechnologyNetwork)
         #----------------------- DEBUG -----------------------
         self.debugButton.clicked.connect(self.debug)
+        #----------------------- IMPORT ----------------------
+        self.importButton.clicked.connect(self.importJSON)
     #----------------------- CLOSE EVENT -----------------------
     def closeEvent(self, event):
         if self.w is not None:
@@ -85,6 +87,15 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.lineEdit_medium.setText("cloud")
         self.lineEdit_traces.setText("10")
         utils.debug(steps, step_phases, technologies)
+    #------------------------ IMPORT -----------------------
+    def importJSON(self):
+        # get the data from the file
+        pipeline_details = utils.importJSON( "data/new.json", steps, step_phases, technologies)
+        # populate pipeline detailes boxes
+        self.lineEdit_id.setText(pipeline_details[0])
+        self.lineEdit_name.setText(pipeline_details[1])
+        self.lineEdit_medium.setText(pipeline_details[2])
+        self.lineEdit_traces.setText(pipeline_details[3])
     #------------------------------------------------------------------
     #FUNCTION TO GENERATE BOTH XES AND JSON FILES
     def generateLog(self):
