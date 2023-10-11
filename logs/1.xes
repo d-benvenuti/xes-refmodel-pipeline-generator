@@ -10,15 +10,16 @@
 	<global scope="event">
 		<string key="concept:name" value="name"/>
 		<string key="StepPhaseID" value="string"/>
-		<date key="time:timestamp" value="2023-04-20T17:22:04.657323+01:00"/>
+		<date key="time:timestamp" value="2023-10-11T10:30:51.411865+01:00"/>
 		<string key="PipelineName" value="name"/>
 		<string key="PipelineID" value="string"/>
 		<string key="PipelineCommunicationMedium" value="string"/>
 		<string key="StepID" value="string"/>
-		<string key="ResourceID" value="string"/>
-		<string key="org:resource" value="string"/>
 		<string key="StepContinuumLayer" value="string"/>
 		<string key="StepType" value="string"/>
+		<string key="TechnologyID" value="string"/>
+		<string key="TechnologyName" value="string"/>
+		<string key="TechnologyOS" value="string"/>
 	</global>
 	<classifier name="Activity" keys="name"/>
 	<classifier name="activity classifier" keys="Activity"/>
@@ -27,18 +28,41 @@
 		<event>
 			<string key="concept:name" value="1-1"/>
 			<string key="StepPhaseID" value="1"/>
-			<date key="time:timestamp" value="2023-04-20T17:22:04.658326+01:00"/>
+			<date key="time:timestamp" value="2023-10-11T10:30:51.412866+01:00"/>
 			<string key="PipelineID" value="1"/>
 			<string key="PipelineCommunicationMedium" value="1"/>
 			<string key="PipelineName" value="1"/>
-			<string key="StepID" value="1"/>
+			<string key="StepID" value="11"/>
 			<string key="StepName" value="1"/>
-			<string key="ResourceID" value="1"/>
-			<string key="org:resource" value="1"/>
-			<string key="ResourceID" value="2"/>
-			<string key="org:resource" value="2"/>
 			<string key="StepContinuumLayer" value="Edge"/>
 			<string key="StepType" value="Processing"/>
+			<string key="TechnologyID" value="1"/>
+			<string key="TechnologyName" value="1"/>
+			<string key="TechnologyOS" value=""/>
 		</event>
-	</trace>
-</log>
+		<event>
+			<string key="concept:name" value="1-1"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-10-11T10:30:51.412866+01:00"/>
+			<string key="PipelineID" value="1"/>
+			<string key="PipelineCommunicationMedium" value="1"/>
+			<string key="PipelineName" value="1"/>
+			<string key="StepID" value="11"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="TechnologyID" value="1"/>
+			<string key="TechnologyName" value="1"/>
+			<string key="TechnologyOS" value=""/>
+		</event>
+		<event>
+			<string key="concept:name" value="1-1"/>
+			<string key="StepPhaseID" value="3"/>
+			<date key="time:timestamp" value="2023-10-11T10:30:51.412866+01:00"/>
+			<string key="PipelineID" value="1"/>
+			<string key="PipelineCommunicationMedium" value="1"/>
+			<string key="PipelineName" value="1"/>
+			<string key="StepID" value="11"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
