@@ -397,6 +397,64 @@ def importJSON(filename, steps, step_phases, technologies):
             # ITERATING ON ALL THE KEYS OF EACH "STEP"
             print(data['Steps'][i][j])
     # PARSE STEP PHASES
+    # ITERATING ON ALL THE KEYS OF "STEPPHASES"
+    for i in data['StepPhases'].keys():
+        for j in data['StepPhases'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "STEPPHASE"
+            print(data['StepPhases'][i][j])
+    # PARSE DATASOURCES
+    # ITERATING ON ALL THE KEYS OF "DATASOURCES"
+    for i in data['DataSources'].keys():
+        for j in data['DataSources'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "DATASOURCE"
+            print(data['DataSources'][i][j])
+    # PARSE ENVIRONMENTVARIABLES
+    # ITERATING ON ALL THE KEYS OF "ENVIRONMENTVARIABLES"
+    for i in data['EnvironmentVariables'].keys():
+        for j in data['EnvironmentVariables'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "ENVIRONMENTVARIABLE"
+            print(data['EnvironmentVariables'][i][j])
     # PARSE TECHNOLOGIES
+    # ITERATING ON ALL THE KEYS OF "TECHNOLOGIES"
+    for i in data['Technologies'].keys():
+        for j in data['Technologies'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "TECHNOLOGY"
+            print(data['Technologies'][i][j])
+    # PARSE CPUS
+    # ITERATING ON ALL THE KEYS OF "CPUS"
+    for i in data['CPUS'].keys():
+        for j in data['CPUS'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "CPU"
+            print(data['CPUS'][i][j])
+    # PARSE GPUS
+    # ITERATING ON ALL THE KEYS OF "GPUS"
+    for i in data['GPUS'].keys():
+        for j in data['GPUS'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "GPU"
+            print(data['GPUS'][i][j])
+    # PARSE RAMS
+    # ITERATING ON ALL THE KEYS OF "RAMS"
+    for i in data['RAMS'].keys():
+        for j in data['RAMS'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "RAM"
+            print(data['RAMS'][i][j])
+    # PARSE STORAGES
+    # ITERATING ON ALL THE KEYS OF "STORAGES"
+    for i in data['Storages'].keys():
+        for j in data['Storages'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "STORAGE"
+            print(data['Storages'][i][j])
+    # PARSE NETWORKS
+    # ITERATING ON ALL THE KEYS OF "NETWORKS"
+    for i in data['Networks'].keys():
+        for j in data['Networks'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "NETOWORK"
+            print(data['Networks'][i][j])
+    # PARSE RESOURCES
+    # ITERATING ON ALL THE KEYS OF "RESOURCES"
+    for i in data['Resources'].keys():
+        for j in data['Resources'][i]:
+            # ITERATING ON ALL THE KEYS OF EACH "RESOURCE"
+            print(data['Resources'][i][j])
     # END and return details
     return pipeline_details

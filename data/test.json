@@ -1,8 +1,8 @@
 {
 	"PipelineID": "test",
 	"PipelineName": "test",
-	"PipelineCommunicationMedium": "t",
-	"NumberOfTraces": "1",
+	"PipelineCommunicationMedium": "test",
+	"NumberOfTraces": "5",
 	"Steps":{
 		"Step_1": {
 			"ID": "1",
@@ -11,138 +11,344 @@
 			"Type": "Processing",
 			"StepPhase_1": {
 				"ID": "1",
-				"Name": "1"
+				"Name": "1",
+				"Technology_1": {
+					"ID": "1",
+					"Name": "1",
+					"OS": "",
+					"CPU_1": {
+						"ID": "1",
+						"Cores": "1",
+						"Speed": "1",
+						"Producer": ""
+							},
+					"RAM_1": {
+						"ID": "1",
+						"Volume": "1",
+						"Speed": "1",
+						"Type": "DDR3",
+						"Producer": "1"
+							},
+					"Network_2": {
+						"ID": "2",
+						"Bandwidth": "2",
+						"Latency": "2"
+							}
+					},
+				"Technology_2": {
+					"ID": "2",
+					"Name": "2",
+					"OS": "Mac",
+					"GPU_2": {
+						"ID": "2",
+						"Cores": "2",
+						"Speed": "2",
+						"Memory": "2",
+						"Producer": ""
+							},
+					"Storage_2": {
+						"ID": "2",
+						"Volume": "2",
+						"Speed": "2",
+						"Type": "HD",
+						"Producer": "2"
+							},
+					"Network_2": {
+						"ID": "2",
+						"Bandwidth": "2",
+						"Latency": "2"
+							}
+					}
+			},
+			"DataStream_1": {
+				"ID": "1",
+				"Name": "1",
+				"Volume": "1",
+				"Type": "IO",
+				"Velocity": "1"
 			}
-		},
+	},
 		"Step_2": {
 			"ID": "2",
 			"Name": "2",
 			"Continuum Layer": "Edge",
 			"Type": "Processing",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "1",
+				"Technology_1": {
+					"ID": "1",
+					"Name": "1",
+					"OS": "",
+					"CPU_1": {
+						"ID": "1",
+						"Cores": "1",
+						"Speed": "1",
+						"Producer": ""
+							},
+					"RAM_1": {
+						"ID": "1",
+						"Volume": "1",
+						"Speed": "1",
+						"Type": "DDR3",
+						"Producer": "1"
+							},
+					"Network_2": {
+						"ID": "2",
+						"Bandwidth": "2",
+						"Latency": "2"
+							}
+					},
+				"Technology_2": {
+					"ID": "2",
+					"Name": "2",
+					"OS": "Mac",
+					"GPU_2": {
+						"ID": "2",
+						"Cores": "2",
+						"Speed": "2",
+						"Memory": "2",
+						"Producer": ""
+							},
+					"Storage_2": {
+						"ID": "2",
+						"Volume": "2",
+						"Speed": "2",
+						"Type": "HD",
+						"Producer": "2"
+							},
+					"Network_2": {
+						"ID": "2",
+						"Bandwidth": "2",
+						"Latency": "2"
+							}
+					}
+			},
 			"StepPhase_2": {
 				"ID": "2",
 				"Name": "2"
+			},
+			"Resource_1": {
+				"ID": "1",
+				"Name": "1"
 			}
-		}
+	}
 	},
 	"StepPhases":{
 		"StepPhase_1": {
 			"ID": "1",
-			"Name": "1"
-		},
+			"Name": "1",
+			"Technology_1": {
+				"ID": "1",
+				"Name": "1",
+				"OS": "",
+				"CPU_1": {
+					"ID": "1",
+					"Cores": "1",
+					"Speed": "1",
+					"Producer": ""
+					},
+				"RAM_1": {
+					"ID": "1",
+					"Volume": "1",
+					"Speed": "1",
+					"Type": "DDR3",
+					"Producer": "1"
+					},
+				"Network_2": {
+					"ID": "2",
+					"Bandwidth": "2",
+					"Latency": "2"
+					}
+			},
+			"Technology_2": {
+				"ID": "2",
+				"Name": "2",
+				"OS": "Mac",
+				"GPU_2": {
+					"ID": "2",
+					"Cores": "2",
+					"Speed": "2",
+					"Memory": "2",
+					"Producer": ""
+					},
+				"Storage_2": {
+					"ID": "2",
+					"Volume": "2",
+					"Speed": "2",
+					"Type": "HD",
+					"Producer": "2"
+					},
+				"Network_2": {
+					"ID": "2",
+					"Bandwidth": "2",
+					"Latency": "2"
+					}
+			}
+	},
 		"StepPhase_2": {
 			"ID": "2",
 			"Name": "2"
-		}
+	}
 	},
 	"DataSources":{
-		"DataSource": {
+		"DataStream_1": {
 			"ID": "1",
 			"Name": "1",
 			"Volume": "1",
-			"Type": "IO"
-		},
-		"DataSource": {
+			"Type": "IO",
+			"Velocity": "1"
+	},
+		"DataSource_2": {
 			"ID": "2",
 			"Name": "2",
 			"Volume": "2",
 			"Type": "IO"
-		},
-		"DataStream": {
-			"ID": "3",
-			"Name": "3",
-			"Volume": "3",
-			"Type": "IO",
-			"Velocity": "3"
-		}
+	}
 	},
-	"EnvironmentVariables":{		"EnvironmentVariable": {
+	"EnvironmentVariables":{
+		"EnvironmentVariable_1": {
 			"Key": "1",
 			"Value": "1"
-		},
-		"EnvironmentVariable": {
+	},
+		"EnvironmentVariable_2": {
 			"Key": "2",
 			"Value": "2"
-		}
+	}
 	},
 	"Technologies":{
 		"Technology_1": {
 			"ID": "1",
 			"Name": "1",
 			"OS": "",
-		},
+			"CPU_1": {
+				"ID": "1",
+				"Cores": "1",
+				"Speed": "1",
+				"Producer": ""
+			},
+			"RAM_1": {
+				"ID": "1",
+				"Volume": "1",
+				"Speed": "1",
+				"Type": "DDR3",
+				"Producer": "1"
+			},
+			"Network_2": {
+				"ID": "2",
+				"Bandwidth": "2",
+				"Latency": "2"
+			}
+	},
 		"Technology_2": {
 			"ID": "2",
 			"Name": "2",
-			"OS": "",
-		}
+			"OS": "Mac",
+			"GPU_2": {
+				"ID": "2",
+				"Cores": "2",
+				"Speed": "2",
+				"Memory": "2",
+				"Producer": ""
+			},
+			"Storage_2": {
+				"ID": "2",
+				"Volume": "2",
+				"Speed": "2",
+				"Type": "HD",
+				"Producer": "2"
+			},
+			"Network_2": {
+				"ID": "2",
+				"Bandwidth": "2",
+				"Latency": "2"
+			}
+	}
 	},
 	"CPUS":{
-		"CPU": {
+		"CPU_1": {
 			"ID": "1",
 			"Cores": "1",
 			"Speed": "1",
 			"Producer": ""
-		},
-		"CPU": {
+	},
+		"CPU_2": {
 			"ID": "2",
 			"Cores": "2",
 			"Speed": "2",
-			"Producer": ""
-		}
+			"Producer": "2"
+	}
 	},
 	"GPUS":{
-		"GPU": {
+		"GPU_1": {
 			"ID": "1",
 			"Cores": "1",
 			"Speed": "1",
 			"Memory": "1",
 			"Producer": ""
-		},
-		"GPU": {
+	},
+		"GPU_2": {
 			"ID": "2",
 			"Cores": "2",
 			"Speed": "2",
 			"Memory": "2",
 			"Producer": ""
-		}
-	}	},
+	},
+		"GPU_3": {
+			"ID": "3",
+			"Cores": "3",
+			"Speed": "3",
+			"Memory": "3",
+			"Producer": "3"
+	}
+	},
+	"RAMS":{
+		"RAM_1": {
+	"ID": "1",
+	"Volume": "1",
+	"Speed": "1",
+	"Type": "DDR3",
+	"Producer": "1"
+	},
+		"RAM_2": {
+	"ID": "2",
+	"Volume": "2",
+	"Speed": "2",
+	"Type": "DDR3",
+	"Producer": ""
+	}
+	},
 	"Storages":{
-	"Storage": {
-		"ID": "1",
-		"Volume": "11",
-		"Speed": "1",
-		"Type": "HD",
-		"Producer": ""
-		},
-	"Storage": {
-		"ID": "2",
-		"Volume": "2",
-		"Speed": "2",
-		"Type": "HD",
-		"Producer": ""
-		}
+		"Storage_1": {
+			"ID": "1",
+			"Volume": "1",
+			"Speed": "1",
+			"Type": "HD",
+			"Producer": ""
+	},
+		"Storage_2": {
+			"ID": "2",
+			"Volume": "2",
+			"Speed": "2",
+			"Type": "HD",
+			"Producer": "2"
+	}
 	},
 	"Networks":{
-		"Network": {
-			"ID": "1",
-			"Bandwidth": "1",
-			"Latency": "1"
-		},
-		"Network": {
+		"Network_2": {
 			"ID": "2",
 			"Bandwidth": "2",
 			"Latency": "2"
-		}
+	}
 	},
 	"Resources":{
-		"Resource": {
+		"Resource_1": {
 			"ID": "1",
 			"Name": "1"
-		},
-		"Resource": {
+	},
+		"Resource_2": {
 			"ID": "2",
 			"Name": "2"
-		}
+	}
 	}
 }

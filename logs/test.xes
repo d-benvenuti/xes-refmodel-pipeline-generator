@@ -10,39 +10,439 @@
 	<global scope="event">
 		<string key="concept:name" value="name"/>
 		<string key="StepPhaseID" value="string"/>
-		<date key="time:timestamp" value="2023-10-11T12:26:43.622176+01:00"/>
+		<date key="time:timestamp" value="2023-10-18T11:14:53.247488+01:00"/>
 		<string key="PipelineName" value="name"/>
 		<string key="PipelineID" value="string"/>
 		<string key="PipelineCommunicationMedium" value="string"/>
 		<string key="StepID" value="string"/>
+		<string key="ResourceID" value="string"/>
+		<string key="org:resource" value="string"/>
 		<string key="StepContinuumLayer" value="string"/>
 		<string key="StepType" value="string"/>
+		<string key="DataSourceID" value="string"/>
+		<string key="DataSourceName" value="string"/>
+		<string key="DataSourceVolume" value="string"/>
+		<string key="DataSourceVelocity" value="string"/>
+		<string key="DataSourceType" value="string"/>
+		<string key="TechnologyID" value="string"/>
+		<string key="TechnologyName" value="string"/>
+		<string key="TechnologyOS" value="string"/>
+		<string key="CPUID" value="string"/>
+		<string key="CPUCores" value="string"/>
+		<string key="CPUSpeed" value="string"/>
+		<string key="CPUProducer" value="string"/>
+		<string key="GPUID" value="string"/>
+		<string key="GPUCores" value="string"/>
+		<string key="GPUSpeed" value="string"/>
+		<string key="GPUMemory" value="string"/>
+		<string key="GPUProducer" value="string"/>
+		<string key="RAMID" value="string"/>
+		<string key="RAMVolume" value="string"/>
+		<string key="RAMSpeed" value="string"/>
+		<string key="RAMProducer" value="string"/>
+		<string key="RAMType" value="string"/>
+		<string key="StorageID" value="string"/>
+		<string key="StorageVolume" value="string"/>
+		<string key="StorageSpeed" value="string"/>
+		<string key="StorageProducer" value="string"/>
+		<string key="StorageType" value="string"/>
+		<string key="NetworkID" value="string"/>
+		<string key="NetworkBandwidth" value="string"/>
+		<string key="NetworkLatency" value="string"/>
 	</global>
 	<classifier name="Activity" keys="name"/>
 	<classifier name="activity classifier" keys="Activity"/>
 	<trace>
-		<string key="concept:name" value="1"/>
+		<string key="concept:name" value="5"/>
 		<event>
 			<string key="concept:name" value="1-1"/>
 			<string key="StepPhaseID" value="1"/>
-			<date key="time:timestamp" value="2023-10-11T12:26:43.622176+01:00"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.247488+01:00"/>
 			<string key="PipelineID" value="test"/>
-			<string key="PipelineCommunicationMedium" value="t"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
 			<string key="PipelineName" value="test"/>
 			<string key="StepID" value="1"/>
 			<string key="StepName" value="1"/>
 			<string key="StepContinuumLayer" value="Edge"/>
 			<string key="StepType" value="Processing"/>
+			<string key="DataSourceID" value="1"/>
+			<string key="DataSourceName" value="1"/>
+			<string key="DataSourceVolume" value="1"/>
+			<string key="DataSourceVelocity" value="None"/>
+			<string key="DataSourceType" value="IO"/>
+			<string key="TechnologyID" value="1"/>
+			<string key="TechnologyName" value="1"/>
+			<string key="TechnologyOS" value=""/>
+			<string key="CPUID" value="1"/>
+			<string key="CPUCores" value="1"/>
+			<string key="CPUSpeed" value="1"/>
+			<string key="CPUProducer" value=""/>
+			<string key="RAMID" value="1"/>
+			<string key="RAMVolume" value="1"/>
+			<string key="RAMSpeed" value="1"/>
+			<string key="RAMProducer" value="1"/>
+			<string key="RAMType" value="DDR3"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.247488+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="TechnologyID" value="2"/>
+			<string key="TechnologyName" value="2"/>
+			<string key="TechnologyOS" value="Mac"/>
+			<string key="GPUID" value="2"/>
+			<string key="GPUCores" value="2"/>
+			<string key="GPUSpeed" value="2"/>
+			<string key="GPUMemory" value="2"/>
+			<string key="GPUProducer" value=""/>
+			<string key="StorageID" value="2"/>
+			<string key="StorageVolume" value="2"/>
+			<string key="StorageSpeed" value="2"/>
+			<string key="Storageroducer" value="2"/>
+			<string key="StorageType" value="HD"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
 		</event>
 		<event>
 			<string key="concept:name" value="2-2"/>
 			<string key="StepPhaseID" value="2"/>
-			<date key="time:timestamp" value="2023-10-11T12:26:43.622176+01:00"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.247488+01:00"/>
 			<string key="PipelineID" value="test"/>
-			<string key="PipelineCommunicationMedium" value="t"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
 			<string key="PipelineName" value="test"/>
 			<string key="StepID" value="2"/>
 			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="4"/>
+		<event>
+			<string key="concept:name" value="1-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.447745+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="DataSourceID" value="1"/>
+			<string key="DataSourceName" value="1"/>
+			<string key="DataSourceVolume" value="1"/>
+			<string key="DataSourceVelocity" value="None"/>
+			<string key="DataSourceType" value="IO"/>
+			<string key="TechnologyID" value="1"/>
+			<string key="TechnologyName" value="1"/>
+			<string key="TechnologyOS" value=""/>
+			<string key="CPUID" value="1"/>
+			<string key="CPUCores" value="1"/>
+			<string key="CPUSpeed" value="1"/>
+			<string key="CPUProducer" value=""/>
+			<string key="RAMID" value="1"/>
+			<string key="RAMVolume" value="1"/>
+			<string key="RAMSpeed" value="1"/>
+			<string key="RAMProducer" value="1"/>
+			<string key="RAMType" value="DDR3"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.447745+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="TechnologyID" value="2"/>
+			<string key="TechnologyName" value="2"/>
+			<string key="TechnologyOS" value="Mac"/>
+			<string key="GPUID" value="2"/>
+			<string key="GPUCores" value="2"/>
+			<string key="GPUSpeed" value="2"/>
+			<string key="GPUMemory" value="2"/>
+			<string key="GPUProducer" value=""/>
+			<string key="StorageID" value="2"/>
+			<string key="StorageVolume" value="2"/>
+			<string key="StorageSpeed" value="2"/>
+			<string key="Storageroducer" value="2"/>
+			<string key="StorageType" value="HD"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.447745+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="3"/>
+		<event>
+			<string key="concept:name" value="1-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.647937+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="DataSourceID" value="1"/>
+			<string key="DataSourceName" value="1"/>
+			<string key="DataSourceVolume" value="1"/>
+			<string key="DataSourceVelocity" value="None"/>
+			<string key="DataSourceType" value="IO"/>
+			<string key="TechnologyID" value="1"/>
+			<string key="TechnologyName" value="1"/>
+			<string key="TechnologyOS" value=""/>
+			<string key="CPUID" value="1"/>
+			<string key="CPUCores" value="1"/>
+			<string key="CPUSpeed" value="1"/>
+			<string key="CPUProducer" value=""/>
+			<string key="RAMID" value="1"/>
+			<string key="RAMVolume" value="1"/>
+			<string key="RAMSpeed" value="1"/>
+			<string key="RAMProducer" value="1"/>
+			<string key="RAMType" value="DDR3"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.647937+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="TechnologyID" value="2"/>
+			<string key="TechnologyName" value="2"/>
+			<string key="TechnologyOS" value="Mac"/>
+			<string key="GPUID" value="2"/>
+			<string key="GPUCores" value="2"/>
+			<string key="GPUSpeed" value="2"/>
+			<string key="GPUMemory" value="2"/>
+			<string key="GPUProducer" value=""/>
+			<string key="StorageID" value="2"/>
+			<string key="StorageVolume" value="2"/>
+			<string key="StorageSpeed" value="2"/>
+			<string key="Storageroducer" value="2"/>
+			<string key="StorageType" value="HD"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.647937+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="2"/>
+		<event>
+			<string key="concept:name" value="1-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.848160+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="DataSourceID" value="1"/>
+			<string key="DataSourceName" value="1"/>
+			<string key="DataSourceVolume" value="1"/>
+			<string key="DataSourceVelocity" value="None"/>
+			<string key="DataSourceType" value="IO"/>
+			<string key="TechnologyID" value="1"/>
+			<string key="TechnologyName" value="1"/>
+			<string key="TechnologyOS" value=""/>
+			<string key="CPUID" value="1"/>
+			<string key="CPUCores" value="1"/>
+			<string key="CPUSpeed" value="1"/>
+			<string key="CPUProducer" value=""/>
+			<string key="RAMID" value="1"/>
+			<string key="RAMVolume" value="1"/>
+			<string key="RAMSpeed" value="1"/>
+			<string key="RAMProducer" value="1"/>
+			<string key="RAMType" value="DDR3"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.848160+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="TechnologyID" value="2"/>
+			<string key="TechnologyName" value="2"/>
+			<string key="TechnologyOS" value="Mac"/>
+			<string key="GPUID" value="2"/>
+			<string key="GPUCores" value="2"/>
+			<string key="GPUSpeed" value="2"/>
+			<string key="GPUMemory" value="2"/>
+			<string key="GPUProducer" value=""/>
+			<string key="StorageID" value="2"/>
+			<string key="StorageVolume" value="2"/>
+			<string key="StorageSpeed" value="2"/>
+			<string key="Storageroducer" value="2"/>
+			<string key="StorageType" value="HD"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:53.848160+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="1"/>
+		<event>
+			<string key="concept:name" value="1-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:54.048368+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="1"/>
+			<string key="StepName" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="DataSourceID" value="1"/>
+			<string key="DataSourceName" value="1"/>
+			<string key="DataSourceVolume" value="1"/>
+			<string key="DataSourceVelocity" value="None"/>
+			<string key="DataSourceType" value="IO"/>
+			<string key="TechnologyID" value="2"/>
+			<string key="TechnologyName" value="2"/>
+			<string key="TechnologyOS" value="Mac"/>
+			<string key="GPUID" value="2"/>
+			<string key="GPUCores" value="2"/>
+			<string key="GPUSpeed" value="2"/>
+			<string key="GPUMemory" value="2"/>
+			<string key="GPUProducer" value=""/>
+			<string key="StorageID" value="2"/>
+			<string key="StorageVolume" value="2"/>
+			<string key="StorageSpeed" value="2"/>
+			<string key="Storageroducer" value="2"/>
+			<string key="StorageType" value="HD"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-1"/>
+			<string key="StepPhaseID" value="1"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:54.048368+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
+			<string key="StepContinuumLayer" value="Edge"/>
+			<string key="StepType" value="Processing"/>
+			<string key="TechnologyID" value="1"/>
+			<string key="TechnologyName" value="1"/>
+			<string key="TechnologyOS" value=""/>
+			<string key="CPUID" value="1"/>
+			<string key="CPUCores" value="1"/>
+			<string key="CPUSpeed" value="1"/>
+			<string key="CPUProducer" value=""/>
+			<string key="RAMID" value="1"/>
+			<string key="RAMVolume" value="1"/>
+			<string key="RAMSpeed" value="1"/>
+			<string key="RAMProducer" value="1"/>
+			<string key="RAMType" value="DDR3"/>
+			<string key="NetworkID" value="2"/>
+			<string key="NetworkBandwidth" value="2"/>
+			<string key="NetworkLatency" value="2"/>
+		</event>
+		<event>
+			<string key="concept:name" value="2-2"/>
+			<string key="StepPhaseID" value="2"/>
+			<date key="time:timestamp" value="2023-10-18T11:14:54.048368+01:00"/>
+			<string key="PipelineID" value="test"/>
+			<string key="PipelineCommunicationMedium" value="test"/>
+			<string key="PipelineName" value="test"/>
+			<string key="StepID" value="2"/>
+			<string key="StepName" value="2"/>
+			<string key="ResourceID" value="1"/>
+			<string key="org:resource" value="1"/>
 			<string key="StepContinuumLayer" value="Edge"/>
 			<string key="StepType" value="Processing"/>
 		</event>

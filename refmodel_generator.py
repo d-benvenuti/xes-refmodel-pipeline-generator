@@ -90,7 +90,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
     #------------------------ IMPORT -----------------------
     def importJSON(self):
         # get the data from the file
-        pipeline_details = utils.importJSON( "data/new.json", steps, step_phases, technologies)
+        pipeline_details = utils.importJSON( "data/test.json", steps, step_phases, technologies)
         # populate pipeline detailes boxes
         self.lineEdit_id.setText(pipeline_details[0])
         self.lineEdit_name.setText(pipeline_details[1])
