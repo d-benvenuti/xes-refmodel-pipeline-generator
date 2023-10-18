@@ -376,7 +376,7 @@ def generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n
 #--------------------------------------------------------------------
 #function to import the data sources from JSON file
 #--------------------------------------------------------------------
-def importJSON(filename, steps, step_phases, technologies):
+def importJSON(filename, steps, step_phases, data_sources, technologies, resources, environment_variables, cpus,  gpus, rams, storages, networks ):
     print("Importing from: " + filename)
     # OPEN THE FILE
     f = open(filename)
@@ -393,68 +393,60 @@ def importJSON(filename, steps, step_phases, technologies):
     # PARSE STEPS
     # ITERATING ON ALL THE KEYS OF "STEPS"
     for i in data['Steps'].keys():
-        for j in data['Steps'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "STEP"
-            print(data['Steps'][i][j])
+        step_i = data['Steps'][i]
+        steps.append(classes.Step(step_i['ID'], step_i['Name'], step_i['Continuum Layer'], step_i['Type']))
     # PARSE STEP PHASES
     # ITERATING ON ALL THE KEYS OF "STEPPHASES"
     for i in data['StepPhases'].keys():
-        for j in data['StepPhases'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "STEPPHASE"
-            print(data['StepPhases'][i][j])
+        step_phase_i = data['StepPhases'][i]
+        step_phases.append(classes.StepPhase(step_phase_i['ID'], step_phase_i['Name']))
     # PARSE DATASOURCES
     # ITERATING ON ALL THE KEYS OF "DATASOURCES"
     for i in data['DataSources'].keys():
-        for j in data['DataSources'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "DATASOURCE"
-            print(data['DataSources'][i][j])
+        data_source_i = data['DataSources'][i]
+        if 'Velocity' in data['DataSources'][i].keys():
+            data_sources.append(classes.DataStream(data_source_i['ID'], data_source_i['Name'], data_source_i['Volume'], data_source_i['Type'], data_source_i['Velocity']))           
+        else:
+            data_sources.append(classes.DataSource(data_source_i['ID'], data_source_i['Name'], data_source_i['Volume'], data_source_i['Type']))
     # PARSE ENVIRONMENTVARIABLES
     # ITERATING ON ALL THE KEYS OF "ENVIRONMENTVARIABLES"
     for i in data['EnvironmentVariables'].keys():
-        for j in data['EnvironmentVariables'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "ENVIRONMENTVARIABLE"
-            print(data['EnvironmentVariables'][i][j])
+        environment_variable_i = data['EnvironmentVariables'][i]
+        environment_variables.append(classes.EnvironmentVariable(environment_variable_i['Key'], environment_variable_i['Value']))
     # PARSE TECHNOLOGIES
     # ITERATING ON ALL THE KEYS OF "TECHNOLOGIES"
     for i in data['Technologies'].keys():
-        for j in data['Technologies'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "TECHNOLOGY"
-            print(data['Technologies'][i][j])
+        technology_i = data['Technologies'][i]
+        technologies.append(classes.Technology(technology_i['ID'], technology_i['Name'], technology_i['OS']))
     # PARSE CPUS
     # ITERATING ON ALL THE KEYS OF "CPUS"
     for i in data['CPUS'].keys():
-        for j in data['CPUS'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "CPU"
-            print(data['CPUS'][i][j])
+        cpu_i = data['CPUS'][i]
+        cpus.append(classes.CPU(cpu_i['ID'], cpu_i['Cores'], cpu_i['Speed'], cpu_i['Producer']))
     # PARSE GPUS
     # ITERATING ON ALL THE KEYS OF "GPUS"
     for i in data['GPUS'].keys():
-        for j in data['GPUS'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "GPU"
-            print(data['GPUS'][i][j])
+        gpu_i = data['GPUS'][i]
+        gpus.append(classes.GPU(gpu_i['ID'], gpu_i['Cores'], gpu_i['Speed'], gpu_i['Memory'], gpu_i['Producer']))
     # PARSE RAMS
     # ITERATING ON ALL THE KEYS OF "RAMS"
     for i in data['RAMS'].keys():
-        for j in data['RAMS'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "RAM"
-            print(data['RAMS'][i][j])
+        ram_i = data['RAMS'][i]
+        rams.append(classes.RAM(ram_i['ID'], ram_i['Volume'], ram_i['Speed'], ram_i['Type'], ram_i['Producer']))
     # PARSE STORAGES
     # ITERATING ON ALL THE KEYS OF "STORAGES"
     for i in data['Storages'].keys():
-        for j in data['Storages'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "STORAGE"
-            print(data['Storages'][i][j])
+        storage_i = data['Storages'][i]
+        storages.append(classes.Storage(storage_i['ID'], storage_i['Volume'], storage_i['Speed'], storage_i['Type'], storage_i['Producer']))
     # PARSE NETWORKS
     # ITERATING ON ALL THE KEYS OF "NETWORKS"
     for i in data['Networks'].keys():
-        for j in data['Networks'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "NETOWORK"
-            print(data['Networks'][i][j])
+        network_i = data['Networks'][i]
+        networks.append(classes.Network(network_i['ID'], network_i['Bandwidth'], network_i['Latency']))
     # PARSE RESOURCES
     # ITERATING ON ALL THE KEYS OF "RESOURCES"
     for i in data['Resources'].keys():
-        for j in data['Resources'][i]:
-            # ITERATING ON ALL THE KEYS OF EACH "RESOURCE"
-            print(data['Resources'][i][j])
+        resource_i = data['Resources'][i]
+        resources.append(classes.Resource(resource_i['ID'], resource_i['Name']))
     # END and return details
     return pipeline_details
