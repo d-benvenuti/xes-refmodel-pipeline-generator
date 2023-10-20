@@ -8,7 +8,6 @@ import sys
 sys.path.append('src/')
 import classes
 import utils
-from tr import tr
 #------------------------------------------------------------------          
 #------------------------------------------------------------------       
 #DEFINE ALL THE UI WINDOWS

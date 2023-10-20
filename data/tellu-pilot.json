@@ -1,0 +1,112 @@
+{
+	"PipelineID": "tellu01",
+	"PipelineName": "tellu-pilot",
+	"PipelineCommunicationMedium": "cloud",
+	"NumberOfTraces": "50",
+	"Steps":{
+		"Step_1": {
+			"ID": "1",
+			"Name": "Receive Measurement",
+			"Continuum Layer": "Cloud",
+			"Type": "Producer",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "end"
+			}
+	},
+		"Step_2": {
+			"ID": "2",
+			"Name": "Fetch Patient Data",
+			"Continuum Layer": "Cloud",
+			"Type": "Producer",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "end"
+			},
+			"DataSource_1": {
+				"ID": "1",
+				"Name": "PatientsDB",
+				"Volume": "100000000",
+				"Type": "Input"
+			}
+	},
+		"Step_3": {
+			"ID": "3",
+			"Name": "Create Task",
+			"Continuum Layer": "Edge",
+			"Type": "Processing",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "end"
+			},
+			"DataSource_2": {
+				"ID": "2",
+				"Name": "TasksDB",
+				"Volume": "10000000",
+				"Type": "Output"
+			}
+	},
+		"Step_4": {
+			"ID": "4",
+			"Name": "Fetch Task Result",
+			"Continuum Layer": "Cloud",
+			"Type": "Producer",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "end"
+			}
+	},
+		"Step_5": {
+			"ID": "5",
+			"Name": "Process Result and Notify",
+			"Continuum Layer": "Cloud",
+			"Type": "Consumer",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "end"
+			}
+	},
+		"Step_6": {
+			"ID": "6",
+			"Name": "Store Details",
+			"Continuum Layer": "Cloud",
+			"Type": "Producer",
+			"StepPhase_1": {
+				"ID": "1",
+				"Name": "end"
+			},
+			"DataSource_3": {
+				"ID": "3",
+				"Name": "CouchDB",
+				"Volume": "1000000000",
+				"Type": "Output"
+			}
+	}
+	},
+	"StepPhases":{
+		"StepPhase_1": {
+			"ID": "1",
+			"Name": "end"
+	}
+	},
+	"DataSources":{
+		"DataSource_1": {
+			"ID": "1",
+			"Name": "PatientsDB",
+			"Volume": "100000000",
+			"Type": "Input"
+	},
+		"DataSource_3": {
+			"ID": "3",
+			"Name": "CouchDB",
+			"Volume": "1000000000",
+			"Type": "Output"
+	},
+		"DataSource_2": {
+			"ID": "2",
+			"Name": "TasksDB",
+			"Volume": "10000000",
+			"Type": "Output"
+	}
+	}
+}
