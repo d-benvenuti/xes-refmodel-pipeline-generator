@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
 import numpy as np
-from PyQt5.QtWidgets import QMessageBox, QDialog
+from PyQt5.QtWidgets import QMessageBox, QDialog, QFileDialog
 import random
 from datetime import datetime
 import time
@@ -8,6 +8,7 @@ import sys
 sys.path.append('src/')
 import classes
 import utils
+from tr import tr
 #------------------------------------------------------------------          
 #------------------------------------------------------------------       
 #DEFINE ALL THE UI WINDOWS
@@ -21,7 +22,6 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.w = None  # No external window yet.
         self.show() # Show the GUI
         #CONNECT BUTTONS AND ACTIONS
-        self.generateButton.clicked.connect(self.generateLog)
         #------------------------ ADD ------------------------
         self.actionAddResource.triggered.connect(self.addResource)
         self.actionAddStep.triggered.connect(self.addStep) # Remember to pass the definition/method, not the return value!
@@ -70,10 +70,12 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.actionLinkTechnologyRAM.triggered.connect(self.linkTechnologyRAM)
         self.actionLinkTechnologyStorage.triggered.connect(self.linkTechnologyStorage)
         self.actionLinkTechnologyNetwork.triggered.connect(self.linkTechnologyNetwork)
-        #----------------------- DEBUG -----------------------
-        self.debugButton.clicked.connect(self.debug)
+        #----------------------- EXPORT ----------------------
+        self.saveButton.clicked.connect(self.save)
         #----------------------- IMPORT ----------------------
         self.importButton.clicked.connect(self.importJSON)
+        #----------------------- GENERATE --------------------
+        self.generateButton.clicked.connect(self.generateLog)
     #----------------------- CLOSE EVENT -----------------------
     def closeEvent(self, event):
         if self.w is not None:
@@ -81,21 +83,40 @@ class UiMainWindow(QtWidgets.QMainWindow):
     #------------------------------------------------------------------
     #FUNCTIONS
     #------------------------ DEBUG -----------------------
-    def debug(self):
-        self.lineEdit_id.setText("1")
-        self.lineEdit_name.setText("new")
-        self.lineEdit_medium.setText("cloud")
-        self.lineEdit_traces.setText("10")
-        utils.debug(steps, step_phases, technologies)
+    def save(self):
+        print('saveButton clicked.')
+        #READ VALUES FROM lineEdit
+        pipeline_id = self.lineEdit_id.text()
+        pipeline_medium = self.lineEdit_medium.text()
+        pipeline_name = self.lineEdit_name.text()
+        pipeline_traces = self.lineEdit_traces.text()
+        if pipeline_name == "":  
+            msg.setText("Big Data Pipeline Name can not be null.")
+            msg.exec()
+            return -1
+        pipeline_medium = self.lineEdit_medium.text()
+        pipeline_name = self.lineEdit_name.text()
+        pipeline_traces = self.lineEdit_traces.text()
+        # CHECK THAT THERE IS AT LEAST A PIPELINE NAME
+        utils.generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, 0, steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks, resources)
+        msg.setText("JSON succesfully saved.")
+        msg.exec()
+        return 1
     #------------------------ IMPORT -----------------------
     def importJSON(self):
+        print('importButton clicked.')
+        # ask users to select the file
+        fileName = QFileDialog.getOpenFileName(self, "Select JSON", "/", "JSON File (*.json)")
         # get the data from the file
-        pipeline_details = utils.importJSON( "data/test.json", steps, step_phases, data_sources, technologies, resources, environment_variables, cpus,  gpus, rams, storages, networks)
+        pipeline_details = utils.importJSON( fileName[0], steps, step_phases, data_sources, technologies, resources, environment_variables, cpus,  gpus, rams, storages, networks)
         # populate pipeline detailes boxes
         self.lineEdit_id.setText(pipeline_details[0])
         self.lineEdit_name.setText(pipeline_details[1])
         self.lineEdit_medium.setText(pipeline_details[2])
         self.lineEdit_traces.setText(pipeline_details[3])
+        msg.setText("JSON succesfully imported.")
+        msg.exec()
+        return 1
     #------------------------------------------------------------------
     #FUNCTION TO GENERATE BOTH XES AND JSON FILES
     def generateLog(self):
