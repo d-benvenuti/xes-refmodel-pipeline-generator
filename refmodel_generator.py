@@ -193,6 +193,8 @@ class UiMainWindow(QtWidgets.QMainWindow):
             utils.generateJSON(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps, step_phases, data_sources, environment_variables, technologies, cpus, gpus, rams, storages, networks, resources)
             utils.generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps)
             #-------------------------------------- CLOSE THE APP
+            msg.setText("XES succesfully generated.")
+            msg.exec()
             self.close()
             return 1
     #FUNCTION TO ADD A NEW Resource
@@ -406,7 +408,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                 #IF IT IS IN THE DATA STRUCTURE DELETE IT
                 resources.remove(i)
-                print("Resource removed.")
+                msg.setWindowTitle("Success")
+                msg.setText("Resource removed.")
+                msg.exec()
+                msg.setWindowTitle("Error")
                 return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no Resource with the given ID.")
@@ -430,7 +435,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                 #IF IT IS IN THE DATA STRUCTURE DELETE IT
                 steps.remove(i)
-                print("Step removed.")
+                msg.setWindowTitle("Success")
+                msg.setText("Step removed.")
+                msg.exec()
+                msg.setWindowTitle("Error")
                 return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no Step with the given ID.")
@@ -454,7 +462,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     step_phases.remove(i)
-                    print("Step Phase removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("Step Phase removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no Step Phase with the given ID.")
@@ -478,7 +489,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     data_sources.remove(i)
-                    print("Data Source removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("Data Source removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no Data Source with the given ID.")
@@ -502,7 +516,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.key:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     environment_variables.remove(i)
-                    print("Environment Variable removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("Environment Variable removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no Environment Variable with the given key.")
@@ -526,7 +543,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     technologies.remove(i)
-                    print("Technology removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("Technology removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no Technology with the given ID.")
@@ -550,7 +570,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     cpus.remove(i)
-                    print("CPU removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("CPU removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no CPU with the given ID.")
@@ -574,7 +597,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     gpus.remove(i)
-                    print("GPU removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("GPU removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no GPU with the given ID.")
@@ -598,7 +624,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     rams.remove(i)
-                    print("RAM removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("RAM removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no RAM with the given ID.")
@@ -622,7 +651,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     storages.remove(i)
-                    print("Storage removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("Storage removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no Storage with the given ID.")
@@ -646,7 +678,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
             if dialog.id == i.id:
                     #IF IT IS IN THE DATA STRUCTURE DELETE IT
                     networks.remove(i)
-                    print("Network removed.")
+                    msg.setWindowTitle("Success")
+                    msg.setText("Network removed.")
+                    msg.exec()
+                    msg.setWindowTitle("Error")
                     return 1
         #IF THERE IS NO MATCH
         msg.setText("There is no Network with the given ID.")
@@ -684,7 +719,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.resources.append(j)
-                        print("Succesfully linked Resource to Step")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked Resource to Step")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no Resource with such ID.")
                 msg.exec()
@@ -721,7 +759,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.dataSources.append(j)
-                        print("Succesfully linked Data Source to Step")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked Data Source to Step")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no Data Source with such ID.")
                 msg.exec()
@@ -758,7 +799,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.stepPhases.append(j)
-                        print("Succesfully linked Step Phases to Step")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked Step Phases to Step")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no Step Phase with such ID.")
                 msg.exec()
@@ -794,7 +838,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.technologies.append(j)
-                        print("Succesfully linked Technology to  Step Phase ")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked Technology to  Step Phase ")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no Technology with such ID.")
                 msg.exec()
@@ -830,7 +877,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.environmentVariables.append(j)
-                        print("Succesfully linked Environment Variable to Step Phase")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked Environment Variable to Step Phase")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no Environment Variable with such Key.")
                 msg.exec()
@@ -866,7 +916,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.cpus.append(j)
-                        print("Succesfully linked CPU to Technology")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked CPU to Technology")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no CPU with such ID.")
                 msg.exec()
@@ -902,7 +955,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.gpus.append(j)
-                        print("Succesfully linked GPU to Technology")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked GPU to Technology")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no GPU with such ID.")
                 msg.exec()
@@ -938,7 +994,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.rams.append(j)
-                        print("Succesfully linked RAM to Technology")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked RAM to Technology")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no RAM with such ID.")
                 msg.exec()
@@ -974,7 +1033,9 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.storages.append(j)
-                        print("Succesfully linked Storage to Technology")
+                        msg.setText("Succesfully linked Storage to Technology")
+                        msg.exec()
+                        
                         return 1
                 msg.setText("There is no Storage with such ID.")
                 msg.exec()
@@ -1010,7 +1071,10 @@ class UiMainWindow(QtWidgets.QMainWindow):
                                 msg.exec()
                                 return -2 
                         i.networks.append(j)
-                        print("Succesfully linked Network to Technology")
+                        msg.setWindowTitle("Success")
+                        msg.setText("Succesfully linked Network to Technology")
+                        msg.exec()
+                        msg.setWindowTitle("Error")
                         return 1
                 msg.setText("There is no Network with such ID.")
                 msg.exec()
@@ -1121,7 +1185,10 @@ class UiResourceWindow(QtWidgets.QMainWindow):
         #CREATE NEW Step AND ADD IT TO THE LIST
         new_resource = classes.Resource(resource_id, resource_name)
         resources.append(new_resource)
-        print("Resource created.")
+        msg.setWindowTitle("Success")
+        msg.setText("Resource created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1  
@@ -1181,7 +1248,10 @@ class UiStepWindow(QtWidgets.QMainWindow):
         #CREATE NEW Step AND ADD IT TO THE LIST
         new_step = classes.Step(step_id, step_name, step_continuum, step_type)
         steps.append(new_step)
-        print("Step created.")
+        msg.setWindowTitle("Success")
+        msg.setText("Step created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1       
@@ -1228,7 +1298,10 @@ class UiStepPhaseWindow(QtWidgets.QMainWindow):
         #CREATE NEW Step PHASE AND ADD IT TO THE LIST
         new_step_phase = classes.StepPhase(step_phase_id, step_phase_name)
         step_phases.append(new_step_phase)
-        print("Step Phase created.")
+        msg.setWindowTitle("Success")
+        msg.setText("Step Phase created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1275,7 +1348,10 @@ class UiEnvironmentVariableWindow(QtWidgets.QMainWindow):
         #CREATE NEW ENVIRONMENT VARIABLE AND ADD IT TO THE LIST
         new_environment_variable = classes.EnvironmentVariable(environment_variable_key, environment_variable_value)
         environment_variables.append(new_environment_variable)
-        print("Environment Variable created.")
+        msg.setWindowTitle("Success")
+        msg.setText("Environment Variable created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1351,7 +1427,10 @@ class UiDataSourceWindow(QtWidgets.QMainWindow):
         else:
             new_data_source = classes.DataStream(data_source_id, data_source_name, data_source_volume, data_source_type, data_source_velocity)
         data_sources.append(new_data_source)
-        print("Data Source created.")
+        msg.setWindowTitle("Success")
+        msg.setText("Data Source created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1     
@@ -1407,7 +1486,10 @@ class UiTechnologyWindow(QtWidgets.QMainWindow):
         #CREATE NEW Technology AND ADD IT TO THE LIST
         new_technology = classes.Technology(technology_id, technology_name, technology_os)
         technologies.append(new_technology)
-        print("Technology created.")
+        msg.setWindowTitle("Success")
+        msg.setText("Technology created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1   
@@ -1468,7 +1550,10 @@ class UiCPUWindow(QtWidgets.QMainWindow):
         #CREATE NEW CPU AND ADD IT TO THE LIST
         new_cpu = classes.CPU(cpu_id, cpu_cores, cpu_speed, cpu_producer)
         cpus.append(new_cpu)
-        print("CPU created.")
+        msg.setWindowTitle("Success")
+        msg.setText("CPU created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1537,7 +1622,10 @@ class UiRAMWindow(QtWidgets.QMainWindow):
         #CREATE NEW RAM AND ADD IT TO THE LIST
         new_ram = classes.RAM(ram_id, ram_volume, ram_speed, ram_type, ram_producer)
         rams.append(new_ram)
-        print("RAM created.")
+        msg.setWindowTitle("Success")
+        msg.setText("RAM created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1      
@@ -1607,7 +1695,10 @@ class UiGPUWindow(QtWidgets.QMainWindow):
         #CREATE NEW GPU AND ADD IT TO THE LIST
         new_gpu = classes.GPU(gpu_id, gpu_cores, gpu_speed, gpu_memory, gpu_producer)
         gpus.append(new_gpu)
-        print("GPU created.")
+        msg.setWindowTitle("Success")
+        msg.setText("GPU created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1      
@@ -1676,7 +1767,10 @@ class UiStorageWindow(QtWidgets.QMainWindow):
         #CREATE NEW Storage AND ADD IT TO THE LIST
         new_storage = classes.Storage(storage_id, storage_volume, storage_speed, storage_type, storage_producer)
         storages.append(new_storage)
-        print("Storage created.")
+        msg.setWindowTitle("Success")
+        msg.setText("Storage created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1
@@ -1732,7 +1826,10 @@ class UiNetworkWindow(QtWidgets.QMainWindow):
         #CREATE NEW Network AND ADD IT TO THE LIST
         new_network = classes.Network(network_id, network_bandwidth, network_latency)
         networks.append(new_network)
-        print("Network created.")
+        msg.setWindowTitle("Success")
+        msg.setText("Network created.")
+        msg.exec()
+        msg.setWindowTitle("Error")
         self.close()
         window.setEnabled(1)
         return 1
