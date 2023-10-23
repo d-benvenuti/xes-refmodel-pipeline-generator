@@ -5,44 +5,6 @@ from datetime import datetime
 import time
 import json
 #--------------------------------------------------------------------
-#function to debug by populating the data sources
-#--------------------------------------------------------------------
-def debug(steps, step_phases, technologies):
-    print("Debug Button clicked.")
-    #MAKE SURE THAT THE DATA STRUCTURES ARE EMPTY
-    steps.clear()
-    step_phases.clear()
-    technologies.clear()
-    #POPULATE THE DATA STRUCTURES
-    steps.append(classes.Step('1','1','edge','processing'))
-    steps.append(classes.Step('2','2','edge','processing'))
-    step_phases.append(classes.StepPhase('1','1'))
-    step_phases.append(classes.StepPhase('2','2'))
-    steps[0].stepPhases.append(step_phases[0])
-    steps[0].resources.append(classes.Resource('1', '1'))
-    steps[1].resources.append(classes.Resource('2', '2'))
-    steps[1].stepPhases.append(step_phases[0])
-    steps[1].stepPhases.append(step_phases[1])
-    technologies.append(classes.Technology('1','1','Windows'))
-    technologies.append(classes.Technology('2','2','Linux'))
-    steps[0].dataSources.append(classes.DataSource('1','1','1','1'))
-    steps[1].dataSources.append(classes.DataStream('2','2','2','2','IO'))
-    step_phases[0].environmentVariables.append(classes.EnvironmentVariable('1','1'))
-    step_phases[0].environmentVariables.append(classes.EnvironmentVariable('3','1'))
-    step_phases[1].environmentVariables.append(classes.EnvironmentVariable('2','2'))
-    technologies[0].cpus.append(classes.CPU('1','1','1',""))
-    technologies[0].gpus.append(classes.GPU('1','1','1','1',""))
-    technologies[0].rams.append(classes.RAM('1','1','1',"",'DDR4'))
-    technologies[0].storages.append(classes.Storage('1','1','1',"",'HD'))
-    technologies[0].networks.append(classes.Network('1','1','1'))
-    technologies[1].cpus.append(classes.CPU('2','2','2','2'))
-    technologies[1].gpus.append(classes.GPU('1','1','1','1',""))
-    technologies[1].rams.append(classes.RAM('2','2','2','2','DDR5'))
-    technologies[1].storages.append(classes.Storage('2','2','2','2','SSD'))
-    technologies[1].networks.append(classes.Network('2','2','2'))
-    step_phases[0].technologies.append(technologies[0])
-    step_phases[0].technologies.append(technologies[1])
-#--------------------------------------------------------------------
 #function to generate the xes file
 #--------------------------------------------------------------------
 def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n, steps):
@@ -384,26 +346,61 @@ def importJSON(filename, steps, step_phases, data_sources, technologies, resourc
     data = json.load(f)
     # CLOSE THE FILE
     f.close()
-    # PARSE PIPELINE DETAILS
     pipeline_details = []
-    pipeline_details.append(data["PipelineID"])
-    pipeline_details.append(data["PipelineName"])
-    pipeline_details.append(data["PipelineCommunicationMedium"])
-    pipeline_details.append(data["NumberOfTraces"])
-    # PARSE ALL THE CLASSES
+    info_found = 0
+    #PARSE ALL THE KEYS
     for i in data.keys():
+        # PARSE PIPELINE DETAILS
+        if 'PipelineID' in i:
+            info_found += 1
+            pipeline_details.append(data[i])
+        if 'PipelineName' in i:
+            info_found += 1
+            pipeline_details.append(data[i])
+        if 'PipelineCommunicationMedium' in i:
+            info_found += 1
+            pipeline_details.append(data[i])
+        if 'NumberOfTraces' in i:
+            info_found += 1
+            pipeline_details.append(data[i])
+        # PARSE ALL THE CLASSES
         if 'Steps' in i:
             for j in data[i].keys():
+                info_found += 1
                 step_j = data[i][j]
                 new_step = classes.Step(step_j['ID'], step_j['Name'], step_j['Continuum Layer'], step_j['Type'])
+                # PARSE THE RELATIONS BETWEEN STEPS AND OTHER CLASSES
+                for z in data[i][j].keys():
+                    if 'StepPhase' in z:
+                        info_found += 1
+                        new_step.stepPhases.append(classes.StepPhase(data[i][j][z]['ID'], data[i][j][z]['Name']))
+                    if 'DataSource' in z:
+                        info_found += 1
+                        new_step.dataSources.append( classes.DataSource(data[i][j][z]['ID'], data[i][j][z]['Name'], data[i][j][z]['Volume'], data[i][j][z]['Type']))
+                    if 'DataStream' in z:
+                        info_found += 1
+                        new_step.dataSources.append(classes.DataStream(data[i][j][z]['ID'],data[i][j][z]['Name'], data[i][j][z]['Volume'], data[i][j][z]['Type'], data[i][j][z]['Velocity']))
+                    if 'Resource' in z:
+                        info_found += 1
+                        new_step.resources.append(classes.Resource(data[i][j][z]['ID'],data[i][j][z]['Name']))
                 steps.append(new_step)
         if 'StepPhases' in i:
             for j in data[i].keys():
+                info_found += 1
                 step_phase_j = data[i][j]
                 new_step_phase = classes.StepPhase(step_phase_j['ID'], step_phase_j['Name'])
+                # PARSE THE RELATIONS BETWEEN STEP PHASES AND OTHER CLASSES
+                for z in data[i][j].keys():
+                    if 'Technology' in z:
+                        info_found += 1
+                        new_step_phase.technologies.append(classes.Technology(data[i][j][z]['ID'], data[i][j][z]['Name'], data[i][j][z]['OS']))
+                    if 'EnvironmentVariable' in z:
+                        info_found += 1
+                        new_step_phase.environmentVariables.append(classes.EnvironmentVariable(data[i][j][z]['Key'], data[i][j][z]['Value']))
                 step_phases.append(new_step_phase)
         if 'DataSources' in i:
             for j in data[i].keys():
+                info_found += 1
                 data_source_j = data[i][j]
                 if 'Velocity' in data[i][j].keys():
                     new_data_source = classes.DataStream(data_source_j['ID'], data_source_j['Name'], data_source_j['Volume'], data_source_j['Type'], data_source_j['Velocity'])
@@ -413,43 +410,69 @@ def importJSON(filename, steps, step_phases, data_sources, technologies, resourc
                     data_sources.append(new_data_stream)
         if 'EnvironmentVariables' in i:
             for j in data[i].keys():
+                info_found += 1
                 environment_variable_j = data[i][j]
                 new_environment_variable = classes.EnvironmentVariable(environment_variable_j['Key'], environment_variable_j['Value'])
                 environment_variables.append(new_environment_variable)
         if 'Technologies' in i:
             for j in data[i].keys():
+                info_found += 1
                 technology_j = data[i][j]
                 new_technology = classes.Technology(technology_j['ID'], technology_j['Name'], technology_j['OS'])
+                # PARSE THE RELATIONS BETWEEN TECHNOLOGIES AND OTHER CLASSES
+                for z in data[i][j].keys():
+                    if 'CPU' in z:
+                        info_found += 1
+                        new_technology.cpus.append(classes.CPU(data[i][j][z]['ID'], data[i][j][z]['Cores'], data[i][j][z]['Speed'], data[i][j][z]['Producer']))
+                    if 'GPU' in z:
+                        info_found += 1
+                        new_technology.gpus.append(classes.GPU(data[i][j][z]['ID'], data[i][j][z]['Cores'], data[i][j][z]['Speed'], data[i][j][z]['Memory'], data[i][j][z]['Producer']))
+                    if 'RAM' in z:
+                        info_found += 1
+                        new_technology.rams.append(classes.RAM(data[i][j][z]['ID'], data[i][j][z]['Volume'], data[i][j][z]['Speed'], data[i][j][z]['Type'], data[i][j][z]['Producer']))
+                    if 'Storage' in z:
+                        info_found += 1
+                        new_technology.storages.append(classes.Storage(data[i][j][z]['ID'], data[i][j][z]['Volume'], data[i][j][z]['Speed'], data[i][j][z]['Type'], data[i][j][z]['Producer']))
+                    if 'Network' in z:
+                        info_found += 1
+                        new_technology.networks.append(classes.Network(data[i][j][z]['ID'], data[i][j][z]['Bandwidth'], data[i][j][z]['Latency']))
                 technologies.append(new_technology)
         if 'CPUS' in i:
             for j in data[i].keys():
+                info_found += 1
                 cpu_j = data[i][j]
                 new_cpu = classes.CPU(cpu_j['ID'], cpu_j['Cores'], cpu_j['Speed'], cpu_j['Producer'])
                 cpus.append(new_cpu)
         if 'GPUS' in i:
             for j in data[i].keys():
+                info_found += 1
                 gpu_j = data[i][j]
                 new_gpu = classes.GPU(gpu_j['ID'], gpu_j['Cores'], gpu_j['Speed'], gpu_j['Memory'], gpu_j['Producer'])
                 gpus.append(new_gpu)
         if 'RAMS' in i:
             for j in data[i].keys():
+                info_found += 1
                 ram_j = data[i][j]
                 new_ram = classes.RAM(ram_j['ID'], ram_j['Volume'], ram_j['Speed'], ram_j['Type'], ram_j['Producer'])
                 rams.append(new_ram)
         if 'Storages' in i:
             for j in data[i].keys():
+                info_found += 1
                 storage_j = data[i][j]
                 new_storage = classes.Storage(storage_j['ID'], storage_j['Volume'], storage_j['Speed'], storage_j['Type'], storage_j['Producer'])
                 storages.append(new_storage)
         if 'Networks' in i:
             for j in data[i].keys():
+                info_found += 1
                 network_j = data[i][j]
                 new_network = classes.Network(network_j['ID'], network_j['Bandwidth'], network_j['Latency'])
                 networks.append(new_network)
         if 'Resources' in i:
             for j in data[i].keys():
+                info_found += 1
                 resource_j = data[i][j]
                 new_resource = classes.Resource(resource_j['ID'], resource_j['Name'])
                 resources.append(new_resource)
     # END and return details
+    pipeline_details.append(info_found)
     return pipeline_details

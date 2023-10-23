@@ -11,54 +11,7 @@
 			"Type": "Processing",
 			"StepPhase_1": {
 				"ID": "1",
-				"Name": "1",
-				"Technology_1": {
-					"ID": "1",
-					"Name": "1",
-					"OS": "",
-					"CPU_1": {
-						"ID": "1",
-						"Cores": "1",
-						"Speed": "1",
-						"Producer": ""
-							},
-					"RAM_1": {
-						"ID": "1",
-						"Volume": "1",
-						"Speed": "1",
-						"Type": "DDR3",
-						"Producer": "1"
-							},
-					"Network_2": {
-						"ID": "2",
-						"Bandwidth": "2",
-						"Latency": "2"
-							}
-					},
-				"Technology_2": {
-					"ID": "2",
-					"Name": "2",
-					"OS": "Mac",
-					"GPU_2": {
-						"ID": "2",
-						"Cores": "2",
-						"Speed": "2",
-						"Memory": "2",
-						"Producer": ""
-							},
-					"Storage_2": {
-						"ID": "2",
-						"Volume": "2",
-						"Speed": "2",
-						"Type": "HD",
-						"Producer": "2"
-							},
-					"Network_2": {
-						"ID": "2",
-						"Bandwidth": "2",
-						"Latency": "2"
-							}
-					}
+				"Name": "1"
 			},
 			"DataStream_1": {
 				"ID": "1",
@@ -75,54 +28,7 @@
 			"Type": "Processing",
 			"StepPhase_1": {
 				"ID": "1",
-				"Name": "1",
-				"Technology_1": {
-					"ID": "1",
-					"Name": "1",
-					"OS": "",
-					"CPU_1": {
-						"ID": "1",
-						"Cores": "1",
-						"Speed": "1",
-						"Producer": ""
-							},
-					"RAM_1": {
-						"ID": "1",
-						"Volume": "1",
-						"Speed": "1",
-						"Type": "DDR3",
-						"Producer": "1"
-							},
-					"Network_2": {
-						"ID": "2",
-						"Bandwidth": "2",
-						"Latency": "2"
-							}
-					},
-				"Technology_2": {
-					"ID": "2",
-					"Name": "2",
-					"OS": "Mac",
-					"GPU_2": {
-						"ID": "2",
-						"Cores": "2",
-						"Speed": "2",
-						"Memory": "2",
-						"Producer": ""
-							},
-					"Storage_2": {
-						"ID": "2",
-						"Volume": "2",
-						"Speed": "2",
-						"Type": "HD",
-						"Producer": "2"
-							},
-					"Network_2": {
-						"ID": "2",
-						"Bandwidth": "2",
-						"Latency": "2"
-							}
-					}
+				"Name": "1"
 			},
 			"StepPhase_2": {
 				"ID": "2",
@@ -141,49 +47,12 @@
 			"Technology_1": {
 				"ID": "1",
 				"Name": "1",
-				"OS": "",
-				"CPU_1": {
-					"ID": "1",
-					"Cores": "1",
-					"Speed": "1",
-					"Producer": ""
-					},
-				"RAM_1": {
-					"ID": "1",
-					"Volume": "1",
-					"Speed": "1",
-					"Type": "DDR3",
-					"Producer": "1"
-					},
-				"Network_2": {
-					"ID": "2",
-					"Bandwidth": "2",
-					"Latency": "2"
-					}
+				"OS": ""
 			},
 			"Technology_2": {
 				"ID": "2",
 				"Name": "2",
-				"OS": "Mac",
-				"GPU_2": {
-					"ID": "2",
-					"Cores": "2",
-					"Speed": "2",
-					"Memory": "2",
-					"Producer": ""
-					},
-				"Storage_2": {
-					"ID": "2",
-					"Volume": "2",
-					"Speed": "2",
-					"Type": "HD",
-					"Producer": "2"
-					},
-				"Network_2": {
-					"ID": "2",
-					"Bandwidth": "2",
-					"Latency": "2"
-					}
+				"OS": "Mac"
 			}
 	},
 		"StepPhase_2": {

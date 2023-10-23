@@ -120,7 +120,7 @@ class Technology():
         self.networks = []
     #TO STRING
     def __str__(self):
-        s = '"Technology_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"OS": "' + self.os
+        s = '"Technology_' + self.id + '": {\n\t"ID": "' + self.id + '",\n\t"Name": "' + self.name + '",\n\t"OS": "' + self.os + '"'
         if len(self.cpus) > 0:
             s += ','
             n = 0

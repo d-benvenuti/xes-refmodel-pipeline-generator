@@ -81,7 +81,7 @@ class UiMainWindow(QtWidgets.QMainWindow):
             self.w.close()
     #------------------------------------------------------------------
     #FUNCTIONS
-    #------------------------ DEBUG -----------------------
+    #------------------------ SAVE JSON -----------------------
     def save(self):
         print('saveButton clicked.')
         #READ VALUES FROM lineEdit
@@ -104,8 +104,24 @@ class UiMainWindow(QtWidgets.QMainWindow):
     #------------------------ IMPORT -----------------------
     def importJSON(self):
         print('importButton clicked.')
+        # delete current data structures
+        steps.clear()
+        step_phases.clear()
+        data_sources.clear()
+        technologies.clear()
+        resources.clear()
+        environment_variables.clear()
+        cpus.clear()
+        gpus.clear()
+        rams.clear()
+        storages.clear()
+        networks.clear()
         # ask users to select the file
         fileName = QFileDialog.getOpenFileName(self, "Select JSON", "/", "JSON File (*.json)")
+        # check if the dialog was closed without selecting a file
+        if '' in fileName[0] or '' in fileName[1]:
+            print("File Dialog closed without selecting.")
+            return -3
         # get the data from the file
         pipeline_details = utils.importJSON( fileName[0], steps, step_phases, data_sources, technologies, resources, environment_variables, cpus,  gpus, rams, storages, networks)
         # populate pipeline detailes boxes
@@ -113,9 +129,14 @@ class UiMainWindow(QtWidgets.QMainWindow):
         self.lineEdit_name.setText(pipeline_details[1])
         self.lineEdit_medium.setText(pipeline_details[2])
         self.lineEdit_traces.setText(pipeline_details[3])
-        msg.setText("JSON succesfully imported.")
-        msg.exec()
-        return 1
+        if pipeline_details[4] == 0:
+            msg.setText("The selected JSON is not properly formatted.")
+            msg.exec()
+            return -1
+        else:
+            msg.setText(str(pipeline_details[4]) + ' objects created from the JSON.')
+            msg.exec()
+            return 1
     #------------------------------------------------------------------
     #FUNCTION TO GENERATE BOTH XES AND JSON FILES
     def generateLog(self):
