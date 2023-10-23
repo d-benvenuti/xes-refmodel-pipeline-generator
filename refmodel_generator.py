@@ -119,21 +119,21 @@ class UiMainWindow(QtWidgets.QMainWindow):
         # ask users to select the file
         fileName = QFileDialog.getOpenFileName(self, "Select JSON", "/", "JSON File (*.json)")
         # check if the dialog was closed without selecting a file
-        if '' in fileName[0] or '' in fileName[1]:
+        if fileName == ('',''):
             print("File Dialog closed without selecting.")
             return -3
         # get the data from the file
         pipeline_details = utils.importJSON( fileName[0], steps, step_phases, data_sources, technologies, resources, environment_variables, cpus,  gpus, rams, storages, networks)
-        # populate pipeline detailes boxes
-        self.lineEdit_id.setText(pipeline_details[0])
-        self.lineEdit_name.setText(pipeline_details[1])
-        self.lineEdit_medium.setText(pipeline_details[2])
-        self.lineEdit_traces.setText(pipeline_details[3])
-        if pipeline_details[4] == 0:
+        if pipeline_details == -1:
             msg.setText("The selected JSON is not properly formatted.")
             msg.exec()
             return -1
         else:
+            # populate pipeline detailes boxes
+            self.lineEdit_id.setText(pipeline_details[0])
+            self.lineEdit_name.setText(pipeline_details[1])
+            self.lineEdit_medium.setText(pipeline_details[2])
+            self.lineEdit_traces.setText(pipeline_details[3])
             msg.setText(str(pipeline_details[4]) + ' objects created from the JSON.')
             msg.exec()
             return 1

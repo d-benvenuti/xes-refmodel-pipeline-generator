@@ -474,5 +474,8 @@ def importJSON(filename, steps, step_phases, data_sources, technologies, resourc
                 new_resource = classes.Resource(resource_j['ID'], resource_j['Name'])
                 resources.append(new_resource)
     # END and return details
-    pipeline_details.append(info_found)
-    return pipeline_details
+    if info_found == 0:
+        return -1
+    else: 
+        pipeline_details.append(info_found)
+        return pipeline_details
