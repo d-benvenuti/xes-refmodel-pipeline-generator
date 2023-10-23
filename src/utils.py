@@ -390,63 +390,66 @@ def importJSON(filename, steps, step_phases, data_sources, technologies, resourc
     pipeline_details.append(data["PipelineName"])
     pipeline_details.append(data["PipelineCommunicationMedium"])
     pipeline_details.append(data["NumberOfTraces"])
-    # PARSE STEPS
-    # ITERATING ON ALL THE KEYS OF "STEPS"
-    for i in data['Steps'].keys():
-        step_i = data['Steps'][i]
-        steps.append(classes.Step(step_i['ID'], step_i['Name'], step_i['Continuum Layer'], step_i['Type']))
-    # PARSE STEP PHASES
-    # ITERATING ON ALL THE KEYS OF "STEPPHASES"
-    for i in data['StepPhases'].keys():
-        step_phase_i = data['StepPhases'][i]
-        step_phases.append(classes.StepPhase(step_phase_i['ID'], step_phase_i['Name']))
-    # PARSE DATASOURCES
-    # ITERATING ON ALL THE KEYS OF "DATASOURCES"
-    for i in data['DataSources'].keys():
-        data_source_i = data['DataSources'][i]
-        if 'Velocity' in data['DataSources'][i].keys():
-            data_sources.append(classes.DataStream(data_source_i['ID'], data_source_i['Name'], data_source_i['Volume'], data_source_i['Type'], data_source_i['Velocity']))           
-        else:
-            data_sources.append(classes.DataSource(data_source_i['ID'], data_source_i['Name'], data_source_i['Volume'], data_source_i['Type']))
-    # PARSE ENVIRONMENTVARIABLES
-    # ITERATING ON ALL THE KEYS OF "ENVIRONMENTVARIABLES"
-    for i in data['EnvironmentVariables'].keys():
-        environment_variable_i = data['EnvironmentVariables'][i]
-        environment_variables.append(classes.EnvironmentVariable(environment_variable_i['Key'], environment_variable_i['Value']))
-    # PARSE TECHNOLOGIES
-    # ITERATING ON ALL THE KEYS OF "TECHNOLOGIES"
-    for i in data['Technologies'].keys():
-        technology_i = data['Technologies'][i]
-        technologies.append(classes.Technology(technology_i['ID'], technology_i['Name'], technology_i['OS']))
-    # PARSE CPUS
-    # ITERATING ON ALL THE KEYS OF "CPUS"
-    for i in data['CPUS'].keys():
-        cpu_i = data['CPUS'][i]
-        cpus.append(classes.CPU(cpu_i['ID'], cpu_i['Cores'], cpu_i['Speed'], cpu_i['Producer']))
-    # PARSE GPUS
-    # ITERATING ON ALL THE KEYS OF "GPUS"
-    for i in data['GPUS'].keys():
-        gpu_i = data['GPUS'][i]
-        gpus.append(classes.GPU(gpu_i['ID'], gpu_i['Cores'], gpu_i['Speed'], gpu_i['Memory'], gpu_i['Producer']))
-    # PARSE RAMS
-    # ITERATING ON ALL THE KEYS OF "RAMS"
-    for i in data['RAMS'].keys():
-        ram_i = data['RAMS'][i]
-        rams.append(classes.RAM(ram_i['ID'], ram_i['Volume'], ram_i['Speed'], ram_i['Type'], ram_i['Producer']))
-    # PARSE STORAGES
-    # ITERATING ON ALL THE KEYS OF "STORAGES"
-    for i in data['Storages'].keys():
-        storage_i = data['Storages'][i]
-        storages.append(classes.Storage(storage_i['ID'], storage_i['Volume'], storage_i['Speed'], storage_i['Type'], storage_i['Producer']))
-    # PARSE NETWORKS
-    # ITERATING ON ALL THE KEYS OF "NETWORKS"
-    for i in data['Networks'].keys():
-        network_i = data['Networks'][i]
-        networks.append(classes.Network(network_i['ID'], network_i['Bandwidth'], network_i['Latency']))
-    # PARSE RESOURCES
-    # ITERATING ON ALL THE KEYS OF "RESOURCES"
-    for i in data['Resources'].keys():
-        resource_i = data['Resources'][i]
-        resources.append(classes.Resource(resource_i['ID'], resource_i['Name']))
+    # PARSE ALL THE CLASSES
+    for i in data.keys():
+        if 'Steps' in i:
+            for j in data[i].keys():
+                step_j = data[i][j]
+                new_step = classes.Step(step_j['ID'], step_j['Name'], step_j['Continuum Layer'], step_j['Type'])
+                steps.append(new_step)
+        if 'StepPhases' in i:
+            for j in data[i].keys():
+                step_phase_j = data[i][j]
+                new_step_phase = classes.StepPhase(step_phase_j['ID'], step_phase_j['Name'])
+                step_phases.append(new_step_phase)
+        if 'DataSources' in i:
+            for j in data[i].keys():
+                data_source_j = data[i][j]
+                if 'Velocity' in data[i][j].keys():
+                    new_data_source = classes.DataStream(data_source_j['ID'], data_source_j['Name'], data_source_j['Volume'], data_source_j['Type'], data_source_j['Velocity'])
+                    data_sources.append(new_data_source)           
+                else:
+                    new_data_stream = classes.DataSource(data_source_j['ID'], data_source_j['Name'], data_source_j['Volume'], data_source_j['Type'])
+                    data_sources.append(new_data_stream)
+        if 'EnvironmentVariables' in i:
+            for j in data[i].keys():
+                environment_variable_j = data[i][j]
+                new_environment_variable = classes.EnvironmentVariable(environment_variable_j['Key'], environment_variable_j['Value'])
+                environment_variables.append(new_environment_variable)
+        if 'Technologies' in i:
+            for j in data[i].keys():
+                technology_j = data[i][j]
+                new_technology = classes.Technology(technology_j['ID'], technology_j['Name'], technology_j['OS'])
+                technologies.append(new_technology)
+        if 'CPUS' in i:
+            for j in data[i].keys():
+                cpu_j = data[i][j]
+                new_cpu = classes.CPU(cpu_j['ID'], cpu_j['Cores'], cpu_j['Speed'], cpu_j['Producer'])
+                cpus.append(new_cpu)
+        if 'GPUS' in i:
+            for j in data[i].keys():
+                gpu_j = data[i][j]
+                new_gpu = classes.GPU(gpu_j['ID'], gpu_j['Cores'], gpu_j['Speed'], gpu_j['Memory'], gpu_j['Producer'])
+                gpus.append(new_gpu)
+        if 'RAMS' in i:
+            for j in data[i].keys():
+                ram_j = data[i][j]
+                new_ram = classes.RAM(ram_j['ID'], ram_j['Volume'], ram_j['Speed'], ram_j['Type'], ram_j['Producer'])
+                rams.append(new_ram)
+        if 'Storages' in i:
+            for j in data[i].keys():
+                storage_j = data[i][j]
+                new_storage = classes.Storage(storage_j['ID'], storage_j['Volume'], storage_j['Speed'], storage_j['Type'], storage_j['Producer'])
+                storages.append(new_storage)
+        if 'Networks' in i:
+            for j in data[i].keys():
+                network_j = data[i][j]
+                new_network = classes.Network(network_j['ID'], network_j['Bandwidth'], network_j['Latency'])
+                networks.append(new_network)
+        if 'Resources' in i:
+            for j in data[i].keys():
+                resource_j = data[i][j]
+                new_resource = classes.Resource(resource_j['ID'], resource_j['Name'])
+                resources.append(new_resource)
     # END and return details
     return pipeline_details
