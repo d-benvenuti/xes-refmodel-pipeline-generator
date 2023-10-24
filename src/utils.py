@@ -208,10 +208,11 @@ def generateXES(pipeline_id, pipeline_name, pipeline_medium, pipeline_traces, n,
                                 print('\t\t\t<string key="NetworkLatency" value="' + step_phase.technologies[i].networks[j].latency + '"/>')
                         #close event
                         print('\t\t</event>')
+                        time.sleep(random.randint(1,3))
                 #close trace
                 print('\t</trace>')
                 #little wait to avoid timestamps with the same value
-                time.sleep(0.2)
+                time.sleep(random.randint(1,3))
                 n -= 1
             #close the log 
             print('</log>')
